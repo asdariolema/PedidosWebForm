@@ -34,3 +34,9 @@ C:\Users\Dario\source\repos\PedidosWeb\DAL\obj\Debug\DAL.csproj.AssemblyReferenc
 C:\Users\Dario\source\repos\PedidosWeb\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Dario\source\repos\PedidosWeb\DAL\obj\Debug\DAL.dll
 C:\Users\Dario\source\repos\PedidosWeb\DAL\obj\Debug\DAL.pdb
+C:\Users\Dario\source\repos\PedidosWebForm\DAL\bin\Debug\DAL.dll
+C:\Users\Dario\source\repos\PedidosWebForm\DAL\bin\Debug\DAL.pdb
+C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Debug\DAL.dll
+C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Debug\DAL.pdb
