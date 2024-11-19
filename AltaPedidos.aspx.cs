@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -580,6 +581,12 @@ namespace PedidosWebForm
             txtdetalle.Text = string.Empty;
 
         }
+        private bool EsDecimalValido(string valor)
+        {
+            // Patrón para números decimales (con o sin signo y separador decimal)
+            string patron = @"^-?\d+(\.\d+)?$";
+            return Regex.IsMatch(valor, patron);
+        }
 
 
         private void CalcularSumasEdicion(DataTable dtArticulos)
@@ -591,8 +598,13 @@ namespace PedidosWebForm
 
             foreach (DataRow row in dtArticulos.Rows)
             {
-                totalCantidad += Convert.ToDecimal(row["cant"]);
+
+                if (EsDecimalValido(row["cant"].ToString()) && EsDecimalValido(row["PTotal"].ToString()))
+                
+                {
+                    totalCantidad += Convert.ToDecimal(row["cant"]);
                 subtotal += Convert.ToDecimal(row["PTotal"]);
+                }
             }
 
             //impuestos = subtotal * 0.21m; // Supongamos un impuesto del 21%
@@ -665,8 +677,12 @@ namespace PedidosWebForm
 
             foreach (DataRow row in dtArticulos.Rows)
             {
-                totalCantidad += Convert.ToDecimal(row["cantidad"]);
+
+                if (EsDecimalValido(row["cantidad"].ToString()) && EsDecimalValido(row["PrecioTotal"].ToString()))
+                {
+                    totalCantidad += Convert.ToDecimal(row["cantidad"]);
                 subtotal += Convert.ToDecimal(row["PrecioTotal"]);
+                }
             }
 
             //impuestos = subtotal * 0.21m; // Supongamos un impuesto del 21%
