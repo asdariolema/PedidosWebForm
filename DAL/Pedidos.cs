@@ -44,8 +44,8 @@ namespace DAL
         private string _fechadesde;
         private string _fechahasta;
         private string _pbuscafechaalta;
-
-
+        private string _idlocalidadentrega;
+        private string _pciaentrega;
 
 
         public string idPedido // DataType [NUMERIC ],Nullable [NO]
@@ -93,6 +93,21 @@ namespace DAL
      
             set { _contactoObra = value; }
         }
+
+        public string idlocalidadentrega // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return string.IsNullOrEmpty(_idlocalidadentrega) ? SQL.numericNULL : _idlocalidadentrega.Replace(',', '.'); }
+
+            set { _idlocalidadentrega = value; }
+        }
+        public string pciaentrega // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return string.IsNullOrEmpty(_pciaentrega) ? SQL.numericNULL : _pciaentrega.Replace(',', '.'); }
+
+            set { _pciaentrega = value; }
+        }
+
+
 
         public string fechaEntrega // DataType [DATE    ],Nullable [YES]
         {
@@ -340,8 +355,8 @@ namespace DAL
                 aux += (condicionEntrega) + ',';
 
                 aux += Comillas(fechadesde) + ',';
-                aux += Comillas(fechahasta);
-
+                aux += Comillas(fechahasta) + ',';
+                aux += Comillas(idlocalidadentrega);
 
                 return SQL.EjecutaStored(aux).Tables[0];
 
@@ -436,7 +451,13 @@ namespace DAL
                 aux += Comillas(piibb) + ',';
                 aux += Comillas(condicionPago) + ',';
                 aux += Comillas(condicionEntrega) + ',';
-                aux += Comillas(@fechaAlta);
+                aux += Comillas(@fechaAlta) + ',';
+
+
+
+                aux += Comillas(pciaentrega) + ',';
+                aux += Comillas(idlocalidadentrega);
+
 
 
                 return SQL.EjecutaStored(aux).Tables[0];

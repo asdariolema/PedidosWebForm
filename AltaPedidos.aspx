@@ -66,6 +66,76 @@
             </ContentTemplate>
         </asp:UpdatePanel>
 
+
+
+
+         <!-- agreuge -->
+
+         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+     <ContentTemplate>
+         <div class="d-flex align-items-end mb-4 gap-3">
+             <!-- Campo Tipo Documento -->
+
+              <div style="width: 300px;">
+                 <label for="txtPciaEntrega" class="form-label fw-semibold text-secondary">Provincia</label>
+                 <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
+             </div>
+
+
+             <div style="width: 300px;">
+                 <label for="txtlocalidEntrega" class="form-label fw-semibold text-secondary">Localidad</label>
+                 <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
+             </div>
+
+
+              <div style="width: 300px;">
+                 <label for="txtDireccionEntreg" class="form-label fw-semibold text-secondary">Direccion de Entrega</label>
+                 <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
+             </div>
+
+
+
+
+             
+             <!-- Campo CUIT -->
+             <div style="width: 200px;">
+                 <label for="txtcontac" class="form-label fw-semibold text-secondary">Contacto</label>
+                 <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control shadow-sm" />
+             </div>
+
+           
+         </div>
+     </ContentTemplate>
+ </asp:UpdatePanel>
+
+
+         <!-- agreuge -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Modal de búsqueda de clientes -->
         <div class="modal fade" id="clientesModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -101,6 +171,79 @@
                 </div>
             </div>
         </div>
+
+
+<%--         <div class="p-4 mt-4" style="background-color: #ffffff; border: 1px solid #dee2e6; border-radius: 8px;">
+     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+         <ContentTemplate>
+             <div class="form-horizontal">
+                 <div class="row g-3">
+                     <div class="col-md-4">
+                         <label for="descripcion" class="form-label fw-semibold text-secondary">Descripción</label>
+                         <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control shadow-sm" MaxLength="200" style="border-color: #6c757d;" />
+                     </div>
+                     <div class="col-md-4">
+                         <label for="detalle" class="form-label fw-semibold text-secondary">Detalle</label>
+                         <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control shadow-sm" MaxLength="200" style="border-color: #6c757d;" />
+                     </div>
+                     <div class="col-md-4 d-flex align-items-end">
+                         <div class="me-3">
+                             <label for="cantidad" class="form-label fw-semibold text-secondary">Cantidad</label>
+                             <asp:TextBox ID="TextBox3" runat="server" AutoPostBack="True" OnTextChanged="txtCantidad_Changed" CssClass="form-control shadow-sm" style="border-color: #6c757d;" />
+                         </div>
+                         <asp:Button ID="Button1" runat="server" Text="Agregar" CssClass="btn btn-outline-primary shadow-sm" OnClick="btnAgregar_Click" OnClientClick="return validarCampos();" />
+                     </div>
+                 </div>
+
+                 <div class="row g-3 mt-2">
+                     <!-- Campo Precio Unitario -->
+                     <div class="col-md-4">
+                         <label for="precio_unitario" class="form-label fw-semibold text-secondary">Precio Unitario</label>
+                         <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" CssClass="form-control shadow-sm" MaxLength="10" OnTextChanged="txtpreciounitario_Changed" style="border-color: #6c757d;" />
+                     </div>
+
+                     <!-- Campo Unidad -->
+                     <div class="col-md-4">
+                         <label for="ddlunidad" class="form-label fw-semibold text-secondary">Unidad</label>
+                         <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control shadow-sm" style="width: 100px; border-color: #6c757d;" />
+                     </div>
+
+                     <!-- Campo Precio Total alineado a la derecha -->
+                     <div class="col-md-4">
+                         <label for="precio_total" class="form-label fw-semibold text-secondary">Precio Total</label>
+                         <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control shadow-sm" MaxLength="10" ReadOnly="True" style="border-color: #6c757d;" />
+                     </div>
+                 </div>
+             </div>
+         </ContentTemplate>
+     </asp:UpdatePanel>
+ </div>--%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <!-- Panel para agregar artículos -->
         <div class="p-4 mt-4" style="background-color: #ffffff; border: 1px solid #dee2e6; border-radius: 8px;">

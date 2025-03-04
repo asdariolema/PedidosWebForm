@@ -70,6 +70,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaCotizacion.aspx" />
     <Content Include="AltaPedidos.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -87,7 +88,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="CotizacionConsultas.aspx" />
     <Content Include="Estilos\styles.css" />
+    <Content Include="FormConfirmacionPedido.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\fondo.jpg" />
     <Content Include="images\FONDO2.jpg" />
@@ -120,12 +123,33 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaCotizacion.aspx.cs">
+      <DependentUpon>AltaCotizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaCotizacion.aspx.designer.cs">
+      <DependentUpon>AltaCotizacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AltaPedidos.aspx.cs">
       <DependentUpon>AltaPedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AltaPedidos.aspx.designer.cs">
       <DependentUpon>AltaPedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CotizacionConsultas.aspx.cs">
+      <DependentUpon>CotizacionConsultas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CotizacionConsultas.aspx.designer.cs">
+      <DependentUpon>CotizacionConsultas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfirmacionPedido.aspx.cs">
+      <DependentUpon>FormConfirmacionPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormConfirmacionPedido.aspx.designer.cs">
+      <DependentUpon>FormConfirmacionPedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

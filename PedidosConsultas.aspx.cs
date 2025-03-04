@@ -1,10 +1,15 @@
-﻿using System;
+﻿using DAL;
+using DAL.BDL;
+using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
-using DAL;
-using System.Web.UI.WebControls;
+using System.Drawing;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
+
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PedidosWebForm
 {
@@ -200,7 +205,15 @@ namespace PedidosWebForm
                     string pedidoID = selectedRow.Cells[0].Text;
 
                     // Encriptamos el pedidoID
-                    string valorid = DAL.SQL.Encrypt(pedidoID, "mlmweb");
+
+
+                    DAL.Encriptado OBJ = new DAL.Encriptado();
+
+                    string valorid = OBJ.Encrypt(pedidoID, "mlmwebSecKey2024");
+
+                    
+
+
 
                     // Redirigimos a AltaPedidos.aspx con el parámetro encriptado
                     Response.Redirect($"AltaPedidos.aspx?id={valorid}");

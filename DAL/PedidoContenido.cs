@@ -94,8 +94,12 @@ namespace DAL
                 string aux = SQL.Call + "PedidoCont_INS ";
                 aux += IDPEDIDO + ',';
                 aux += ConvertirComasAPuntos(CANT) + ',';
-                aux += Comillas(DESC1) + ',';
-                aux += Comillas(DESC2) + ',';
+                aux += Comillas(DESC1.Replace("'", "''")) + ',';
+                aux += Comillas(DESC2.Replace("'", "''")) + ',';
+
+
+                //aux += Comillas(DESC1) + ',';
+                //aux += Comillas(DESC2) + ',';
                 aux += Comillas(MEDIDA) + ',';
                 aux += Comillas(PUNIT) + ',';
                 aux += Comillas(TASA) + ',';

@@ -48,6 +48,8 @@
     <Compile Include="CMUSER.cs" />
     <Compile Include="Cotizacion.cs" />
     <Compile Include="CotizacionConsulta.cs" />
+    <Compile Include="CotizContenido.cs" />
+    <Compile Include="Encriptado.cs" />
     <Compile Include="Estados.cs" />
     <Compile Include="PedidoContenido.cs" />
     <Compile Include="Pedidos.cs" />

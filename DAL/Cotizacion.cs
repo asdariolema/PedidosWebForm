@@ -44,7 +44,8 @@ namespace DAL
         private string _fechadesde;
         private string _fechahasta;
         private string _pbuscafechaalta;
-
+        private string _localidadentrega;
+        private string _provincia;
 
 
 
@@ -136,6 +137,19 @@ namespace DAL
         }
 
 
+        public string localidadentrega // DataType [NUMERIC ],Nullable [NO]
+        {
+            get { return string.IsNullOrEmpty(_localidadentrega) ? SQL.numericNULL : _estado.Replace(',', '.'); }
+
+            set { _estado = value; }
+        }
+
+        public string provincia // DataType [NUMERIC ],Nullable [NO]
+        {
+            get { return string.IsNullOrEmpty(_provincia) ? SQL.numericNULL : _provincia.Replace(',', '.'); }
+
+            set { _provincia = value; }
+        }
 
 
 
@@ -436,7 +450,12 @@ namespace DAL
                 aux += Comillas(piibb) + ',';
                 aux += Comillas(condicionPago) + ',';
                 aux += Comillas(condicionEntrega) + ',';
-                aux += Comillas(@fechaAlta);
+                aux += Comillas(@fechaAlta) + ',';
+                aux += Comillas(localidadentrega) + ',';
+                aux += Comillas(provincia);
+
+
+              
 
 
                 return SQL.EjecutaStored(aux).Tables[0];
@@ -485,8 +504,9 @@ namespace DAL
                 aux += Comillas(piibb) + ',';
                 aux += Comillas(condicionPago) + ',';
                 aux += Comillas(condicionEntrega) + ',';
-                aux += Comillas(@fechaAlta);
-
+                aux += Comillas(@fechaAlta) + ',';
+                aux += Comillas(localidad) + ',';
+                aux += Comillas(provincia);
 
                 return SQL.EjecutaStored(aux).Tables[0];
 
@@ -505,7 +525,32 @@ namespace DAL
         }
 
 
+        public DataTable pasarapedido( string idcotizacion)
+        {
+            try
+            {
 
+
+                string aux = SQL.Call + "pasarcotizacionapedido " + idcotizacion;
+                  
+               
+
+
+                return SQL.EjecutaStored(aux).Tables[0];
+
+
+
+
+                //string aux = SQL.Call + "PEDIDOSCOTIZACIONES_QRY ";
+                //aux += string.IsNullOrEmpty(pidCliente) ? SQL.numericNULL : pidCliente; aux += ',';
+                //aux += Comillas(string.IsNullOrEmpty(pnombreCliente) ? SQL.numericNULL : pnombreCliente);
+                //return SQL.EjecutaStored(aux).Tables[0];
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
 
 

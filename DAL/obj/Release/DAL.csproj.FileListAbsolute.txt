@@ -22,3 +22,9 @@ C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Release\DAL.csproj.AssemblyRe
 C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Release\DAL.dll
 C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Release\DAL.pdb
+C:\Users\asdar\Documents\DommarcoWeb\DAL\bin\Release\DAL.dll
+C:\Users\asdar\Documents\DommarcoWeb\DAL\bin\Release\DAL.pdb
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Release\DAL.csproj.AssemblyReference.cache
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Release\DAL.dll
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Release\DAL.pdb

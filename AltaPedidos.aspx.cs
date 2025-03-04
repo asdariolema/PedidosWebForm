@@ -2,11 +2,13 @@
 using DAL;
 using DAL.BDL;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -29,12 +31,14 @@ namespace PedidosWebForm
             if (!IsPostBack)
             {
 
-                string parametroId = Request.QueryString["id"];
+                string parametroId =  Request.QueryString["id"];
                 
                 if (!string.IsNullOrEmpty(parametroId) )
                 {
                     // Si el ID es válido y mayor que cero, procedemos con la edición
-                    ViewState["parametro"] = DAL.SQL.Decrypt(parametroId, "mlmweb"); 
+                    DAL.Encriptado obj = new DAL.Encriptado();
+
+                    ViewState["parametro"] = obj.Decrypt(parametroId, "mlmwebSecKey2024"); 
                     ViewState["tipo"] = "EDICION";
                     txtTipoDocumento.Text = "EDICIÓN NRO: " + ViewState["parametro"];
                     editar(ViewState["parametro"].ToString());
@@ -66,6 +70,10 @@ namespace PedidosWebForm
                         dtArticulos.Columns.Add("PrecioTotal");
                         ViewState["Articulos"] = dtArticulos;
                     }
+
+
+
+
 
                     gvArticulos.DataSource = ViewState["Articulos"];
                     gvArticulos.DataBind();
@@ -251,7 +259,13 @@ namespace PedidosWebForm
 
             }
 
+           
 
+
+            TextIdLocalidadEntrega.Text = datos.Rows[0]["localidad"].ToString();
+            TextPciaEntrega.Text = datos.Rows[0]["provincia"].ToString();
+            TextContacto.Text = datos.Rows[0]["contactoobra"].ToString();
+            txtDireccionEntrega.Text = datos.Rows[0]["direccionEntrega"].ToString();
             ViewState["Articulos"] = dtArticulos;
             gvArticulos.DataSource = dtArticulos;
             gvArticulos.DataBind();
@@ -353,7 +367,9 @@ namespace PedidosWebForm
                 PEDIDO.direccionEntrega = txtDireccion.Text;
                 PEDIDO.fechaAlta = txtFechaPedido.Text;
                 PEDIDO.idCliente = txtCodCliente.Text;
-              
+                PEDIDO.contactoObra = TextContacto.Text;
+                PEDIDO.idlocalidadentrega = TextIdLocalidadEntrega.Text;
+                PEDIDO.pciaentrega = TextPciaEntrega.Text;
                 PEDIDO.estado = ddlEstado.SelectedValue;
 
                 // Acceder al valor de la columna "Total" en el DataTable de la grilla de sumas
@@ -384,12 +400,14 @@ namespace PedidosWebForm
                 {
                     PEDCONT.IDPEDIDO = ViewState["parametro"].ToString();
                     PEDCONT.CANT = row.Cells[0].Text;
-                    PEDCONT.DESC1 = row.Cells[1].Text;
-                    PEDCONT.DESC2 = row.Cells[2].Text;
-                    PEDCONT.MEDIDA = row.Cells[3].Text;
-                    PEDCONT.PUNIT = row.Cells[5].Text;
-                    PEDCONT.TASA = row.Cells[4].Text;
-                    PEDCONT.PTOTAL = row.Cells[6].Text;
+                
+
+                PEDCONT.DESC1 = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                    PEDCONT.DESC2 = HttpUtility.HtmlDecode(row.Cells[2].Text);
+                PEDCONT.MEDIDA = row.Cells[3].Text;
+                    PEDCONT.PUNIT = row.Cells[4].Text;
+                  
+                    PEDCONT.PTOTAL = row.Cells[5].Text;
                     PEDCONT.PedidoCont_INS();
                 }
 
@@ -427,12 +445,14 @@ namespace PedidosWebForm
         {  // Insertar el pedido
             DAL.Pedidos PEDIDO = new DAL.Pedidos();
             PEDIDO.nombreCliente = txtRazonSocial.Text;
-            PEDIDO.direccionEntrega = txtDireccion.Text;
+            PEDIDO.direccionEntrega = txtDireccionEntrega.Text;
             PEDIDO.fechaAlta = txtFechaPedido.Text;
             PEDIDO.idCliente = txtCodCliente.Text;
             PEDIDO.idPedido = "1";
             PEDIDO.estado = ddlEstado.SelectedValue;
-
+            PEDIDO.contactoObra = TextContacto.Text;
+            PEDIDO.idlocalidadentrega = TextIdLocalidadEntrega.Text;
+            PEDIDO.pciaentrega = TextPciaEntrega.Text;
             // Acceder al valor de la columna "Total" en el DataTable de la grilla de sumas
             DataTable dtSumas = ViewState["Sumas"] as DataTable;
             if (dtSumas != null && dtSumas.Rows.Count > 0)
@@ -458,13 +478,18 @@ namespace PedidosWebForm
 
                 PEDCONT.IDPEDIDO = ds.Rows[0][0].ToString();
                 PEDCONT.CANT = row.Cells[0].Text;
-                PEDCONT.DESC1 = row.Cells[1].Text;
-                PEDCONT.DESC2 = row.Cells[2].Text;
+
+                string texto = HttpUtility.HtmlDecode("pino eliot&#39;s");
+
+                PEDCONT.DESC1 = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                PEDCONT.DESC2 = HttpUtility.HtmlDecode(row.Cells[2].Text);
+
+               
                 PEDCONT.MEDIDA = row.Cells[3].Text;
 
-                PEDCONT.PUNIT = row.Cells[5].Text;
+                PEDCONT.PUNIT = row.Cells[4].Text;
                 //PEDCONT.TASA = row.Cells[4].Text;
-                PEDCONT.PTOTAL = row.Cells[6].Text;
+                PEDCONT.PTOTAL = row.Cells[5].Text;
                 PEDCONT.PedidoCont_INS();
             }
 
@@ -477,12 +502,13 @@ namespace PedidosWebForm
             txtDireccion.Text = string.Empty;
             txtCUIT.Text = string.Empty;
             ddlEstado.SelectedIndex = 0;
-            //txtDescripcion.Text = string.Empty;
-            //txtdetalle.Text = string.Empty;
-            //txtCantidad.Text = string.Empty;
-            //ddlunidad.Text = string.Empty;
-            //txtPrecioUnitario.Text = string.Empty;
-            //txtPrecioTotal.Text = string.Empty;
+            txtDireccionEntrega.Text = string.Empty;
+            TextPciaEntrega.Text = string.Empty;
+            TextContacto.Text= string.Empty;
+            TextIdLocalidadEntrega.Text = string.Empty;
+            TextPciaEntrega.Text = string.Empty;
+            TextContacto.Text = string.Empty;
+            TextIdLocalidadEntrega.Text = string.Empty;
 
             limpiarcampos();
 
@@ -530,7 +556,7 @@ namespace PedidosWebForm
                 dtArticulos.Columns.Add("Descripcion");
                 dtArticulos.Columns.Add("Cantidad");
                 dtArticulos.Columns.Add("Unidad");
-                dtArticulos.Columns.Add("Tasa");
+               
                 dtArticulos.Columns.Add("PrecioUnitario");
                 dtArticulos.Columns.Add("PrecioTotal");
             }
@@ -545,7 +571,8 @@ namespace PedidosWebForm
             }
 
             DataRow dr = dtArticulos.NewRow();
-            dr["Descripcion"] = txtDescripcion.Text;
+            dr["Descripcion"] =  HttpUtility.HtmlDecode(txtDescripcion.Text);
+          
             dr["Detalle"] = txtdetalle.Text;
             dr["Cantidad"] = txtCantidad.Text ;
             dr["Unidad"] = ddlunidad.SelectedItem.Text;
@@ -583,11 +610,16 @@ namespace PedidosWebForm
         }
         private bool EsDecimalValido(string valor)
         {
-            // Patrón para números decimales (con o sin signo y separador decimal)
-            string patron = @"^-?\d+(\.\d+)?$";
+            // Validar que no sea nulo ni vacío
+            if (string.IsNullOrWhiteSpace(valor))
+                return false;
+
+            // Patrón mejorado para permitir punto (.) o coma (,)
+            string patron = @"^\d+([.,]\d+)?$";
+
+            // Validar el patrón
             return Regex.IsMatch(valor, patron);
         }
-
 
         private void CalcularSumasEdicion(DataTable dtArticulos)
         {
@@ -599,7 +631,9 @@ namespace PedidosWebForm
             foreach (DataRow row in dtArticulos.Rows)
             {
 
-                if (EsDecimalValido(row["cant"].ToString()) && EsDecimalValido(row["PTotal"].ToString()))
+                Boolean valor = EsDecimalValido(row["cant"]?.ToString());
+                 valor = EsDecimalValido(row["PUNIT"]?.ToString());
+                if (EsDecimalValido(row["cant"].ToString()) && EsDecimalValido(row["PUNIT"].ToString()))
                 
                 {
                     totalCantidad += Convert.ToDecimal(row["cant"]);
@@ -678,7 +712,8 @@ namespace PedidosWebForm
             foreach (DataRow row in dtArticulos.Rows)
             {
 
-                if (EsDecimalValido(row["cantidad"].ToString()) && EsDecimalValido(row["PrecioTotal"].ToString()))
+               
+               // if (EsDecimalValido(row["cantidad"].ToString()) && EsDecimalValido(row["preciounitario"].ToString()))
                 {
                     totalCantidad += Convert.ToDecimal(row["cantidad"]);
                 subtotal += Convert.ToDecimal(row["PrecioTotal"]);

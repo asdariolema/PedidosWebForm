@@ -40,3 +40,15 @@ C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Debug\DAL.csproj.AssemblyRefe
 C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Debug\DAL.dll
 C:\Users\Dario\source\repos\PedidosWebForm\DAL\obj\Debug\DAL.pdb
+C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\DAL\obj\Debug\DAL.dll
+C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\DAL\obj\Debug\DAL.pdb
+C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\DAL\bin\Debug\DAL.dll
+C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\DAL\bin\Debug\DAL.pdb
+C:\Users\asdar\Documents\DommarcoWeb\DAL\bin\Debug\DAL.dll
+C:\Users\asdar\Documents\DommarcoWeb\DAL\bin\Debug\DAL.pdb
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.dll
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.pdb

@@ -5,18 +5,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\publicacion</_PublishTargetUrl>
-    <History>True|2024-11-18T22:23:43.8707102Z||;True|2024-11-18T18:44:01.1341276-03:00||;True|2024-11-18T18:39:49.6606383-03:00||;True|2024-11-17T22:29:33.6577527-03:00||;True|2024-11-17T22:14:07.5683119-03:00||;True|2024-11-17T19:26:55.6861618-03:00||;True|2024-11-16T00:52:25.6098219-03:00||;True|2024-11-16T00:11:31.4323170-03:00||;True|2024-11-16T00:08:05.9692379-03:00||;True|2024-11-15T22:42:22.2558170-03:00||;True|2024-11-15T22:33:40.7056729-03:00||;True|2024-11-15T22:31:40.0010379-03:00||;True|2024-11-15T22:23:27.0728130-03:00||;True|2024-11-15T22:20:26.3971353-03:00||;True|2024-11-15T22:14:34.1722837-03:00||;True|2024-11-15T22:11:46.7045529-03:00||;</History>
+    <History>True|2025-03-04T17:55:28.0161149Z;True|2024-11-18T19:23:43.8707102-03:00;True|2024-11-18T18:44:01.1341276-03:00;True|2024-11-18T18:39:49.6606383-03:00;True|2024-11-17T22:29:33.6577527-03:00;True|2024-11-17T22:14:07.5683119-03:00;True|2024-11-17T19:26:55.6861618-03:00;True|2024-11-16T00:52:25.6098219-03:00;True|2024-11-16T00:11:31.4323170-03:00;True|2024-11-16T00:08:05.9692379-03:00;True|2024-11-15T22:42:22.2558170-03:00;True|2024-11-15T22:33:40.7056729-03:00;True|2024-11-15T22:31:40.0010379-03:00;True|2024-11-15T22:23:27.0728130-03:00;True|2024-11-15T22:20:26.3971353-03:00;True|2024-11-15T22:14:34.1722837-03:00;True|2024-11-15T22:11:46.7045529-03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
+    <File Include="AltaCotizacion.aspx">
+      <publishTime>12/15/2024 15:43:31</publishTime>
+    </File>
     <File Include="AltaPedidos.aspx">
-      <publishTime>11/17/2024 22:07:07</publishTime>
+      <publishTime>03/04/2025 00:40:14</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>11/15/2024 22:14:33</publishTime>
+      <publishTime>03/04/2025 14:55:26</publishTime>
     </File>
     <File Include="bin/DAL.pdb">
-      <publishTime>11/15/2024 22:14:33</publishTime>
+      <publishTime>03/04/2025 14:55:26</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>03/05/2023 19:41:40</publishTime>
@@ -25,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/06/2013 08:20:22</publishTime>
     </File>
     <File Include="bin/PedidosWebForm.dll">
-      <publishTime>11/18/2024 19:23:43</publishTime>
+      <publishTime>03/04/2025 14:55:27</publishTime>
     </File>
     <File Include="bin/PedidosWebForm.pdb">
-      <publishTime>11/18/2024 19:23:43</publishTime>
+      <publishTime>03/04/2025 14:55:27</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>02/15/2022 02:38:32</publishTime>
@@ -52,7 +55,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/15/2022 02:33:12</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>02/15/2022 02:36:00</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
       <publishTime>02/15/2022 02:38:34</publishTime>
@@ -219,8 +222,14 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/bootstrap.rtl.min.css.map">
       <publishTime>11/15/2024 22:06:54</publishTime>
     </File>
+    <File Include="CotizacionConsultas.aspx">
+      <publishTime>01/04/2025 22:24:03</publishTime>
+    </File>
     <File Include="Estilos/styles.css">
       <publishTime>11/15/2024 22:22:37</publishTime>
+    </File>
+    <File Include="FormConfirmacionPedido.aspx">
+      <publishTime>01/04/2025 21:02:31</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>11/17/2024 22:27:34</publishTime>
@@ -331,13 +340,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/15/2024 22:07:22</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>11/18/2024 19:21:56</publishTime>
+      <publishTime>12/15/2024 16:59:14</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>11/15/2024 22:33:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/18/2024 18:39:49</publishTime>
+      <publishTime>03/04/2025 14:55:27</publishTime>
     </File>
     <File Include="WebForm1.aspx">
       <publishTime>01/01/0001 00:00:00</publishTime>
