@@ -139,9 +139,9 @@ namespace DAL
 
         public string localidadentrega // DataType [NUMERIC ],Nullable [NO]
         {
-            get { return string.IsNullOrEmpty(_localidadentrega) ? SQL.numericNULL : _estado.Replace(',', '.'); }
+            get { return string.IsNullOrEmpty(_localidadentrega) ? SQL.numericNULL : _localidadentrega.Replace(',', '.'); }
 
-            set { _estado = value; }
+            set { _localidadentrega = value; }
         }
 
         public string provincia // DataType [NUMERIC ],Nullable [NO]
