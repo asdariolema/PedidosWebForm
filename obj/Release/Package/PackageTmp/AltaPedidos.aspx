@@ -87,11 +87,14 @@
                  <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
              </div>
 
-             <!-- Campo Código Cliente -->
-             <div style="width: 300px;">
+
+              <div style="width: 300px;">
                  <label for="txtDireccionEntreg" class="form-label fw-semibold text-secondary">Direccion de Entrega</label>
-                 <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control shadow-sm" MaxLength="100" AutoPostBack="true" OnTextChanged="txtCodCliente_TextChanged" onkeypress="return validateNumericInput(event)" />
+                 <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
              </div>
+
+
+
 
              
              <!-- Campo CUIT -->

@@ -66,6 +66,70 @@
             </ContentTemplate>
         </asp:UpdatePanel>
 
+
+
+
+             <!-- agreuge -->
+
+         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+     <ContentTemplate>
+         <div class="d-flex align-items-end mb-4 gap-3">
+             <!-- Campo Tipo Documento -->
+
+              <div style="width: 300px;">
+                 <label for="txtPciaEntrega" class="form-label fw-semibold text-secondary">Provincia</label>
+                 <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
+             </div>
+
+
+             <div style="width: 300px;">
+                 <label for="txtlocalidEntrega" class="form-label fw-semibold text-secondary">Localidad</label>
+                 <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
+             </div>
+
+             <!-- Campo Código Cliente -->
+             <div style="width: 300px;">
+                 <label for="txtDireccionEntreg" class="form-label fw-semibold text-secondary">Direccion de Entrega</label>
+                 <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control shadow-sm" MaxLength="100" AutoPostBack="true" OnTextChanged="txtCodCliente_TextChanged" onkeypress="return validateNumericInput(event)" />
+             </div>
+
+             
+             <!-- Campo CUIT -->
+             <div style="width: 200px;">
+                 <label for="txtcontac" class="form-label fw-semibold text-secondary">Contacto</label>
+                 <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control shadow-sm" />
+             </div>
+
+           
+         </div>
+     </ContentTemplate>
+ </asp:UpdatePanel>
+
+
+         <!-- agreuge -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Modal de búsqueda de clientes -->
         <div class="modal fade" id="clientesModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
