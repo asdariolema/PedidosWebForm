@@ -505,7 +505,6 @@ namespace DAL
                 aux += Comillas(@fechaAlta) + ',';
                 aux += Comillas(localidadentrega) + ',';
                 aux += Comillas(provincia);
-
                 return SQL.EjecutaStored(aux).Tables[0];
 
 
