@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -259,6 +260,10 @@ namespace PedidosWebForm
             }
 
 
+            TextIdLocalidadEntrega.Text = datos.Rows[0]["localidad"].ToString();
+            TextPciaEntrega.Text = datos.Rows[0]["provincia"].ToString();
+            TextContacto.Text = datos.Rows[0]["contactoobra"].ToString();
+            txtDireccionEntrega.Text = datos.Rows[0]["direccionEntrega"].ToString();
             ViewState["Articulos"] = dtArticulos;
             gvArticulos.DataSource = dtArticulos;
             gvArticulos.DataBind();
@@ -360,6 +365,9 @@ namespace PedidosWebForm
             Cotizacion.direccionEntrega = txtDireccion.Text;
             Cotizacion.fechaAlta = txtFechaPedido.Text;
             Cotizacion.idCliente = txtCodCliente.Text;
+            Cotizacion.localidadentrega = TextIdLocalidadEntrega.Text;
+            Cotizacion.provincia = TextPciaEntrega.Text;
+            Cotizacion.contactoObra = TextContacto.Text;
 
             Cotizacion.estado = ddlEstado.SelectedValue;
 
@@ -391,8 +399,10 @@ namespace PedidosWebForm
                 {
                 CotizCont.IDCOTIZ = ViewState["parametro"].ToString();
                 CotizCont.CANT = row.Cells[0].Text;
-                CotizCont.DESC1 = row.Cells[1].Text;
-                CotizCont.DESC2 = row.Cells[2].Text;
+              
+
+                CotizCont.DESC1 = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                CotizCont.DESC2 = HttpUtility.HtmlDecode(row.Cells[2].Text);
                 CotizCont.MEDIDA = row.Cells[3].Text;
                 CotizCont.PUNIT = row.Cells[4].Text;
 
@@ -401,7 +411,7 @@ namespace PedidosWebForm
                 }
 
                 // Mostrar mensaje de éxito
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('El pedido fue ingresado.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert(La actualización de la cotización fue ingresada.');", true);
 
                 // Blanquear los campos
                 txtCodCliente.Text = string.Empty;
@@ -467,12 +477,12 @@ namespace PedidosWebForm
             foreach (GridViewRow row in gvArticulos.Rows)
             {
 
-
+                
 
                 COTIZCONT.IDCOTIZ = ds.Rows[0][0].ToString();
                 COTIZCONT.CANT = row.Cells[0].Text;
-                COTIZCONT.DESC1 = row.Cells[1].Text;
-                COTIZCONT.DESC2 = row.Cells[2].Text;
+                COTIZCONT.DESC1 = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                COTIZCONT.DESC2 = HttpUtility.HtmlDecode(row.Cells[2].Text);
                 COTIZCONT.MEDIDA = row.Cells[3].Text;
 
                 COTIZCONT.PUNIT = row.Cells[4].Text;
@@ -482,7 +492,7 @@ namespace PedidosWebForm
             }
 
             // Mostrar mensaje de éxito
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('El pedido fue ingresado.');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('La Cotización fue ingresado.');", true);
 
             // Blanquear los campos
             txtCodCliente.Text = string.Empty;

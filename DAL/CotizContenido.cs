@@ -94,8 +94,10 @@ namespace DAL
                 string aux = SQL.Call + "CotizCont_INS ";
                 aux += IDCOTIZ + ',';
                 aux += ConvertirComasAPuntos(CANT) + ',';
-                aux += Comillas(DESC1) + ',';
-                aux += Comillas(DESC2) + ',';
+                aux += Comillas(DESC1.Replace("'", "''")) + ',';
+                aux += Comillas(DESC2.Replace("'", "''")) + ',';
+
+
                 aux += Comillas(MEDIDA) + ',';
                 aux += Comillas(PUNIT) + ',';
                 aux += Comillas(TASA) + ',';

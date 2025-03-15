@@ -399,11 +399,9 @@ namespace DAL
                 aux += importetotal + ',';
                 aux += (retiraPedido) + ',';
                 aux += idCotizacion + ',';
-
                 aux += (piibb) + ',';
                 aux += (condicionPago) + ',';
                 aux += (condicionEntrega) + ',';
-
                 aux += Comillas(fechadesde) + ',';
                 aux += Comillas(fechahasta);
 
@@ -505,7 +503,7 @@ namespace DAL
                 aux += Comillas(condicionPago) + ',';
                 aux += Comillas(condicionEntrega) + ',';
                 aux += Comillas(@fechaAlta) + ',';
-                aux += Comillas(localidad) + ',';
+                aux += Comillas(localidadentrega) + ',';
                 aux += Comillas(provincia);
 
                 return SQL.EjecutaStored(aux).Tables[0];
