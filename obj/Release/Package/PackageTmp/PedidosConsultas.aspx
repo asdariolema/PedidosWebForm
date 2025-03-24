@@ -57,19 +57,68 @@
                     <asp:BoundField DataField="DireccionEntrega" HeaderText="Dirección" />
                     <asp:BoundField DataField="Estado1" HeaderText="Estado" />
                     
-                 
+  <%--               
                    <asp:TemplateField>
     <ItemTemplate>
         <asp:Button ID="btnAbrir" runat="server" Text="Abrir" CommandName="Abrir" CommandArgument="<%# Container.DataItemIndex %>" CssClass="btn btn-info btn-sm" />
     </ItemTemplate>
 </asp:TemplateField>
+
+
+
+
+<asp:TemplateField HeaderText="Acción">
+            <ItemTemplate>
+                <asp:Button ID="btnCambiar" runat="server" Text="Cambiar" 
+                    CommandName="Cambiar" 
+                    CommandArgument='<%# Eval("idpedido") %>' 
+                    CssClass="btn btn-info btn-sm" />
+            </ItemTemplate>
+        </asp:TemplateField>
+
+
+<asp:TemplateField>
+
+
+
+
+
+
+
+
+
+
+
 <asp:TemplateField>
     <ItemTemplate>
         <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" CommandName="Imprimir" CommandArgument="<%# Container.DataItemIndex %>" CssClass="btn btn-secondary btn-sm" />
     </ItemTemplate>
+</asp:TemplateField>--%>
+
+
+                    <asp:TemplateField>
+    <ItemTemplate>
+        <asp:Button ID="btnAbrir" runat="server" Text="Abrir"
+            CommandName="Abrir" CommandArgument='<%# Eval("idpedido") %>'
+            CssClass="btn btn-info btn-sm" />
+    </ItemTemplate>
 </asp:TemplateField>
 
+<asp:TemplateField HeaderText="Acción">
+    <ItemTemplate>
+        <asp:Button ID="btnCambiar" runat="server" Text="Cambiar"
+            CommandName="Cambiar" CommandArgument='<%# Eval("idpedido") %>'
+            CssClass="btn btn-warning btn-sm" />
+    </ItemTemplate>
+</asp:TemplateField>
 
+<asp:TemplateField>
+    <ItemTemplate>
+        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir"
+            CommandName="Imprimir" CommandArgument='<%# Eval("idpedido") %>'
+            CssClass="btn btn-secondary btn-sm" />
+    </ItemTemplate>
+</asp:TemplateField>
 
 
 

@@ -193,46 +193,29 @@ namespace PedidosWebForm
         //        Response.Redirect($"edicionPedidos.aspx?id={pedidoID}");
         //    }
         //}
+
+
         protected void gvResultados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Abrir")
+            if (e.CommandName == "Abrir" || e.CommandName == "Imprimir")
             {
-                // Validamos que el CommandArgument es un número válido
-                if (int.TryParse(e.CommandArgument.ToString(), out int index))
+                // Obtenemos la fila que disparó el comando
+                GridViewRow selectedRow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+
+                // Tomamos el valor de la primera celda (ID del pedido)
+                string pedidoID = selectedRow.Cells[0].Text;
+
+                if (e.CommandName == "Abrir")
                 {
-                    // Obtenemos la fila seleccionada
-                    GridViewRow selectedRow = gvResultados.Rows[index];
-                    string pedidoID = selectedRow.Cells[0].Text;
-
                     // Encriptamos el pedidoID
-
-
                     DAL.Encriptado OBJ = new DAL.Encriptado();
-
                     string valorid = OBJ.Encrypt(pedidoID, "mlmwebSecKey2024");
-
-                    
-
-
 
                     // Redirigimos a AltaPedidos.aspx con el parámetro encriptado
                     Response.Redirect($"AltaPedidos.aspx?id={valorid}");
                 }
-                else
+                else if (e.CommandName == "Imprimir")
                 {
-                    // Manejo de error en caso de que CommandArgument no sea válido
-                    Response.Write("Error: CommandArgument no es un número válido.");
-                }
-            }
-            else if (e.CommandName == "Imprimir")
-            {
-                // Validamos que el CommandArgument es un número válido
-                if (int.TryParse(e.CommandArgument.ToString(), out int index))
-                {
-                    // Obtenemos la fila seleccionada
-                    GridViewRow selectedRow = gvResultados.Rows[index];
-                    string pedidoID = selectedRow.Cells[0].Text;
-
                     // Generamos la URL del reporte
                     string reportUrl = $"ReporteForm.aspx?ReportName=Pedidos&idpedido={pedidoID}";
 
@@ -240,13 +223,66 @@ namespace PedidosWebForm
                     string script = $"window.open('{reportUrl}', '_blank');";
                     ClientScript.RegisterStartupScript(this.GetType(), "OpenReport", script, true);
                 }
-                else
-                {
-                    // Manejo de error en caso de que CommandArgument no sea válido
-                    Response.Write("Error: CommandArgument no es un número válido.");
-                }
             }
         }
+
+
+
+
+        //protected void gvResultados_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "Abrir")
+        //    {
+        //        // Validamos que el CommandArgument es un número válido
+        //        if (int.TryParse(e.CommandArgument.ToString(), out int index))
+        //        {
+        //            // Obtenemos la fila seleccionada
+        //            GridViewRow selectedRow = gvResultados.Rows[index];
+        //            string pedidoID = selectedRow.Cells[0].Text;
+
+        //            // Encriptamos el pedidoID
+
+
+        //            DAL.Encriptado OBJ = new DAL.Encriptado();
+
+        //            string valorid = OBJ.Encrypt(pedidoID, "mlmwebSecKey2024");
+
+
+
+
+
+        //            // Redirigimos a AltaPedidos.aspx con el parámetro encriptado
+        //            Response.Redirect($"AltaPedidos.aspx?id={valorid}");
+        //        }
+        //        else
+        //        {
+        //            // Manejo de error en caso de que CommandArgument no sea válido
+        //            Response.Write("Error: CommandArgument no es un número válido.");
+        //        }
+        //    }
+        //    else if (e.CommandName == "Imprimir")
+        //    {
+        //        // Validamos que el CommandArgument es un número válido
+        //        if (int.TryParse(e.CommandArgument.ToString(), out int index))
+        //        {
+        //            // Obtenemos la fila seleccionada
+        //            GridViewRow selectedRow = gvResultados.Rows[index];
+        //            string pedidoID = selectedRow.Cells[0].Text;
+
+        //            // Generamos la URL del reporte
+        //            string reportUrl = $"ReporteForm.aspx?ReportName=Pedidos&idpedido={pedidoID}";
+
+        //            // Abrimos el reporte en una nueva ventana
+        //            string script = $"window.open('{reportUrl}', '_blank');";
+        //            ClientScript.RegisterStartupScript(this.GetType(), "OpenReport", script, true);
+        //        }
+        //        else
+        //        {
+        //            // Manejo de error en caso de que CommandArgument no sea válido
+        //            Response.Write("Error: CommandArgument no es un número válido.");
+        //        }
+        //    }
+        //}
 
 
 
