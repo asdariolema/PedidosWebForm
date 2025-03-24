@@ -1,0 +1,52 @@
+C:\Users\Desarrollo\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.dll
+C:\Users\Desarrollo\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.pdb
+C:\Users\Desarrollo\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Desarrollo\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.Properties.Resources.resources
+C:\Users\Desarrollo\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.csproj.GenerateResource.Cache
+C:\Users\Desarrollo\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.dll
+C:\Users\Desarrollo\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.pdb
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.dll
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.pdb
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.Properties.Resources.resources
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.csproj.GenerateResource.Cache
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.dll
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.pdb
+C:\Users\I3\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.dll
+C:\Users\I3\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.pdb
+C:\Users\I3\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\I3\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.Properties.Resources.resources
+C:\Users\I3\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.csproj.GenerateResource.Cache
+C:\Users\I3\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.dll
+C:\Users\I3\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.pdb
+C:\Users\Notebook\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.dll
+C:\Users\Notebook\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.pdb
+C:\Users\Notebook\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Notebook\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.Properties.Resources.resources
+C:\Users\Notebook\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.csproj.GenerateResource.Cache
+C:\Users\Notebook\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.dll
+C:\Users\Notebook\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.pdb
+G:\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.dll
+G:\Sistemas\Visual Studio 2008\MYCFWK\bin\Debug\MYCFWK.pdb
+G:\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\ResolveAssemblyReference.cache
+G:\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.Properties.Resources.resources
+G:\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.csproj.GenerateResource.Cache
+G:\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.dll
+G:\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.pdb
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.csprojAssemblyReference.cache
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Debug\MYCFWK.csproj.CoreCompileInputs.cache
+C:\Users\Dario\Documents\Sistemas\Visual 2019\MYCFWK\bin\Debug\MYCFWK.dll
+C:\Users\Dario\Documents\Sistemas\Visual 2019\MYCFWK\bin\Debug\MYCFWK.pdb
+C:\Users\Dario\Documents\Sistemas\Visual 2019\MYCFWK\obj\Debug\MYCFWK.csprojAssemblyReference.cache
+C:\Users\Dario\Documents\Sistemas\Visual 2019\MYCFWK\obj\Debug\MYCFWK.Properties.Resources.resources
+C:\Users\Dario\Documents\Sistemas\Visual 2019\MYCFWK\obj\Debug\MYCFWK.csproj.GenerateResource.cache
+C:\Users\Dario\Documents\Sistemas\Visual 2019\MYCFWK\obj\Debug\MYCFWK.csproj.CoreCompileInputs.cache
+C:\Users\Dario\Documents\Sistemas\Visual 2019\MYCFWK\obj\Debug\MYCFWK.dll
+C:\Users\Dario\Documents\Sistemas\Visual 2019\MYCFWK\obj\Debug\MYCFWK.pdb
+C:\Users\asdar\Documents\DommarcoWeb\MYCFWK\bin\Debug\MYCFWK.dll
+C:\Users\asdar\Documents\DommarcoWeb\MYCFWK\bin\Debug\MYCFWK.pdb
+C:\Users\asdar\Documents\DommarcoWeb\MYCFWK\obj\Debug\MYCFWK.csproj.AssemblyReference.cache
+C:\Users\asdar\Documents\DommarcoWeb\MYCFWK\obj\Debug\MYCFWK.Properties.Resources.resources
+C:\Users\asdar\Documents\DommarcoWeb\MYCFWK\obj\Debug\MYCFWK.csproj.GenerateResource.cache
+C:\Users\asdar\Documents\DommarcoWeb\MYCFWK\obj\Debug\MYCFWK.csproj.CoreCompileInputs.cache
+C:\Users\asdar\Documents\DommarcoWeb\MYCFWK\obj\Debug\MYCFWK.dll
+C:\Users\asdar\Documents\DommarcoWeb\MYCFWK\obj\Debug\MYCFWK.pdb

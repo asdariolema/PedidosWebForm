@@ -31,15 +31,24 @@ namespace PedidosWebForm
         protected void btnBuscarPorFechas_Click(object sender, EventArgs e)
         {
 
+            buscarpedidos();
+        }
+
+        private void buscarpedidos ()
+        {
+
             DAL.Pedidos pedido = new DAL.Pedidos();
-            
-            
-            pedido . fechadesde= TextBox1.Text;
+
+
+            pedido.fechadesde = TextBox1.Text;
             pedido.fechahasta = TextBox2.Text;
             pedido.pbuscafechaalta = "1";
-           // BuscarPedidos(pedido);
-          
+            // BuscarPedidos(pedido);
+
         }
+
+
+
         protected void btnAbrirReporte_Click(object sender, EventArgs e)
         {
             // Redireccionar al WebForm2 que mostrará el Crystal Report
@@ -195,36 +204,155 @@ namespace PedidosWebForm
         //}
 
 
+
+
         protected void gvResultados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Abrir" || e.CommandName == "Imprimir")
+            // Verificamos si el comando es uno de los tres posibles: Abrir, Imprimir o Cambiar
+            if (e.CommandName == "Abrir" || e.CommandName == "Imprimir" || e.CommandName == "Cambiar")
             {
                 // Obtenemos la fila que disparó el comando
                 GridViewRow selectedRow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
 
-                // Tomamos el valor de la primera celda (ID del pedido)
-                string pedidoID = selectedRow.Cells[0].Text;
-
-                if (e.CommandName == "Abrir")
+                // Verificamos si la fila tiene celdas y si el valor que necesitamos está presente
+                if (selectedRow != null && selectedRow.Cells.Count > 0)
                 {
-                    // Encriptamos el pedidoID
-                    DAL.Encriptado OBJ = new DAL.Encriptado();
-                    string valorid = OBJ.Encrypt(pedidoID, "mlmwebSecKey2024");
+                    // Tomamos el valor de la primera celda (ID del pedido) para Abrir o Imprimir
+                    string pedidoID = selectedRow.Cells[0].Text;
 
-                    // Redirigimos a AltaPedidos.aspx con el parámetro encriptado
-                    Response.Redirect($"AltaPedidos.aspx?id={valorid}");
+                    if (e.CommandName == "Abrir")
+                    {
+                        // Encriptamos el pedidoID
+                        DAL.Encriptado OBJ = new DAL.Encriptado();
+                        string valorid = OBJ.Encrypt(pedidoID, "mlmwebSecKey2024");
+
+                        // Redirigimos a AltaPedidos.aspx con el parámetro encriptado
+                        Response.Redirect($"AltaPedidos.aspx?id={valorid}");
+                    }
+                    else if (e.CommandName == "Imprimir")
+                    {
+                        // Generamos la URL del reporte
+                        string reportUrl = $"ReporteForm.aspx?ReportName=Pedidos&idpedido={pedidoID}";
+
+                        // Abrimos el reporte en una nueva ventana
+                        string script = $"window.open('{reportUrl}', '_blank');";
+                        ClientScript.RegisterStartupScript(this.GetType(), "OpenReport", script, true);
+                    }
+                    else if (e.CommandName == "Cambiar")
+                    {
+                        // Captura el ID de la fila seleccionada desde CommandArgument
+                        string idpedido = e.CommandArgument.ToString();
+
+                        // Si se necesita realizar alguna lógica adicional, se puede hacer aquí
+
+                        // Registrar el ID en la sesión
+                        Session["Idpedido"] = idpedido;
+
+                        // Ejecutar el script para abrir el modal
+                        string script = $"abrirModalConID('{idpedido}');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModalConID", script, true);
+                    }
                 }
-                else if (e.CommandName == "Imprimir")
+                else
                 {
-                    // Generamos la URL del reporte
-                    string reportUrl = $"ReporteForm.aspx?ReportName=Pedidos&idpedido={pedidoID}";
-
-                    // Abrimos el reporte en una nueva ventana
-                    string script = $"window.open('{reportUrl}', '_blank');";
-                    ClientScript.RegisterStartupScript(this.GetType(), "OpenReport", script, true);
+                    // En caso de que no se encuentre la fila o no tenga las celdas necesarias
+                    // Esto es solo un ejemplo de validación
+                    // Puedes manejar este caso de acuerdo a las necesidades de tu aplicación
+                    Response.Write("No se encontró la fila o las celdas necesarias.");
                 }
             }
         }
+
+
+
+
+        public void btnPasarPedido_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lógica para cambiar el estado en la base de datos
+                // Por ejemplo, actualiza el estado según el ID
+                string id = Session["IdPedido"].ToString();
+
+                Console.WriteLine($"Cambiando estado de ID {e} ");
+
+               DAL. Pedidos pasarapedido = new DAL.Pedidos();
+                pasarapedido.estado= id;
+                pasarapedido.idPedido = id;
+                pasarapedido.pasarapedido();
+
+                DAL.Pedidos pedido = new DAL.Pedidos();
+                pedido.idCliente = txtCodigoCliente.Text;
+                pedido.fechadesde = TextBox1.Text;
+                pedido.fechahasta = TextBox2.Text;
+                pedido.nombreCliente = txtRazonSocial.Text;
+                BuscarPedidos(pedido);
+
+
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                Console.WriteLine($"Error al cambiar el estado: {ex.Message}");
+
+            }
+        }
+
+
+
+
+
+
+        //protected void gvResultados_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "Abrir" || e.CommandName == "Imprimir")
+        //    {
+        //        // Obtenemos la fila que disparó el comando
+        //        GridViewRow selectedRow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+
+        //        // Tomamos el valor de la primera celda (ID del pedido)
+        //        string pedidoID = selectedRow.Cells[0].Text;
+
+        //        if (e.CommandName == "Abrir")
+        //        {
+        //            // Encriptamos el pedidoID
+        //            DAL.Encriptado OBJ = new DAL.Encriptado();
+        //            string valorid = OBJ.Encrypt(pedidoID, "mlmwebSecKey2024");
+
+        //            // Redirigimos a AltaPedidos.aspx con el parámetro encriptado
+        //            Response.Redirect($"AltaPedidos.aspx?id={valorid}");
+        //        }
+        //        else if (e.CommandName == "Imprimir")
+        //        {
+        //            // Generamos la URL del reporte
+        //            string reportUrl = $"ReporteForm.aspx?ReportName=Pedidos&idpedido={pedidoID}";
+
+        //            // Abrimos el reporte en una nueva ventana
+        //            string script = $"window.open('{reportUrl}', '_blank');";
+        //            ClientScript.RegisterStartupScript(this.GetType(), "OpenReport", script, true);
+        //        }
+
+
+        //        else if (e.CommandName == "Cambiar")
+        //        {
+        //            //// Capturar el ID del registro desde CommandArgument
+
+        //            // Captura el ID de la fila seleccionada desde CommandArgument
+        //            string idpedido = e.CommandArgument.ToString();
+        //            string script = $"abrirModalConID('{idpedido}');";
+        //            // Puedes usar el ID para realizar alguna lógica adicional, si es necesario
+        //            // Registrar el script para abrir el modal
+
+
+        //            Session["Idpedido"] = idpedido;
+
+        //            ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModalConID", script, true);
+
+
+
+        //        }
+        //    }
+        //}
 
 
 

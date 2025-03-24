@@ -1,0 +1,7 @@
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Release\MYCFWK.dll
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\bin\Release\MYCFWK.pdb
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Release\MYCFWK.Properties.Resources.resources
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Release\MYCFWK.csproj.GenerateResource.Cache
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Release\MYCFWK.dll
+C:\Users\Dario\Documents\Sistemas\Visual Studio 2008\MYCFWK\obj\Release\MYCFWK.pdb

@@ -52,3 +52,6 @@ C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.csproj.AssemblyReference.
 C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.dll
 C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.pdb
+C:\Users\asdar\Documents\DommarcoWeb\DAL\bin\Debug\MYCFWK.dll
+C:\Users\asdar\Documents\DommarcoWeb\DAL\bin\Debug\MYCFWK.pdb
+C:\Users\asdar\Documents\DommarcoWeb\DAL\obj\Debug\DAL.csproj.CopyComplete

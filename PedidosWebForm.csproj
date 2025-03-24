@@ -231,6 +231,10 @@
       <Project>{2734e335-5f63-4975-8c69-3d20fbef1ee1}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="MYCFWK\MYCFWK.csproj">
+      <Project>{8b727e9b-00b6-4b25-bd78-5dfc9e90f2bd}</Project>
+      <Name>MYCFWK</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

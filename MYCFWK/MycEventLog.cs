@@ -1,0 +1,424 @@
+using System;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
+using Myc.General.mail;
+using System.Collections.Specialized;
+
+
+namespace Myc.data.Log
+{
+	/// <summary>
+	/// Acciones para registrar eventos en el visor de eventos del sistema operativo.
+	/// </summary>
+	public class MycEventLog
+	{
+		//mail del administrador. Si existe, envia un mail cuando se loguea un error (excepto los de tipo
+		//information o success).
+
+		public enum LogEventType
+		{
+			Information,
+			Warning,
+			Error,
+			Success
+		}
+
+		/// <summary>
+		/// Método Constructor
+		/// </summary>
+		public MycEventLog()
+		{
+		}		
+		
+
+		/// <summary>
+		/// Registra un evento en el log de errores.
+		/// </summary>
+		/// <param name="ex">Objeto de la excepción producida</param>
+		/// <param name="pEventType">Tipo de evento a registrar: Error, Warning o Information</param>
+		public static void LogEvent(Exception ex, LogEventType pEventType)
+		{
+			string description = string.Format("{0} - {1}", ex.Message, ex.StackTrace);
+			string sourceName = ex.Source;
+
+			try
+			{
+				if (ConfigurationManager.AppSettings["EventViewerRegister"].ToLower() == "true")
+				{
+					EventLogEntryType entryLog = EventLogEntryType.Error;	//default
+
+					switch (pEventType)
+					{
+						case LogEventType.Information:
+							entryLog = EventLogEntryType.Information;
+							break;
+
+						case LogEventType.Warning:
+							entryLog = EventLogEntryType.Warning;
+							break;
+					}
+
+					saveEventLog(sourceName, description, entryLog);
+				}
+			}
+			catch (Exception e)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "EventViewerRegister", e.Message));
+			}
+			
+			try
+			{
+				string wLogFile = ConfigurationManager.AppSettings["LogFilePathRegister"].ToString();
+				if (wLogFile.Length > 0)
+				{
+					saveLogFile(description, sourceName, pEventType);
+				}
+			}
+			catch (Exception e)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "LogFilePathRegister", e.Message));
+			}
+
+
+			try
+			{
+				string wEmailAdmin = ConfigurationManager.AppSettings["emailAdmin"];
+           	if(wEmailAdmin != null)
+				{
+					if(wEmailAdmin.Length > 0)
+					{
+						switch (pEventType)
+						{
+							case LogEventType.Information:
+								break;
+
+							case LogEventType.Warning:
+                      		//	MycEmail.SendMail(wEmailAdmin, string.Format("{0}:{1}", System.AppStoreain.CurrentStoreain.FriendlyName, pEventType.ToString()), description, true, true);
+                            
+                                break;
+
+							case LogEventType.Error:
+							//	MycEmail.sendMail(wEmailAdmin, string.Format("{0}:{1}", System.AppStoreain.CurrentStoreain.FriendlyName, pEventType.ToString()), description, true, true);
+								break;
+						}
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "emailAdmin", e.Message));
+			}
+		}
+
+
+		/// <summary>
+		/// Registra un evento en el log de errores.
+		/// </summary>
+		/// <param name="pSourceName">Nombre del origen del evento.</param>
+		/// <param name="pDescription">Descripción del evento.</param>
+		/// <param name="pEventType">Tipo de evento a registrar: Error, Warning o Information</param>
+		public static void LogEvent(string pSourceName, string pDescription, LogEventType pEventType)
+		{
+			try
+			{
+				if (ConfigurationManager.AppSettings["EventViewerRegister"].ToLower() == "true")
+				{
+					EventLogEntryType entryLog = EventLogEntryType.Error;	//default
+
+					switch (pEventType)
+					{
+						case LogEventType.Information:
+							entryLog = EventLogEntryType.Information;
+							break;
+
+						case LogEventType.Warning:
+							entryLog = EventLogEntryType.Warning;
+							break;
+					}
+
+					saveEventLog(pSourceName, pDescription, entryLog);
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "EventViewerRegister", ex.Message));
+			}
+
+			try
+			{
+				string wLogFile = ConfigurationManager.AppSettings["LogFilePathRegister"].ToString();
+				if (wLogFile.Length > 0)
+				{
+					saveLogFile(pDescription, pSourceName, pEventType);
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "LogFilePathRegister", ex.Message));
+			}
+
+			try
+			{
+				string wEmailAdmin = ConfigurationManager.AppSettings["emailAdmin"];
+
+				if(wEmailAdmin != null)
+				{
+					if(wEmailAdmin.Length > 0)
+					{
+						switch (pEventType)
+						{
+							case LogEventType.Information:
+								break;
+
+							case LogEventType.Warning:
+							//	MycEmail.sendMail(wEmailAdmin, string.Format("{0}:{1}", System.AppStoreain.CurrentStoreain.FriendlyName, pEventType.ToString()), pDescription, true, true);
+								break;
+
+							case LogEventType.Error:
+							//	MycEmail.sendMail(wEmailAdmin, string.Format("{0}:{1}", System.AppStoreain.CurrentStoreain.FriendlyName, pEventType.ToString()), pDescription, true, true);
+								break;
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "emailAdmin", ex.Message));
+			}
+		}
+
+
+		/// <summary>
+		/// Registra un evento en el log de aplicaciones indicando el resultado del login del usuario.
+		/// </summary>
+		/// <param name="pUserName">Nombre o identificación del usuario</param>
+		/// <param name="pLoginOK">true si el login resultó exitoso o false si el login falló.</param>
+		public static void LogInEvent(string pUserName, bool pLoginOK)
+		{
+			try
+			{
+				if (ConfigurationManager.AppSettings["EventViewerRegister"].ToLower() == "true")
+				{
+					EventLogEntryType entryLog = EventLogEntryType.FailureAudit;
+					string description = string.Format("Se negó el acceso del usuario {0}.", pUserName);
+
+					if(pLoginOK)
+					{
+						entryLog = EventLogEntryType.SuccessAudit;
+						description = string.Format("El usuario {0} abrió una nueva sesión en el sistema.", pUserName);
+					}
+					EventLog miLog = new EventLog();
+					miLog.Source = string.Format("Mycsis login: {0}", pUserName);
+					miLog.WriteEntry(description, entryLog);
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "EventViewerRegister", ex.Message));
+			}
+		}
+
+		/// <summary>
+		/// Registra un evento en el log de aplicaciones indicando el resultado del login del usuario.
+		/// </summary>
+		/// <param name="pUserName">Nombre o identificación del usuario</param>
+		/// <param name="pMensaje">Información a guardar en el log de eventos.</param>
+		/// <param name="pLoginOK">true si el login resultó exitoso o false si el login falló.</param>
+		public static void LogInEvent(string pUserName, string pMensaje, bool pLoginOK)
+		{
+			try
+			{
+				if (ConfigurationManager.AppSettings["EventViewerRegister"].ToLower() == "true")
+				{
+					EventLogEntryType entryLog = EventLogEntryType.FailureAudit;
+					if(pLoginOK)
+						entryLog = EventLogEntryType.SuccessAudit;
+	
+					EventLog miLog = new EventLog();
+					miLog.Source = string.Format("Mycsis login: {0}", pUserName);
+					miLog.WriteEntry(pMensaje, entryLog);
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "EventViewerRegister", ex.Message));
+			}
+		}
+
+
+		/// <summary>
+		/// Guarda en el log de eventos del sistema un mensaje con información de la actividad de la aplicación.
+		/// </summary>
+		/// <param name="p_SourceName">Fuente (parte de la aplicación) que genera el evento.</param>
+		/// <param name="p_Description">Descripción a loguear.</param>
+		/// <remarks>El log se produce solamente si la clave "logActivity" en el archivo config es "True".</remarks>
+		public static void logActivity(string p_SourceName, string p_Description, LogEventType p_EventType)
+		{
+			try
+			{
+				string w_tipoLog = ConfigurationManager.AppSettings["logActivity"];
+				if(w_tipoLog == null) return;
+
+				if(w_tipoLog.ToLower() == "log")
+				{
+					EventLogEntryType entryLog = EventLogEntryType.Information;	//default
+
+					switch (p_EventType)
+					{
+						case LogEventType.Error:
+							entryLog = EventLogEntryType.Error;
+							break;
+			
+						case LogEventType.Success:
+							entryLog = EventLogEntryType.SuccessAudit;
+							break;
+
+						case LogEventType.Warning:
+							entryLog = EventLogEntryType.Warning;
+							break;
+					}
+
+					saveEventLog(p_SourceName, p_Description, entryLog);
+				}
+
+				if(w_tipoLog.ToLower() == "file")
+					saveLogFile(p_Description, p_SourceName, p_EventType);		
+	
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "logActivity", ex.Message));
+			}
+		}
+
+		/// <summary>
+		/// Guarda un registro en el log de eventos de aplicación del sistema.
+		/// </summary>
+		/// <param name="pSourceName">Nombre de la fuente de generación del evento.</param>
+		/// <param name="pDescription">Descripción del evento</param>
+		/// <param name="pEventType">Tipo de log del evento. </param>
+		private static void saveEventLog(string pSourceName, string pDescription, EventLogEntryType pEventType)
+		{
+			EventLog miLog = new EventLog();
+			miLog.Source = "MYCSIS: " + pSourceName;
+			miLog.WriteEntry(pDescription, pEventType);
+		}
+
+		private static void saveLogFile(string pDescription, string pSource, LogEventType pEventType)
+		{
+			try
+			{
+				string wFilePath = ConfigurationManager.AppSettings["LogFilePathRegister"].ToString().Replace(@"\\", @"\");
+				if (wFilePath == null || wFilePath.Length == 0)
+					return;
+
+				DateTime date = DateTime.Now;
+				string ano = string.Format("{0:0000}", date.Year.ToString());
+				string mes = string.Format("{0:00}", date.Month);
+				string dia = string.Format("{0:00}", date.Day);
+				string wFileName = ConfigurationManager.AppSettings["LogFileIniName"];
+		
+				pDescription = pDescription.Replace("\r\n", "");
+
+				try
+				{
+			
+					string wFrecuencia = ConfigurationManager.AppSettings["LogFilePeriod"].ToString().ToUpper();
+
+					switch (wFrecuencia)
+					{
+						case "D":
+							wFileName = string.Format("{0}{1}{2}{3}.log", wFileName, ano, mes, dia);
+							break;
+
+						case "M":
+							wFileName = string.Format("{0}{1}{2}.log", wFileName, ano, mes);
+							break;
+
+						case "Y":
+							wFileName = string.Format("{0}{1}.log", wFileName, ano);
+							break;
+
+						default:
+							wFileName = string.Format("{0}{1}.log", wFileName, "app");
+							break;
+					}
+
+					wFileName = string.Format(@"{0}\{1}", wFilePath, wFileName);
+					wFileName = wFileName.Replace(@"\\", @"\");
+
+					string wEncabezado = string.Empty;
+
+
+					System.IO.DirectoryInfo wDir = new DirectoryInfo(wFilePath);
+					if(!wDir.Exists)
+						wDir.Create();
+
+					System.IO.FileInfo wFile = new FileInfo(wFileName);
+					if(!wFile.Exists)
+					{
+                    //    wEncabezado = "-------- Fecha --------- " + (char)9;
+                    //    wEncabezado += "-- Descripción -- " + (char)9;
+                    //    wEncabezado += "-- Fuente -- " + (char)9;
+                    //    wEncabezado += "-- Tipo -- ";
+                    }
+               
+
+					StreamWriter sW = new StreamWriter(wFileName, true);
+
+					string wEvenType = string.Empty;
+					switch (pEventType)
+					{
+						case LogEventType.Error:
+							wEvenType = "Error";
+							break;
+
+						case LogEventType.Warning:
+							wEvenType = "Adventencia";
+							break;
+
+						case LogEventType.Information:
+							wEvenType = "Información";
+							break;
+					}
+		
+					if(wEncabezado.Length > 0)
+						sW.WriteLine(wEncabezado);
+
+					//string wFechaLog = "[FECHA] " + DateTime.Now.ToString();
+                    //string wLineaLog = wFechaLog + (char)9;
+                    //wLineaLog += "[DECRIPCION] " + pDescription + (char)9;
+                    //wLineaLog += "[FUENTE] " + pSource + (char)9 +"\n";
+                    //wLineaLog += "[TIPO] " +  wEvenType;
+			
+
+                    NameValueCollection w_Datos = new NameValueCollection();
+		            w_Datos.Add("1", "[FECHA]: " + DateTime.Now.ToString());
+                    w_Datos.Add("2", "[DECRIPCION]: " + pDescription);
+                    w_Datos.Add("3", "[FUENTE]: " + pSource);
+                    w_Datos.Add("4", "[TIPO]: " +  wEvenType);
+                    w_Datos.Add("5", "----------------- FIN LOG -----------------");
+
+                    
+                	//sW.WriteLine(wLineaLog);
+                    
+                    for(int i = 0; i < w_Datos.Count; i++)
+                        sW.WriteLine(w_Datos.Get(i));
+
+                    sW.Close();
+				}
+				finally
+				{
+					//Si hubo error, no hace nada
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(string.Format(@"ConfigurationSettings: ""{0}"" key could be missing [{1}]", "logActivity", ex.Message));
+			}
+		}
+
+
+	}
+}

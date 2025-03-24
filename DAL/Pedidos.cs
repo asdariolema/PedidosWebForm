@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Security.Cryptography;
-
+using System.Xml.Linq;
+using Myc;
 
 namespace DAL
 {
@@ -530,6 +531,29 @@ namespace DAL
 
 
 
+
+
+
+
+
+
+        public DataTable pasarapedido()
+        {
+            try
+            {
+               
+                string aux = SQL.Call + "CambiarEstadoDePedido ";
+                aux += string.IsNullOrEmpty(idPedido) ? SQL.numericNULL : idPedido; aux += ',';
+                aux += Comillas(string.IsNullOrEmpty("3") ? SQL.numericNULL : "3");
+
+
+                return SQL.EjecutaStored(aux).Tables[0];
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
 
 
