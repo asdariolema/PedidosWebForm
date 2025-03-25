@@ -134,3 +134,5 @@ C:\Users\asdar\Documents\DommarcoWeb\obj\Release\PedidosWebForm.csproj.CoreCompi
 C:\Users\asdar\Documents\DommarcoWeb\obj\Release\PedidosWebForm.csproj.CopyComplete
 C:\Users\asdar\Documents\DommarcoWeb\obj\Release\PedidosWebForm.dll
 C:\Users\asdar\Documents\DommarcoWeb\obj\Release\PedidosWebForm.pdb
+C:\Users\asdar\Documents\DommarcoWeb\bin\MYCFWK.dll
+C:\Users\asdar\Documents\DommarcoWeb\bin\MYCFWK.pdb

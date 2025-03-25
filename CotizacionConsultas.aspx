@@ -10,8 +10,8 @@
     <!-- Contenedor principal similar a AltaPedidos.aspx -->
     <div class="container my-4 p-4 border rounded bg-light shadow-sm">
         <h2 class="mb-4">Consulta de Cotizaciones</h2>
-        <button type="button" class="btn btn-primary" onclick="openModal('FormConfirmacionPedido.aspx?id=123');">Abrir Modal</button>
-        <!-- Colocar todos los campos en la misma línea con estilo uniforme -->
+      <%--  <button type="button" class="btn btn-primary" onclick="openModal('FormConfirmacionPedido.aspx?id=123');">Abrir Modal</button>
+      --%>  <!-- Colocar todos los campos en la misma línea con estilo uniforme -->
         <div class="row mb-3 align-items-end">
             <div class="col-md-2">
                 <div class="form-group">
