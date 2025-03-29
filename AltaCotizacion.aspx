@@ -55,7 +55,7 @@
                     <!-- Campo Fecha Pedido -->
                     <div style="width: 130px;">
                         <label for="txtFechaPedido" class="form-label fw-semibold text-secondary">Fecha</label>
-                        <asp:TextBox ID="txtFechaPedido" runat="server" CssClass="form-control shadow-sm" placeholder="Seleccione una fecha" style="width: 110px; border-color: #6c757d;" />
+                        <asp:TextBox ID="txtFechaPedido" runat="server" CssClass="form-control shadow-sm" placeholder="Seleccione una fecha" Style="width: 110px; border-color: #6c757d;" />
                     </div>
 
                     <!-- Botón Buscar alineado al final, con el script para abrir el modal -->
@@ -69,44 +69,44 @@
 
 
 
-             <!-- agreuge -->
+        <!-- agreuge -->
 
-         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-     <ContentTemplate>
-         <div class="d-flex align-items-end mb-4 gap-3">
-             <!-- Campo Tipo Documento -->
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div class="d-flex align-items-end mb-4 gap-3">
+                    <!-- Campo Tipo Documento -->
 
-              <div style="width: 300px;">
-                 <label for="txtPciaEntrega" class="form-label fw-semibold text-secondary">Provincia</label>
-                 <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
-             </div>
-
-
-             <div style="width: 300px;">
-                 <label for="txtlocalidEntrega" class="form-label fw-semibold text-secondary">Localidad</label>
-                 <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
-             </div>
-
-             <!-- Campo Código Cliente -->
-             <div style="width: 300px;">
-                 <label for="txtDireccionEntreg" class="form-label fw-semibold text-secondary">Direccion de Entrega</label>
-                 <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control shadow-sm" MaxLength="100" AutoPostBack="true" OnTextChanged="txtCodCliente_TextChanged" onkeypress="return validateNumericInput(event)" />
-             </div>
-
-             
-             <!-- Campo CUIT -->
-             <div style="width: 200px;">
-                 <label for="txtcontac" class="form-label fw-semibold text-secondary">Contacto</label>
-                 <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control shadow-sm" />
-             </div>
-
-           
-         </div>
-     </ContentTemplate>
- </asp:UpdatePanel>
+                    <div style="width: 300px;">
+                        <label for="txtPciaEntrega" class="form-label fw-semibold text-secondary">Provincia</label>
+                        <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
+                    </div>
 
 
-         <!-- agreuge -->
+                    <div style="width: 300px;">
+                        <label for="txtlocalidEntrega" class="form-label fw-semibold text-secondary">Localidad</label>
+                        <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
+                    </div>
+
+                    <!-- Campo Código Cliente -->
+                    <div style="width: 300px;">
+                        <label for="txtDireccionEntreg" class="form-label fw-semibold text-secondary">Direccion de Entrega</label>
+                        <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control shadow-sm" MaxLength="100" AutoPostBack="true" OnTextChanged="txtCodCliente_TextChanged" onkeypress="return validateNumericInput(event)" />
+                    </div>
+
+
+                    <!-- Campo CUIT -->
+                    <div style="width: 200px;">
+                        <label for="txtcontac" class="form-label fw-semibold text-secondary">Contacto</label>
+                        <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control shadow-sm" />
+                    </div>
+
+
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+
+        <!-- agreuge -->
 
 
 
@@ -141,7 +141,7 @@
                     <asp:UpdatePanel ID="UpdatePanelClientes" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
                             <div class="modal-body">
-                                <asp:TextBox ID="txtBuscarRazonSocial" runat="server" CssClass="form-control shadow-sm" Placeholder="Razón Social" style="border-color: #6c757d;" />
+                                <asp:TextBox ID="txtBuscarRazonSocial" runat="server" CssClass="form-control shadow-sm" Placeholder="Razón Social" Style="border-color: #6c757d;" />
                                 <asp:Button ID="btnFiltrarClientes" runat="server" Text="Buscar Cliente" CssClass="btn btn-outline-primary w-100 mt-3 shadow-sm" OnClick="btnFiltrarClientes_Click" UseSubmitBehavior="false" />
                                 <asp:GridView ID="gvClientes" runat="server" CssClass="table table-hover table-bordered mt-3" AutoGenerateColumns="False" OnRowCommand="gvClientes_RowCommand">
                                     <Columns>
@@ -172,43 +172,103 @@
                 <ContentTemplate>
                     <div class="form-horizontal">
                         <div class="row g-3">
-                            <div class="col-md-4">
-                                <label for="descripcion" class="form-label fw-semibold text-secondary">Descripción</label>
-                                <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control shadow-sm" MaxLength="200" style="border-color: #6c757d;" />
-                            </div>
-                            <div class="col-md-4">
-                                <label for="detalle" class="form-label fw-semibold text-secondary">Detalle</label>
-                                <asp:TextBox ID="txtdetalle" runat="server" CssClass="form-control shadow-sm" MaxLength="200" style="border-color: #6c757d;" />
-                            </div>
-                            <div class="col-md-4 d-flex align-items-end">
-                                <div class="me-3">
-                                    <label for="cantidad" class="form-label fw-semibold text-secondary">Cantidad</label>
-                                    <asp:TextBox ID="txtCantidad" runat="server" AutoPostBack="True" OnTextChanged="txtCantidad_Changed" CssClass="form-control shadow-sm" style="border-color: #6c757d;" />
-                                </div>
-                                <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-outline-primary shadow-sm" OnClick="btnAgregar_Click" OnClientClick="return validarCampos();" />
-                            </div>
-                        </div>
 
-                        <div class="row g-3 mt-2">
-                            <!-- Campo Precio Unitario -->
-                            <div class="col-md-4">
-                                <label for="precio_unitario" class="form-label fw-semibold text-secondary">Precio Unitario</label>
-                                <asp:TextBox ID="txtPrecioUnitario" runat="server" AutoPostBack="True" CssClass="form-control shadow-sm" MaxLength="10" OnTextChanged="txtpreciounitario_Changed" style="border-color: #6c757d;" />
-                            </div>
+
 
                             <!-- Campo Unidad -->
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label for="ddlunidad" class="form-label fw-semibold text-secondary">Unidad</label>
-                                <asp:DropDownList ID="ddlunidad" runat="server" CssClass="form-control shadow-sm" style="width: 100px; border-color: #6c757d;" />
+                                <asp:DropDownList ID="ddlunidad" runat="server" CssClass="form-control select2-autocompletar" Style="width: 100px; border-color: #6c757d;" />
                             </div>
 
-                            <!-- Campo Precio Total alineado a la derecha -->
+
                             <div class="col-md-4">
-                                <label for="precio_total" class="form-label fw-semibold text-secondary">Precio Total</label>
-                                <asp:TextBox ID="txtPrecioTotal" runat="server" CssClass="form-control shadow-sm" MaxLength="10" ReadOnly="True" style="border-color: #6c757d;" />
+                                <label for="ddldescripcion" class="form-label fw-semibold text-secondary">Descripción</label>
+                                <%-- <asp:DropDownList ID="ddldescripcion" runat="server" CssClass="form-control shadow-sm" />   </div>--%>
+                                <asp:DropDownList ID="ddldescripcion" runat="server" CssClass="form-control select2-autocompletar" />
                             </div>
-                        </div>
-                    </div>
+
+
+
+
+
+
+                            <div class="col-auto">
+                                <label for="ddlEspesor" class="form-label fw-semibold text-secondary">Espesor</label>
+
+                                <asp:DropDownList ID="ddlEspesor" runat="server" CssClass="form-control select2-autocompletar" />
+                            </div>
+
+
+                            <div class="col-auto">
+                                <label for="ddlAncho" class="form-label fw-semibold text-secondary">Ancho</label>
+
+                                <asp:DropDownList ID="ddlAncho" runat="server" CssClass="form-control select2-autocompletar" />
+                            </div>
+
+
+                            <div class="col-auto">
+                                <label for="ddlLargo" class="form-label fw-semibold text-secondary">Largo</label>
+
+                                <asp:DropDownList ID="ddlLargo" runat="server" CssClass="form-control select2-autocompletar" />
+                            </div>
+
+
+
+
+
+
+
+                            <%--   <div class="col-md-4">
+                                <label for="descripcion" class="form-label fw-semibold text-secondary">Descripción</label>
+                                <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control shadow-sm" MaxLength="200" style="border-color: #6c757d;" />
+                            </div>--%>
+
+                            <div class="row align-items-end g-3">
+                                <!-- Cantidad -->
+                                <div class="col-auto">
+                                    <label for="txtCantidad" class="form-label fw-semibold text-secondary">Cantidad</label>
+                                    <asp:TextBox ID="txtCantidad" runat="server" AutoPostBack="True"
+                                        OnTextChanged="txtCantidad_Changed"
+                                        CssClass="form-control shadow-sm"
+                                        Style="border-color: #6c757d; width: 80px;" />
+                                </div>
+
+
+
+                                <!-- Precio Unitario -->
+                                <div class="col-auto">
+                                    <label for="txtPrecioUnitario" class="form-label fw-semibold text-secondary">Precio Unitario</label>
+                                    <asp:TextBox ID="txtPrecioUnitario" runat="server"
+                                        AutoPostBack="True"
+                                        OnTextChanged="txtpreciounitario_Changed"
+                                        CssClass="form-control shadow-sm"
+                                        MaxLength="10"
+                                        Style="border-color: #6c757d;" />
+                                </div>
+
+
+                                <!-- Botón Agregar -->
+                                <div class="col-auto">
+                                    <label class="form-label d-block invisible">Botón</label>
+                                    <!-- Invisible para alinear con otros labels -->
+                                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
+                                        CssClass="btn btn-outline-primary shadow-sm"
+                                        OnClick="btnAgregar_Click"
+                                        OnClientClick="return validarCampos();" />
+                                </div>
+
+                                <!-- Precio Total -->
+                                <div class="col-auto">
+
+                                    <asp:TextBox ID="txtPrecioTotal" runat="server"
+                                        CssClass="form-control shadow-sm"
+                                        MaxLength="10"
+                                        Visible="false"
+                                        ReadOnly="True"
+                                        Style="border-color: #6c757d;" />
+                                </div>
+                            </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
@@ -262,6 +322,7 @@
         .fw-semibold {
             font-weight: 600;
         }
+
         .text-secondary {
             color: #6c757d !important;
         }
@@ -269,14 +330,14 @@
 
 
     <style>
-    body {
-        background-image: url('images/fondo.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-    }
-</style>
+        body {
+            background-image: url('images/fondo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+    </style>
 
 
 

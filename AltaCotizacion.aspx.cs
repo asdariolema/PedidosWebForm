@@ -56,7 +56,10 @@ namespace PedidosWebForm
                     txtFechaPedido.Text = DateTime.Now.ToString("dd-MM-yyyy");
                     CargarEstados();
                     CargarUnidMed();
-
+                    CargarArtidulosDescripcion();
+                    CargarUnidMedEspesor();
+                    CargarUnidMedLargo();
+                    CargarUnidMedAncho();
                     // Inicializar la tabla de artículos si es la primera vez que se carga la página
                     if (ViewState["Articulos"] == null)
                     {
@@ -272,7 +275,17 @@ namespace PedidosWebForm
 
         }
 
+        private void CargarArtidulosDescripcion()
+        {
+            DAL.Articulo articulo = new DAL.Articulo();
+            
+            DataTable dt = articulo.GETArticulo();
 
+            ddldescripcion.DataSource = dt;
+            ddldescripcion.DataTextField = "ART_DESCRIPCION";
+            ddldescripcion.DataValueField = "ID_ARTICULO";
+            ddldescripcion.DataBind();
+        }
 
 
         private void CargarEstados()
@@ -299,6 +312,52 @@ namespace PedidosWebForm
             ddlunidad.DataTextField = "DESCRIPCION";
             ddlunidad.DataValueField = "ID";
             ddlunidad.DataBind();
+
+            // Añadir un ítem predeterminado
+            //ddlunidad.Items.Insert(0, new ListItem("", "0"));
+        }
+        private void CargarUnidMedEspesor()
+        {
+            DAL.UnidadesMedida UNIMED = new DAL.UnidadesMedida();
+            UNIMED.DESCRIPCION = null;
+
+            DataTable dt = UNIMED.GETUNIMED();
+
+            ddlEspesor.DataSource = dt;
+            ddlEspesor.DataTextField = "DESCRIPCION";
+            ddlEspesor.DataValueField = "ID";
+            ddlEspesor.DataBind();
+
+            // Añadir un ítem predeterminado
+            //ddlunidad.Items.Insert(0, new ListItem("", "0"));
+        }
+
+        private void CargarUnidMedLargo()
+        {
+            DAL.UnidadesMedida UNIMED = new DAL.UnidadesMedida();
+            UNIMED.DESCRIPCION = null;
+
+            DataTable dt = UNIMED.GETUNIMED();
+
+            ddlLargo.DataSource = dt;
+            ddlLargo.DataTextField = "DESCRIPCION";
+            ddlLargo.DataValueField = "ID";
+            ddlLargo.DataBind();
+
+            // Añadir un ítem predeterminado
+            //ddlunidad.Items.Insert(0, new ListItem("", "0"));
+        }
+        private void CargarUnidMedAncho()
+        {
+            DAL.UnidadesMedida UNIMED = new DAL.UnidadesMedida();
+            UNIMED.DESCRIPCION = null;
+
+            DataTable dt = UNIMED.GETUNIMED();
+
+            ddlAncho.DataSource = dt;
+            ddlAncho.DataTextField = "DESCRIPCION";
+            ddlAncho.DataValueField = "ID";
+            ddlAncho.DataBind();
 
             // Añadir un ítem predeterminado
             //ddlunidad.Items.Insert(0, new ListItem("", "0"));
@@ -563,8 +622,8 @@ namespace PedidosWebForm
             }
 
             DataRow dr = dtArticulos.NewRow();
-            dr["Descripcion"] = txtDescripcion.Text;
-            dr["Detalle"] = txtdetalle.Text;
+           // dr["Descripcion"] = txtDescripcion.Text;
+           // dr["Detalle"] = ddl.Text;
             dr["Cantidad"] = txtCantidad.Text ;
             dr["Unidad"] = ddlunidad.SelectedItem.Text;
             dr["PrecioUnitario"] = txtPrecioUnitario.Text;
@@ -591,12 +650,12 @@ namespace PedidosWebForm
 
         private void limpiarcampos()
         {
-            txtDescripcion.Text = string.Empty;
+            //txtDescripcion.Text = string.Empty;
             txtCantidad.Text = string.Empty;
             ddlunidad.SelectedIndex = 0;
             txtPrecioUnitario.Text = string.Empty;
             txtPrecioTotal.Text = string.Empty;
-            txtdetalle.Text = string.Empty;
+            //txtdetalle.Text = string.Empty;
 
         }
         private bool EsDecimalValido(string valor)
