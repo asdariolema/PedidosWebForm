@@ -4,12 +4,30 @@
     Alta de Cotizaciòn
 </asp:Content>
 
+
+
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Referencias a jQuery y Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+      <script type="text/javascript">
+          Sys.Application.add_load(function () {
+              $('.select2-autocompletar').select2({
+                  placeholder: 'Seleccioná una opción...',
+                  allowClear: true,
+                  width: '100%'
+              });
+          });
+    </script>
+
+        <asp:UpdatePanel ID="MainUpdatePanel" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
 
     <div class="container p-4" style="width: 100%; max-width: inherit; padding: 20px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px;">
         <!-- Primera fila con todos los campos y botón Buscar alineados en una línea -->
@@ -29,10 +47,41 @@
                     </div>
 
                     <!-- Campo Razón Social -->
-                    <div style="width: 220px;">
+                   <%-- <div style="width: 220px;">
                         <label for="txtRazonSocial" class="form-label fw-semibold text-secondary">Razón Social</label>
                         <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="form-control shadow-sm fw-bold text-primary" MaxLength="200" />
-                    </div>
+                    </div>--%>
+
+
+
+<div class="col-md-4">
+    <label for="ddlRazonSocial" class="form-label fw-semibold text-secondary">Razón Social</label>
+    <asp:UpdatePanel ID="UpdatePanelRazonSocial" runat="server">
+        <ContentTemplate>
+            <asp:DropDownList 
+                ID="ddlRazonSocial" 
+                runat="server" 
+                CssClass="form-control select2-autocompletar" 
+                AutoPostBack="true"
+                OnSelectedIndexChanged="ddlRazonSocial_SelectedIndexChanged" />
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="ddlRazonSocial" EventName="SelectedIndexChanged" />
+        </Triggers>
+    </asp:UpdatePanel>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <!-- Campo Dirección -->
                     <div style="width: 220px;">
@@ -339,6 +388,29 @@
         }
     </style>
 
+   
 
+       </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="ddlRazonSocial" EventName="SelectedIndexChanged" />
+            <asp:AsyncPostBackTrigger ControlID="txtCodCliente" EventName="TextChanged" />
+            <asp:AsyncPostBackTrigger ControlID="txtDireccionEntrega" EventName="TextChanged" />
+            <asp:AsyncPostBackTrigger ControlID="txtCantidad" EventName="TextChanged" />
+            <asp:AsyncPostBackTrigger ControlID="txtPrecioUnitario" EventName="TextChanged" />
+            <asp:AsyncPostBackTrigger ControlID="btnAgregar" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="btnFiltrarClientes" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="gvArticulos" EventName="RowCommand" />
+            <asp:AsyncPostBackTrigger ControlID="gvArticulos" EventName="PageIndexChanging" />
+            <asp:AsyncPostBackTrigger ControlID="btnAceptar" EventName="Click" />
+        </Triggers>
+    </asp:UpdatePanel>
 
 </asp:Content>
+
+
+
+
+
+
+
+

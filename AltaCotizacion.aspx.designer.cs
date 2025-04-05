@@ -15,6 +15,15 @@ namespace PedidosWebForm
     {
 
         /// <summary>
+        /// Control MainUpdatePanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel MainUpdatePanel;
+
+        /// <summary>
         /// Control UpdatePanelCliente.
         /// </summary>
         /// <remarks>
@@ -42,13 +51,22 @@ namespace PedidosWebForm
         protected global::System.Web.UI.WebControls.TextBox txtCodCliente;
 
         /// <summary>
-        /// Control txtRazonSocial.
+        /// Control UpdatePanelRazonSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRazonSocial;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelRazonSocial;
+
+        /// <summary>
+        /// Control ddlRazonSocial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRazonSocial;
 
         /// <summary>
         /// Control txtDireccion.

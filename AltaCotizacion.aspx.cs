@@ -60,6 +60,7 @@ namespace PedidosWebForm
                     CargarUnidMedEspesor();
                     CargarUnidMedLargo();
                     CargarUnidMedAncho();
+                    CargarRazonSocial();
                     // Inicializar la tabla de artículos si es la primera vez que se carga la página
                     if (ViewState["Articulos"] == null)
                     {
@@ -192,6 +193,19 @@ namespace PedidosWebForm
         }
 
 
+        protected void ddlRazonSocial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["ID_CLIENTE"] = ddlRazonSocial.SelectedValue;
+            Cliente cliente = new Cliente();
+            cliente.ID_CLIENTE =  Session["ID_CLIENTE"].ToString();
+          DataTable ds=  cliente.GETcLIENTE();
+           txtCUIT.Text = ds.Rows[0]["DS_CLI_CUIT"].ToString();
+            txtDireccion.Text =  ds.Rows[0]["DS_CLI_DIRECCION"].ToString();
+            txtCodCliente.Text = ds.Rows[0]["NU_CLI_CODIGO"].ToString();
+        }
+
+
+
         private void llenardatoscliente(string codcliente)
         {
             Cliente cli = new Cliente();
@@ -201,14 +215,14 @@ namespace PedidosWebForm
 
             if (ds.Rows.Count > 0)
             {
-                txtRazonSocial.Text = ds.Rows[0]["ds_cli_razon_social"].ToString();
+                ddlRazonSocial.Text = ds.Rows[0]["ds_cli_razon_social"].ToString();
 
                 txtDireccion.Text = ds.Rows[0]["DS_CLI_DIRECCION"].ToString();
                 txtCUIT.Text = ds.Rows[0]["DS_cli_cuit"].ToString();
             }
             else
             {
-                txtRazonSocial.Text = "";
+                ddlRazonSocial.Text = "";
                 txtDireccion.Text = "";
                 txtCUIT.Text = "";
             }
@@ -312,6 +326,54 @@ namespace PedidosWebForm
             ddlunidad.DataTextField = "DESCRIPCION";
             ddlunidad.DataValueField = "ID";
             ddlunidad.DataBind();
+
+            // Añadir un ítem predeterminado
+            //ddlunidad.Items.Insert(0, new ListItem("", "0"));
+        }
+
+
+
+
+        private void ddlRazonSocial_SelectedIndexChanged()
+
+
+
+        {
+            DAL.Cliente cliente = new DAL.Cliente();
+
+
+            DataTable dt = cliente.GETcLIENTE();
+
+            ddlRazonSocial.DataSource = dt;
+            ddlRazonSocial.DataTextField = "DS_CLI_RAZON_SOCIAL";
+            ddlRazonSocial.DataValueField = "ID_CLIENTE";
+            ddlRazonSocial.DataBind();
+
+            //Session["ID_CLIENTE"] = ddlRazonSocial.SelectedValue;
+
+            // Añadir un ítem predeterminado
+            //ddlunidad.Items.Insert(0, new ListItem("", "0"));
+        }
+
+
+
+
+
+
+
+        private void CargarRazonSocial()
+        {
+            DAL.Cliente cliente = new DAL.Cliente();
+           
+
+            DataTable dt = cliente.GETcLIENTE();
+
+            ddlRazonSocial.DataSource = dt;
+            ddlRazonSocial.DataTextField = "DS_CLI_RAZON_SOCIAL";
+            ddlRazonSocial.DataValueField = "ID_CLIENTE";
+            ddlRazonSocial.DataBind();
+
+           //Session["ID_CLIENTE"] = ddlRazonSocial.SelectedValue;
 
             // Añadir un ítem predeterminado
             //ddlunidad.Items.Insert(0, new ListItem("", "0"));
@@ -420,7 +482,7 @@ namespace PedidosWebForm
                 // Insertar el pedido
                 DAL.Cotizacion Cotizacion = new DAL.Cotizacion();
             Cotizacion.idCotiz = ViewState["parametro"].ToString();
-            Cotizacion.nombreCliente = txtRazonSocial.Text;
+            Cotizacion.nombreCliente = ddlRazonSocial.Text;
             Cotizacion.direccionEntrega = txtDireccion.Text;
             Cotizacion.fechaAlta = txtFechaPedido.Text;
             Cotizacion.idCliente = txtCodCliente.Text;
@@ -474,7 +536,7 @@ namespace PedidosWebForm
 
                 // Blanquear los campos
                 txtCodCliente.Text = string.Empty;
-                txtRazonSocial.Text = string.Empty;
+            ddlRazonSocial.Text = string.Empty;
                 txtDireccion.Text = string.Empty;
                 txtCUIT.Text = string.Empty;
                 ddlEstado.SelectedIndex = 0;
@@ -502,7 +564,7 @@ namespace PedidosWebForm
             private void NUEVO ()
         {  // Insertar el pedido
             DAL.Cotizacion Cotizacion = new DAL.Cotizacion();
-            Cotizacion.nombreCliente = txtRazonSocial.Text;
+            Cotizacion.nombreCliente = ddlRazonSocial.Text;
          
             Cotizacion.fechaAlta = txtFechaPedido.Text;
             Cotizacion.idCliente = txtCodCliente.Text;
@@ -555,7 +617,7 @@ namespace PedidosWebForm
 
             // Blanquear los campos
             txtCodCliente.Text = string.Empty;
-            txtRazonSocial.Text = string.Empty;
+            ddlRazonSocial.Text = string.Empty;
             txtDireccion.Text = string.Empty;
             txtCUIT.Text = string.Empty;
             ddlEstado.SelectedIndex = 0;
@@ -840,7 +902,7 @@ namespace PedidosWebForm
 
                 // Accede a los valores en función de si usas BoundField o TemplateField en el GridView
                 txtCodCliente.Text =  row.Cells[0].Text.Trim();  // Código Cliente
-                txtRazonSocial.Text = row.Cells[1].Text.Trim(); // Razón Social
+                ddlRazonSocial.Text = row.Cells[1].Text.Trim(); // Razón Social
                 txtDireccion.Text = row.Cells[2].Text.Trim();   // Dirección
                 txtCUIT.Text = row.Cells[3].Text.Trim();        // CUIT
                 UpdatePanelCliente.Update();
