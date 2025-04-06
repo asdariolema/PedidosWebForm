@@ -33,6 +33,9 @@
                 <!-- Primera fila con todos los campos y botón Buscar alineados en una línea -->
                 <asp:UpdatePanel ID="UpdatePanelCliente" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
+                      <h6 class="titulo-seccion mb-3">
+ <i class="fas fa-user-tie me-2 text-primary"></i>Razón Social
+</h6>
                         <div class="card shadow-sm mb-4">
                             <div class="card-header bg-light">
                                 <div class="card-header bg-light">
@@ -121,8 +124,11 @@
                                         <!-- Dirección -->
                                         <div class="col-md-4">
                                             <label for="txtDireccion" class="form-label fw-semibold text-secondary">Dirección</label>
-                                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control shadow-sm fw-bold text-primary" MaxLength="200" />
-                                        </div>
+                                   <asp:TextBox ID="txtDireccion" runat="server"
+    CssClass="form-control form-control-sm shadow-sm text-primary"
+    MaxLength="200" />
+
+     </div>
 
                                         <!-- CUIT -->
                                         <%-- <div class="col-md-2">
@@ -146,41 +152,7 @@
 
 
 
-                <!-- agreuge -->
-
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <div class="d-flex align-items-end mb-4 gap-3">
-                            <!-- Campo Tipo Documento -->
-
-                            <div style="width: 300px;">
-                                <label for="txtPciaEntrega" class="form-label fw-semibold text-secondary">Provincia</label>
-                                <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
-                            </div>
-
-
-                            <div style="width: 300px;">
-                                <label for="txtlocalidEntrega" class="form-label fw-semibold text-secondary">Localidad</label>
-                                <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control text-primary shadow-sm" />
-                            </div>
-
-                            <!-- Campo Código Cliente -->
-                            <div style="width: 300px;">
-                                <label for="txtDireccionEntreg" class="form-label fw-semibold text-secondary">Direccion de Entrega</label>
-                                <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control shadow-sm" MaxLength="100" />
-                            </div>
-
-
-                            <!-- Campo CUIT -->
-                            <div style="width: 200px;">
-                                <label for="txtcontac" class="form-label fw-semibold text-secondary">Contacto</label>
-                                <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control shadow-sm" />
-                            </div>
-
-
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+              
 
 
                 <!-- agreuge -->
@@ -256,11 +228,12 @@
                                     <div class="col-md-2">
                                         <label for="txtCantidad" class="form-label fw-semibold text-secondary">Cantidad</label>
 
-                                        <asp:TextBox ID="txtCantidad" runat="server"
-                                            CssClass="form-control shadow-sm"
-                                            Style="border-color: #6c757d;"
-                                            onkeyup="soloDecimal(this)"
-                                            ValidationGroup="AgregarArticulo" />
+                                       <asp:TextBox ID="txtCantidad" runat="server"
+    CssClass="form-control form-control-sm shadow-sm"
+    Style="border-color: #6c757d;"
+    onkeyup="soloDecimal(this)"
+    ValidationGroup="AgregarArticulo" />
+
 
                                         <asp:RequiredFieldValidator ID="rfvCantidad" runat="server"
                                             ControlToValidate="txtCantidad"
@@ -318,12 +291,13 @@
                                     <!-- Precio Unitario -->
                                     <div class="col-md-2">
                                         <label for="txtPrecioUnitario" class="form-label fw-semibold text-secondary">Precio Unitario</label>
-                                        <asp:TextBox ID="txtPrecioUnitario" runat="server"
-                                            AutoPostBack="True"
-                                            OnTextChanged="txtpreciounitario_Changed"
-                                            CssClass="form-control shadow-sm"
-                                            MaxLength="10"
-                                            Style="border-color: #6c757d;" />
+                                       <asp:TextBox ID="txtPrecioUnitario" runat="server"
+    AutoPostBack="True"
+    OnTextChanged="txtpreciounitario_Changed"
+    CssClass="form-control form-control-sm shadow-sm"
+    MaxLength="10"
+    Style="border-color: #6c757d;" />
+
                                     </div>
 
                                     <!-- Botón Agregar -->
@@ -351,13 +325,36 @@
                 </div>
 
 
-                <!-- Grilla de artículos -->
-                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                    <ContentTemplate>
-                        <div class="table-responsive mt-3">
-                            <asp:GridView ID="gvArticulos" runat="server" CssClass="table table-hover table-bordered"
-                                AutoGenerateColumns="False" AllowPaging="True" PageSize="4" OnPageIndexChanging="gvArticulos_PageIndexChanging"
-                                DataKeyNames="IdEspesor,IdAncho,Idlargo,IdUnidad,IdTasa" OnRowCommand="gvArticulos_RowCommand">
+                  <!-- agreuge -->
+
+               
+
+
+
+
+
+
+
+
+
+
+<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+                    <div class="bg-section mt-4 p-3 rounded shadow-sm">
+                        <h6 class="titulo-seccion">
+                            <i class="fas fa-layer-group me-2 text-primary"></i>Artículos
+                        </h6>
+                        <div class="table-responsive">
+       <asp:GridView ID="gvArticulos" runat="server"
+    CssClass="table table-bordered table-hover text-center table-sm table-articulos"
+    AutoGenerateColumns="False"
+    AllowPaging="True" PageSize="4"
+    OnPageIndexChanging="gvArticulos_PageIndexChanging"
+    DataKeyNames="IdEspesor,IdAncho,Idlargo,IdUnidad,IdTasa"
+    OnRowCommand="gvArticulos_RowCommand"
+    AlternatingRowStyle-CssClass="row-alt">
+
+
                                 <Columns>
                                     <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                                     <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
@@ -375,42 +372,87 @@
                                     <asp:BoundField DataField="PrecioTotal" HeaderText="Precio Total" />
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <asp:Button ID="btnBorrar" runat="server" Text="Borrar" CssClass="btn btn-outline-danger btn-sm" CommandName="DeleteRow" CommandArgument='<%# Container.DataItemIndex %>' />
+                                            <asp:Button ID="btnBorrar" runat="server"
+                                                Text="Borrar"
+                                                CssClass="btn btn-outline-danger btn-sm"
+                                                CommandName="DeleteRow"
+                                                CommandArgument='<%# Container.DataItemIndex %>' />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
                         </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
 
-                <!-- Panel de sumas y botón Aceptar -->
-                <asp:UpdatePanel ID="UpdatePanelSumas" runat="server">
-                    <ContentTemplate>
-                        <div class="mt-4">
-                            <asp:GridView ID="gvSumas" runat="server" CssClass="table table-bordered table-striped text-end" AutoGenerateColumns="False" GridLines="None">
-                                <Columns>
-                                    <asp:BoundField HeaderText="CANTIDADES" DataField="CantidadTotal" ItemStyle-HorizontalAlign="Right" />
-                                    <asp:BoundField HeaderText="SUBTOTAL" DataField="Subtotal" ItemStyle-HorizontalAlign="Right" />
-                                    <asp:BoundField HeaderText="TOTAL" DataField="Total" ItemStyle-HorizontalAlign="Right">
-                                        <ItemStyle CssClass="fw-bold text-primary" />
-                                    </asp:BoundField>
-                                </Columns>
-                            </asp:GridView>
-                            <div class="text-end mt-2">
-                                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-outline-primary shadow-sm" OnClick="btnAceptar_Click" OnClientClick="return validarConfirmarPedido();" />
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+
+
+                <!-- Panel de sumas y botón Aceptar --><asp:UpdatePanel ID="UpdatePanelSumas" runat="server">
+    <ContentTemplate>
+        <div class="mt-4 d-flex justify-content-end">
+            <div class="resumen-importes-card">
+                <div class="card-body">
+                    <h6 class="titulo-seccion mb-3">
+                        <i class="fas fa-coins me-2 text-primary"></i>Importes
+                    </h6>
+
+                    <asp:GridView ID="gvSumas" runat="server"
+                        CssClass="table table-bordered table-hover table-sm text-end tabla-sumas"
+                        AutoGenerateColumns="False" GridLines="None">
+                        <Columns>
+                            <asp:BoundField HeaderText="CANTIDADES" DataField="CantidadTotal" ItemStyle-HorizontalAlign="Right" />
+                            <asp:BoundField HeaderText="SUBTOTAL" DataField="Subtotal" ItemStyle-HorizontalAlign="Right" />
+                            <asp:BoundField HeaderText="TOTAL" DataField="Total" ItemStyle-HorizontalAlign="Right">
+                                <ItemStyle CssClass="fw-bold text-primary fs-5" />
+                            </asp:BoundField>
+                        </Columns>
+                    </asp:GridView>
+
+                    <div class="text-end mt-3">
+                        <asp:Button ID="btnAceptar" runat="server"
+                            Text="Aceptar"
+                            CssClass="btn btn-outline-primary btn-lg px-4 fw-semibold shadow-sm"
+                            OnClick="btnAceptar_Click"
+                            OnClientClick="return validarConfirmarPedido();" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ContentTemplate>
+</asp:UpdatePanel>
+
+
+
             </div>
 
- <style>
+<%-- <style>
     body {
         background-color: #f0f4f8;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: #343a40;
     }
+
+
+    .titulo-seccion {
+    font-size: 1.1rem;
+    color: #0d6efd;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.table-articulos thead {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.table-articulos tbody tr:hover {
+    background-color: #eef5ff;
+    transition: 0.3s ease;
+}
+
+
+
 
     .card {
         border-radius: 12px;
@@ -478,7 +520,203 @@
         font-weight: bold;
         margin-bottom: 15px;
     }
-</style>
+</style>--%>
+
+            <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #343a40;
+        }
+
+        .titulo-seccion {
+            font-size: 1.25rem;
+            color: #0d6efd;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .resumen-importes-card {
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(145deg, #ffffff, #e3eaf4);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    animation: fadeInUp 0.6s ease-in-out;
+    margin-left: auto; /* Alineado a la derecha */
+}
+
+@media (max-width: 767px) {
+    .resumen-importes-card {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+.tabla-sumas thead th {
+    background-color: #e9f2fb;
+    color: #0d6efd;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.tabla-sumas td {
+    font-size: 1rem;
+    padding: 0.6rem;
+    vertical-align: middle;
+}
+
+.tabla-sumas tr:hover {
+    background-color: #f4faff;
+    transition: 0.3s ease;
+}
+
+        .table-articulos thead {
+            background-color: #0d6efd;
+            color: white;
+        }
+    .resumen-sumas td {
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.resumen-sumas tr:last-child td {
+    border-bottom: none;
+}
+
+        
+
+        .table-articulos tbody tr:hover {
+            background-color: #eef5ff;
+            transition: 0.3s ease;
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        .card-header {
+            background-color: #0d6efd;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #0d6efd;
+        }
+
+        .form-control, .select2-container--default .select2-selection--single {
+            border-radius: 0.5rem;
+            border-color: #ced4da;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+
+        .btn-outline-primary {
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .bg-section {
+            background: linear-gradient(145deg, #ffffff, #e0e6ed);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+
+
+.table-articulos tr:hover {
+    background-color: #dceeff !important;
+    transition: 0.3s ease;
+}
+        .input-focus-anim:focus {
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+    .row-normal {
+    background-color: #f8f9fa;
+}
+
+/* Esto sí va a funcionar */
+.row-alt td {
+    background-color: #eaf0fb !important;
+}
+
+
+
+.table-articulos .row-alt {
+    background-color: #eaf0fb;
+}
+
+.table-articulos tr:hover {
+    background-color: #dceeff !important;
+    transition: 0.3s ease;
+}
+
+    </style>
+
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <div class="mt-3 p-3 border rounded-3 bg-light-subtle">
+           <h6 class="mb-3 text-primary fw-semibold">
+    <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
+</h6>
+            <div class="row g-3">
+                <div class="col-md-3 col-sm-6">
+                    <label for="TextPciaEntrega" class="form-label">Provincia</label>
+                    <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label for="TextIdLocalidadEntrega" class="form-label">Localidad</label>
+                    <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label for="txtDireccionEntrega" class="form-label">Dirección de Entrega</label>
+                    <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" MaxLength="100" />
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <label for="TextContacto" class="form-label">Contacto</label>
+                    <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
+                </div>
+            </div>
+        </div>
+    </ContentTemplate>
+</asp:UpdatePanel>
 
 
 
