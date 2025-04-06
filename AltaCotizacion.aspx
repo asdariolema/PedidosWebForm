@@ -255,10 +255,29 @@
                                     <!-- Cantidad -->
                                     <div class="col-md-2">
                                         <label for="txtCantidad" class="form-label fw-semibold text-secondary">Cantidad</label>
+
                                         <asp:TextBox ID="txtCantidad" runat="server"
                                             CssClass="form-control shadow-sm"
-                                            Style="border-color: #6c757d;" />
+                                            Style="border-color: #6c757d;"
+                                            onkeyup="soloDecimal(this)"
+                                            ValidationGroup="AgregarArticulo" />
+
+                                        <asp:RequiredFieldValidator ID="rfvCantidad" runat="server"
+                                            ControlToValidate="txtCantidad"
+                                            ErrorMessage="* Requerido"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ValidationGroup="AgregarArticulo" />
+
+                                        <asp:RegularExpressionValidator ID="revCantidad" runat="server"
+                                            ControlToValidate="txtCantidad"
+                                            ValidationExpression="^\d+(\.\d{1,2})?$"
+                                            ErrorMessage="* Solo números decimales"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ValidationGroup="AgregarArticulo" />
                                     </div>
+
 
                                     <!-- Unidad -->
                                     <div class="col-md-2">
@@ -309,11 +328,11 @@
 
                                     <!-- Botón Agregar -->
                                     <div class="col-md-2">
-                                        <label class="form-label d-block invisible">Agregar</label>
                                         <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
                                             CssClass="btn btn-outline-primary w-100 shadow-sm"
                                             OnClick="btnAgregar_Click"
-                                            OnClientClick="return validarCampos();" />
+                                            CausesValidation="true"
+                                            ValidationGroup="AgregarArticulo" />
                                     </div>
 
                                     <!-- Precio Total oculto -->

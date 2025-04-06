@@ -483,6 +483,19 @@ namespace PedidosWebForm
         {
             try
             {
+                if (Session["ID_CLIENTE"] == null || string.IsNullOrWhiteSpace(Session["ID_CLIENTE"].ToString()))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Debe seleccionar un Cliente.');", true);
+                    return;
+                }
+                if (gvArticulos.Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Debe agregar al menos un artículo antes de continuar.');", true);
+                    return;
+                }
+
+
+
                 if (ViewState["tipo"].ToString() == "NUEVO")
                 {
                     NUEVO();
@@ -700,14 +713,11 @@ namespace PedidosWebForm
 
 
 
-
-
-
-
-
-
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid)
+                return;
+
             DataTable dtArticulos = ViewState["Articulos"] as DataTable;
 
             if (dtArticulos == null)
