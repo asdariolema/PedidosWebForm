@@ -167,6 +167,11 @@ namespace PedidosWebForm
             {
                 CargarEstados();
                 CargarUnidMed();
+                CargarArtidulosDescripcion();
+                CargarUnidMedEspesor();
+                CargarUnidMedLargo();
+                CargarUnidMedAncho();
+                CargarRazonSocial();
 
                 DAL.Cotizacion cotizacion = new DAL.Cotizacion();
                 cotizacion.idCotiz = id;
@@ -253,29 +258,50 @@ namespace PedidosWebForm
 
             if (dtArticulos == null)
             {
-                dtArticulos = new DataTable();
-                dtArticulos.Columns.Add("Codigo");
-                dtArticulos.Columns.Add("Detalle");
-                dtArticulos.Columns.Add("Descripcion");
+                dtArticulos = new DataTable(); 
                 dtArticulos.Columns.Add("Cantidad");
+                dtArticulos.Columns.Add("Descripcion");
+                dtArticulos.Columns.Add("IdEspesor");
+                dtArticulos.Columns.Add("Espesor");
+                dtArticulos.Columns.Add("IdAncho");
+                dtArticulos.Columns.Add("Ancho");
+                dtArticulos.Columns.Add("IdLargo");
+                dtArticulos.Columns.Add("Largo");
+                dtArticulos.Columns.Add("IdUnidad");
                 dtArticulos.Columns.Add("Unidad");
+                dtArticulos.Columns.Add("IDTasa");
                 dtArticulos.Columns.Add("Tasa");
                 dtArticulos.Columns.Add("PrecioUnitario");
                 dtArticulos.Columns.Add("PrecioTotal");
             }
 
 
-
             foreach (DataRow row in datos.Rows)
             {
 
                 DataRow dr = dtArticulos.NewRow();
-                dr["Descripcion"] = row["desc1"];
-                dr["Detalle"] = row["desc2"];
-                dr["Cantidad"] = row["Cant"];
-                dr["Unidad"] = row["medida"];
-                dr["PrecioUnitario"] = row["punit"];
-                dr["PrecioTotal"] = row["PTotal"];
+                dr["Cantidad"] = row["Cantidad"];
+                dr["Descripcion"] = row["Descripcion"];
+                dr["IdEspesor"] = row["IdEspesor"];
+                dr["Espesor"] = row["Espesor"];
+                dr["IdAncho"] = row["IdAncho"];
+                dr["Ancho"] = row["Ancho"];
+
+                dr["IdLargo"] = row["IdLargo"];
+                dr["Largo"] = row["Largo"];
+                dr["IdUnidad"] = row["IdUnidad"];
+                dr["Unidad"] = row["Unidad"];
+                dr["IDTasa"] = row["IDTasa"];
+                dr["Tasa"] = row["Tasa"];
+                dr["PrecioUnitario"] = row["PrecioUnitario"];
+                dr["PrecioTotal"] = row["PrecioTotal"];
+
+
+
+
+
+
+
 
                 dtArticulos.Rows.Add(dr);
            
@@ -529,13 +555,13 @@ namespace PedidosWebForm
                 CotizCont.CANT = row.Cells[0].Text;
                 CotizCont.DESCRIPCION = HttpUtility.HtmlDecode(row.Cells[1].Text);
                 CotizCont.ID_ESPESOR =(row.Cells[2].Text);
-                CotizCont.ESPESOR = row.Cells[3].Text;
+                CotizCont.ESPESOR = HttpUtility.HtmlDecode(row.Cells[3].Text);
                 CotizCont.ID_ANCHO = (row.Cells[4].Text);
-                CotizCont.ANCHO = row.Cells[5].Text;
-                CotizCont.ID_LARGO= (row.Cells[6].Text);
+                CotizCont.ANCHO = HttpUtility.HtmlDecode(row.Cells[5].Text);
+                CotizCont.ID_LARGO= HttpUtility.HtmlDecode((row.Cells[6].Text));
                 CotizCont.LARGO = row.Cells[7].Text;
                 CotizCont.ID_UNIDAD = (row.Cells[8].Text);
-                CotizCont.UNIDAD = row.Cells[9].Text;
+                CotizCont.UNIDAD = HttpUtility.HtmlDecode(row.Cells[9].Text);
                 CotizCont.ID_TASA= (row.Cells[10].Text);
                 CotizCont.TASA = row.Cells[11].Text;
                 CotizCont.PRECIOUNITARIO = row.Cells[12].Text;
@@ -789,13 +815,13 @@ namespace PedidosWebForm
             foreach (DataRow row in dtArticulos.Rows)
             {
 
-                Boolean valor = EsDecimalValido(row["cant"]?.ToString());
-                 valor = EsDecimalValido(row["PUNIT"]?.ToString());
-                if (EsDecimalValido(row["cant"].ToString()) && EsDecimalValido(row["PUNIT"].ToString()))
+                Boolean valor = EsDecimalValido(row["CANTIDAD"]?.ToString());
+                 valor = EsDecimalValido(row["PRECIOUNITARIO"]?.ToString());
+                if (EsDecimalValido(row["CANTIDAD"].ToString()) && EsDecimalValido(row["PRECIOUNITARIO"].ToString()))
                 
                 {
-                    totalCantidad += Convert.ToDecimal(row["cant"]);
-                subtotal += Convert.ToDecimal(row["PTotal"]);
+                    totalCantidad += Convert.ToDecimal(row["CANTIDAD"]);
+                subtotal += Convert.ToDecimal(row["PRECIOTOTAL"]);
                 }
             }
 

@@ -351,7 +351,7 @@
                                     <asp:BoundField DataField="IdUnidad" HeaderText="IdUnidad" Visible="false" />
                                     <asp:BoundField DataField="Unidad" HeaderText="Unidad" />
                                     <asp:BoundField DataField="IdTasa" HeaderText="IdTasa" Visible="false" />
-                                    <asp:BoundField DataField="Tasa" HeaderText="Tasa" Visible="true" />
+                                    <asp:BoundField DataField="Tasa" HeaderText="Tasa" Visible="false" />
                                     <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" />
                                     <asp:BoundField DataField="PrecioTotal" HeaderText="Precio Total" />
                                     <asp:TemplateField>
