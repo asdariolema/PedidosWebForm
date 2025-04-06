@@ -405,45 +405,80 @@
                 </asp:UpdatePanel>
             </div>
 
-            <style>
-                /* Estilos adicionales */
-                .fw-semibold {
-                    font-weight: 600;
-                }
+ <style>
+    body {
+        background-color: #f0f4f8;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #343a40;
+    }
 
-                .text-secondary {
-                    color: #6c757d !important;
-                }
-            </style>
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease-in-out;
+    }
 
-            <style>
-                .card-header {
-                    font-size: 1rem;
-                    font-weight: 600;
-                    color: #0d6efd;
-                }
+    .card:hover {
+        transform: scale(1.01);
+    }
 
-                .form-label {
-                    margin-bottom: 0.25rem;
-                }
+    .card-header {
+        background-color: #0d6efd;
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+    }
 
-                .select2-container--default .select2-selection--single {
-                    border-radius: 0.375rem;
-                    border-color: #ced4da;
-                    height: calc(2.375rem + 2px);
-                }
-            </style>
+    .form-label {
+        font-weight: 600;
+        color: #0d6efd;
+    }
 
+    .form-control, .select2-container--default .select2-selection--single {
+        border-radius: 0.5rem;
+        border-color: #ced4da;
+    }
 
-            <style>
-                body {
-                    background-image: url('images/fondo.jpg');
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-attachment: fixed;
-                    background-position: center;
-                }
-            </style>
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    }
+
+    .btn-outline-primary {
+        border-radius: 30px;
+        font-weight: 600;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #0d6efd;
+        color: white;
+    }
+
+    .table thead {
+        background-color: #0d6efd;
+        color: white;
+    }
+
+    .badge-info {
+        background-color: #20c997;
+        font-size: 0.75rem;
+    }
+
+    .bg-section {
+        background: linear-gradient(145deg, #ffffff, #e0e6ed);
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .titulo-seccion {
+        font-size: 1.25rem;
+        color: #0d6efd;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+</style>
 
 
 
