@@ -488,12 +488,12 @@ namespace PedidosWebForm
             {
                 if (Session["ID_CLIENTE"] == null || string.IsNullOrWhiteSpace(Session["ID_CLIENTE"].ToString()))
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Debe seleccionar un Cliente.');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "swal", "Swal.fire({ icon: 'warning', title: 'Atención', text: 'Debe seleccionar un Cliente.', confirmButtonText: 'Aceptar' });", true);
                     return;
                 }
                 if (gvArticulos.Rows.Count == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Debe agregar al menos un artículo antes de continuar.');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "swal", "Swal.fire({ icon: 'warning', title: 'Atención', text: 'Debe agregar al menos un artículo antes de continuar.', confirmButtonText: 'Aceptar' });", true);
                     return;
                 }
 
