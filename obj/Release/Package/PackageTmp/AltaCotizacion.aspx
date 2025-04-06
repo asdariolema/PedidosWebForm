@@ -692,7 +692,7 @@
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-    <div class="card shadow-sm mt-4">
+    <div class="card shadow-sm mt-4 bg-section">
     <div class="card-header bg-light">
         <h6 class="mb-0 text-primary fw-semibold">
             <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
