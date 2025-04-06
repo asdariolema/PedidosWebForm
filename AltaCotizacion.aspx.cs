@@ -67,8 +67,15 @@ namespace PedidosWebForm
                         DataTable dtArticulos = new DataTable();
                         dtArticulos.Columns.Add("Cantidad");
                         dtArticulos.Columns.Add("Descripcion");
-                        dtArticulos.Columns.Add("Detalle");
+                        dtArticulos.Columns.Add("IdEspesor");
+                        dtArticulos.Columns.Add("Espesor");
+                        dtArticulos.Columns.Add("IdAncho");
+                        dtArticulos.Columns.Add("Ancho");
+                        dtArticulos.Columns.Add("IdLargo");
+                        dtArticulos.Columns.Add("Largo");
+                        dtArticulos.Columns.Add("IdUnidad");
                         dtArticulos.Columns.Add("Unidad");
+                        dtArticulos.Columns.Add("IDTasa");
                         dtArticulos.Columns.Add("Tasa");
                         dtArticulos.Columns.Add("PrecioUnitario");
                         dtArticulos.Columns.Add("PrecioTotal");
@@ -186,7 +193,7 @@ namespace PedidosWebForm
 
         protected void txtCodCliente_TextChanged(object sender, EventArgs e)
         {
-            llenardatoscliente(txtCodCliente.Text );
+           // llenardatoscliente(txtCodCliente.Text );
 
 
 
@@ -199,7 +206,7 @@ namespace PedidosWebForm
             Cliente cliente = new Cliente();
             cliente.ID_CLIENTE =  Session["ID_CLIENTE"].ToString();
           DataTable ds=  cliente.GETcLIENTE();
-           txtCUIT.Text = ds.Rows[0]["DS_CLI_CUIT"].ToString();
+          
             txtDireccion.Text =  ds.Rows[0]["DS_CLI_DIRECCION"].ToString();
             txtCodCliente.Text = ds.Rows[0]["NU_CLI_CODIGO"].ToString();
         }
@@ -218,13 +225,13 @@ namespace PedidosWebForm
                 ddlRazonSocial.Text = ds.Rows[0]["ds_cli_razon_social"].ToString();
 
                 txtDireccion.Text = ds.Rows[0]["DS_CLI_DIRECCION"].ToString();
-                txtCUIT.Text = ds.Rows[0]["DS_cli_cuit"].ToString();
+              
             }
             else
             {
                 ddlRazonSocial.Text = "";
                 txtDireccion.Text = "";
-                txtCUIT.Text = "";
+               
             }
 
 
@@ -520,14 +527,19 @@ namespace PedidosWebForm
                 {
                 CotizCont.IDCOTIZ = ViewState["parametro"].ToString();
                 CotizCont.CANT = row.Cells[0].Text;
-              
-
-                CotizCont.DESC1 = HttpUtility.HtmlDecode(row.Cells[1].Text);
-                CotizCont.DESC2 = HttpUtility.HtmlDecode(row.Cells[2].Text);
-                CotizCont.MEDIDA = row.Cells[3].Text;
-                CotizCont.PUNIT = row.Cells[4].Text;
-
-                CotizCont.PTOTAL = row.Cells[5].Text;
+                CotizCont.DESCRIPCION = HttpUtility.HtmlDecode(row.Cells[1].Text);
+                CotizCont.ID_ESPESOR =(row.Cells[2].Text);
+                CotizCont.ESPESOR = row.Cells[3].Text;
+                CotizCont.ID_ANCHO = (row.Cells[4].Text);
+                CotizCont.ANCHO = row.Cells[5].Text;
+                CotizCont.ID_LARGO= (row.Cells[6].Text);
+                CotizCont.LARGO = row.Cells[7].Text;
+                CotizCont.ID_UNIDAD = (row.Cells[8].Text);
+                CotizCont.UNIDAD = row.Cells[9].Text;
+                CotizCont.ID_TASA= (row.Cells[10].Text);
+                CotizCont.TASA = row.Cells[11].Text;
+                CotizCont.PRECIOUNITARIO = row.Cells[12].Text;
+                CotizCont.PRECIOTOTAL = row.Cells[13].Text;
                 CotizCont.CotizCont_INS();
                 }
 
@@ -538,7 +550,7 @@ namespace PedidosWebForm
                 txtCodCliente.Text = string.Empty;
             ddlRazonSocial.Text = string.Empty;
                 txtDireccion.Text = string.Empty;
-                txtCUIT.Text = string.Empty;
+              
                 ddlEstado.SelectedIndex = 0;
                 limpiarcampos();
 
@@ -595,22 +607,33 @@ namespace PedidosWebForm
 
             DAL.CotizContenido COTIZCONT = new DAL.CotizContenido();
 
-            foreach (GridViewRow row in gvArticulos.Rows)
+            for (int i = 0; i < gvArticulos.Rows.Count; i++)
             {
-
-                
+                GridViewRow row = gvArticulos.Rows[i];
 
                 COTIZCONT.IDCOTIZ = ds.Rows[0][0].ToString();
                 COTIZCONT.CANT = row.Cells[0].Text;
-                COTIZCONT.DESC1 = HttpUtility.HtmlDecode(row.Cells[1].Text);
-                COTIZCONT.DESC2 = HttpUtility.HtmlDecode(row.Cells[2].Text);
-                COTIZCONT.MEDIDA = row.Cells[3].Text;
+                COTIZCONT.DESCRIPCION = HttpUtility.HtmlDecode(row.Cells[1].Text);
 
-                COTIZCONT.PUNIT = row.Cells[4].Text;
-                //PEDCONT.TASA = row.Cells[4].Text;
-                COTIZCONT.PTOTAL = row.Cells[5].Text;
+                // Usar DataKeys para acceder a valores ocultos
+                COTIZCONT.ID_ESPESOR = gvArticulos.DataKeys[i]["IdEspesor"].ToString();
+                COTIZCONT.ID_ANCHO = gvArticulos.DataKeys[i]["IdAncho"].ToString();
+                COTIZCONT.ID_LARGO = gvArticulos.DataKeys[i]["Idlargo"].ToString();
+                COTIZCONT.ID_UNIDAD = gvArticulos.DataKeys[i]["IdUnidad"].ToString();
+                COTIZCONT.ID_TASA = gvArticulos.DataKeys[i]["IdTasa"].ToString();
+
+                // Las columnas visibles se siguen leyendo normalmente
+                COTIZCONT.ESPESOR = HttpUtility.HtmlDecode(row.Cells[3].Text);
+                COTIZCONT.ANCHO = HttpUtility.HtmlDecode(row.Cells[5].Text);
+                COTIZCONT.LARGO = HttpUtility.HtmlDecode(row.Cells[7].Text);
+                COTIZCONT.UNIDAD = HttpUtility.HtmlDecode(row.Cells[9].Text);
+                COTIZCONT.TASA = row.Cells[11].Text;
+                COTIZCONT.PRECIOUNITARIO = row.Cells[12].Text;
+                COTIZCONT.PRECIOTOTAL = row.Cells[13].Text;
+
                 COTIZCONT.CotizCont_INS();
             }
+
 
             // Mostrar mensaje de éxito
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('La Cotización fue ingresado.');", true);
@@ -619,7 +642,7 @@ namespace PedidosWebForm
             txtCodCliente.Text = string.Empty;
             ddlRazonSocial.Text = string.Empty;
             txtDireccion.Text = string.Empty;
-            txtCUIT.Text = string.Empty;
+          
             ddlEstado.SelectedIndex = 0;
 
 
@@ -663,15 +686,24 @@ namespace PedidosWebForm
 
             if (dtArticulos == null)
             {
-                dtArticulos = new DataTable();
-                dtArticulos.Columns.Add("Codigo");
-                 dtArticulos.Columns.Add("Detalle");
-                dtArticulos.Columns.Add("Descripcion");
+
+                 dtArticulos = new DataTable();
                 dtArticulos.Columns.Add("Cantidad");
+                dtArticulos.Columns.Add("Descripcion");
+                dtArticulos.Columns.Add("IdEspesor");
+                dtArticulos.Columns.Add("Espesor");
+                dtArticulos.Columns.Add("IdAncho");
+                dtArticulos.Columns.Add("Ancho");
+                dtArticulos.Columns.Add("IdLargo");
+                dtArticulos.Columns.Add("Largo");
+                dtArticulos.Columns.Add("IdUnidad");
                 dtArticulos.Columns.Add("Unidad");
-               
+                dtArticulos.Columns.Add("IDTasa");
+                dtArticulos.Columns.Add("Tasa");
                 dtArticulos.Columns.Add("PrecioUnitario");
                 dtArticulos.Columns.Add("PrecioTotal");
+           
+
             }
 
             decimal cantidad = 0;
@@ -683,11 +715,25 @@ namespace PedidosWebForm
                 precioTotal = cantidad * precioUnitario;
             }
 
+
+           
+
+
+
+
             DataRow dr = dtArticulos.NewRow();
-           // dr["Descripcion"] = txtDescripcion.Text;
-           // dr["Detalle"] = ddl.Text;
-            dr["Cantidad"] = txtCantidad.Text ;
+
+            dr["Cantidad"] = txtCantidad.Text;
+            dr["Descripcion"] = ddldescripcion.SelectedItem.Text;
+            dr["IdEspesor"] = ddlEspesor.SelectedValue;
+            dr["Espesor"] = ddlEspesor.SelectedItem.Text;
+            dr["IdAncho"] = ddlAncho.SelectedValue ;
+            dr["Ancho"] = ddlAncho.SelectedItem.Text;
+            dr["IdLargo"] = ddlLargo.SelectedValue;
+            dr["Largo"] = ddlLargo.SelectedItem.Text;
+            dr["IdUnidad"] = ddlunidad.SelectedValue;
             dr["Unidad"] = ddlunidad.SelectedItem.Text;
+                  
             dr["PrecioUnitario"] = txtPrecioUnitario.Text;
             dr["PrecioTotal"] = precioTotal.ToString("N2");
 
@@ -904,7 +950,7 @@ namespace PedidosWebForm
                 txtCodCliente.Text =  row.Cells[0].Text.Trim();  // Código Cliente
                 ddlRazonSocial.Text = row.Cells[1].Text.Trim(); // Razón Social
                 txtDireccion.Text = row.Cells[2].Text.Trim();   // Dirección
-                txtCUIT.Text = row.Cells[3].Text.Trim();        // CUIT
+              
                 UpdatePanelCliente.Update();
                 // Cierra el modal después de seleccionar
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "closeModal", "$('#clientesModal').modal('hide');", true);

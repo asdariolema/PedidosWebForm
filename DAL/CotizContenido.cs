@@ -13,12 +13,40 @@ namespace DAL
         private string _IDCONTCOTIZ;
         private string _IDCOTIZ;
         private string _CANT;
-        private string _DESC1;
-        private string _DESC2;
-        private string _MEDIDA;
-        private string _PUNIT;
+        private string _DESCRIPCION;
+        private string _ID_ESPESOR;
+        private string _ESPESOR;
+        private string _ID_ANCHO;
+        private string _ANCHO;
+        private string _ID_LARGO;
+        private string _LARGO;
+
+
+        private string _ID_UNIDAD;
+        private string _UNIDAD;
+
+        private string _ID_TASA;
         private string _TASA;
-        private string _PTOTAL;
+        private string _PRECIOUNITARIO;
+
+        private string _PRECIOTOTAL;
+
+       
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -39,29 +67,88 @@ namespace DAL
             get { return _CANT ?? SQL.characterNULL; }
             set { _CANT = value; }
         }
-        public string DESC1 // DataType [NUMERIC ],Nullable [YES]
+        public string DESCRIPCION // DataType [NUMERIC ],Nullable [YES]
         {
-            get { return _DESC1 ?? SQL.characterNULL; }
-            set { _DESC1 = value; }
+            get { return _DESCRIPCION ?? SQL.characterNULL; }
+            set { _DESCRIPCION = value; }
         }
-        public string DESC2 // DataType [NUMERIC ],Nullable [YES]
+        public string ID_ESPESOR // DataType [NUMERIC ],Nullable [YES]
         {
-            get { return _DESC2 ?? SQL.characterNULL; }
-            set { _DESC2 = value; }
+            get { return _ID_ESPESOR ?? SQL.characterNULL; }
+            set { _ID_ESPESOR = value; }
         }
-        public string MEDIDA // DataType [NUMERIC ],Nullable [YES]
+
+        public string ESPESOR // DataType [NUMERIC ],Nullable [YES]
         {
-            get { return _MEDIDA ?? SQL.characterNULL; }
-            set { _MEDIDA = value; }
+            get { return _ESPESOR ?? SQL.characterNULL; }
+            set { _ESPESOR = value; }
         }
 
 
 
-        public string PUNIT // DataType [NUMERIC ],Nullable [YES]
+        public string ID_ANCHO // DataType [NUMERIC ],Nullable [YES]
         {
-            get { return _PUNIT ?? SQL.characterNULL; }
-            set { _PUNIT = value; }
+            get { return _ID_ANCHO ?? SQL.characterNULL; }
+            set { _ID_ANCHO = value; }
         }
+
+        public string ANCHO // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return _ANCHO ?? SQL.characterNULL; }
+            set { _ANCHO = value; }
+        }
+
+
+        public string ID_LARGO // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return _ID_LARGO ?? SQL.characterNULL; }
+            set { _ID_LARGO = value; }
+        }
+
+        public string LARGO // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return _LARGO ?? SQL.characterNULL; }
+            set { _LARGO = value; }
+        }
+
+
+
+        public string ID_UNIDAD // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return _ID_UNIDAD ?? SQL.characterNULL; }
+            set { _ID_UNIDAD = value; }
+        }
+
+        public string UNIDAD // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return _UNIDAD ?? SQL.characterNULL; }
+            set { _UNIDAD = value; }
+        }
+
+
+        public string PRECIOUNITARIO // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return _PRECIOUNITARIO ?? SQL.characterNULL; }
+            set { _PRECIOUNITARIO = value; }
+        }
+
+
+
+
+
+        public string ID_TASA // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return _ID_TASA ?? SQL.characterNULL; }
+            set { _ID_TASA = value; }
+        }
+
+
+
+
+
+
+
+
 
         public string TASA // DataType [NUMERIC ],Nullable [YES]
         {
@@ -70,10 +157,10 @@ namespace DAL
         }
 
 
-        public string PTOTAL // DataType [NUMERIC ],Nullable [YES]
+        public string PRECIOTOTAL // DataType [NUMERIC ],Nullable [YES]
         {
-            get { return _PTOTAL ?? SQL.characterNULL; }
-            set { _PTOTAL = value; }
+            get { return _PRECIOTOTAL ?? SQL.characterNULL; }
+            set { _PRECIOTOTAL = value; }
         }
 
 
@@ -94,14 +181,19 @@ namespace DAL
                 string aux = SQL.Call + "CotizCont_INS ";
                 aux += IDCOTIZ + ',';
                 aux += ConvertirComasAPuntos(CANT) + ',';
-                aux += Comillas(DESC1.Replace("'", "''")) + ',';
-                aux += Comillas(DESC2.Replace("'", "''")) + ',';
-
-
-                aux += Comillas(MEDIDA) + ',';
-                aux += Comillas(PUNIT) + ',';
+                aux += Comillas(DESCRIPCION.Replace("'", "''")) + ',';
+                aux += Comillas(ID_ESPESOR) + ',';
+                aux += Comillas(ESPESOR) + ',';
+                aux += Comillas(ID_ANCHO) + ',';
+                aux += Comillas(ANCHO) + ',';
+                aux += Comillas(ID_LARGO) + ',';
+                aux += Comillas(LARGO) + ',';
+                aux += Comillas(ID_UNIDAD) + ',';
+                aux += Comillas(UNIDAD) + ',';
+                aux += Comillas(ID_TASA) + ',';
                 aux += Comillas(TASA) + ',';
-                aux += Comillas(PTOTAL);
+                aux += Comillas(PRECIOUNITARIO) + ',';
+                aux += Comillas(PRECIOTOTAL);
                 return SQL.EjecutaStored(aux).Tables[0];
 
 
