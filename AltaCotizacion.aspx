@@ -692,29 +692,34 @@
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-        <div class="mt-3 p-3 border rounded-3 bg-light-subtle">
-           <h6 class="mb-3 text-primary fw-semibold">
-    <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
-</h6>
-            <div class="row g-3">
-                <div class="col-md-3 col-sm-6">
-                    <label for="TextPciaEntrega" class="form-label">Provincia</label>
-                    <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <label for="TextIdLocalidadEntrega" class="form-label">Localidad</label>
-                    <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <label for="txtDireccionEntrega" class="form-label">Dirección de Entrega</label>
-                    <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" MaxLength="100" />
-                </div>
-                <div class="col-md-2 col-sm-6">
-                    <label for="TextContacto" class="form-label">Contacto</label>
-                    <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
-                </div>
+    <div class="card shadow-sm mt-4 bg-section">
+    <div class="card-header bg-light">
+        <h6 class="mb-0 text-primary fw-semibold">
+            <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-3 col-sm-6">
+                <label for="TextPciaEntrega" class="form-label">Provincia</label>
+                <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <label for="TextIdLocalidadEntrega" class="form-label">Localidad</label>
+                <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label for="txtDireccionEntrega" class="form-label">Dirección de Entrega</label>
+                <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" MaxLength="100" />
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <label for="TextContacto" class="form-label">Contacto</label>
+                <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
             </div>
         </div>
+    </div>
+</div>
+
     </ContentTemplate>
 </asp:UpdatePanel>
 
