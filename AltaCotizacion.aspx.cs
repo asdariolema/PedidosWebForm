@@ -182,7 +182,7 @@ namespace PedidosWebForm
                 Session["ID_CLIENTE"] = ds.Rows[0]["idcliente"].ToString();
                 ddlEstado.SelectedValue = ds.Rows[0]["estado"].ToString();
 
-                llenardatoscliente(ds.Rows[0]["NU_CLI_CODIGO"].ToString());
+                llenardatoscliente(Session["ID_CLIENTE"].ToString());
 
                 llenardatosdelpedido(ds);
                 CalcularSumasEdicion(ds);
@@ -219,16 +219,21 @@ namespace PedidosWebForm
 
 
 
-        private void llenardatoscliente(string codcliente)
+        private void llenardatoscliente(string id_cliente)
         {
             Cliente cli = new Cliente();
-            cli.NU_CLI_CODIGO = codcliente;
+            cli.ID_CLIENTE = id_cliente;
 
             DataTable ds = cli.GETcLIENTE();
 
             if (ds.Rows.Count > 0)
             {
-                ddlRazonSocial.Text = ds.Rows[0]["ds_cli_razon_social"].ToString();
+               
+                string idCliente = ds.Rows[0]["id_cliente"].ToString();
+                ddlRazonSocial.SelectedValue = idCliente;
+
+
+
 
                 txtDireccion.Text = ds.Rows[0]["DS_CLI_DIRECCION"].ToString();
 
@@ -619,10 +624,10 @@ namespace PedidosWebForm
 
                 // Insertar el pedido
                 DAL.Cotizacion Cotizacion = new DAL.Cotizacion();
-                Cotizacion.nombreCliente = ddlRazonSocial.Text;
+                Cotizacion.nombreCliente = ddlRazonSocial.SelectedItem.ToString();
 
                 Cotizacion.fechaAlta = txtFechaPedido.Text;
-                Cotizacion.idCliente = txtCodCliente.Text;
+                Cotizacion.idCliente = Session["ID_CLIENTE"].ToString();
                 Cotizacion.idCotizacion = "1";
                 Cotizacion.estado = ddlEstado.SelectedValue;
 
