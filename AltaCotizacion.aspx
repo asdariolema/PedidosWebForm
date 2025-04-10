@@ -729,6 +729,21 @@
             }
         }
 
+        /* Fondo celeste para el input del filtro en los dropdown Select2 */
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    background-color: #dff1ff !important;
+    border: 1px solid #0d6efd;
+    color: #212529;
+    padding: 6px 8px;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+}
+
+/* Fondo de la opción resaltada al navegar */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #cce5ff;
+    color: #000;
+}
 
 
 

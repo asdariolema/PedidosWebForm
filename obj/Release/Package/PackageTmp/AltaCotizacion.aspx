@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
+﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Alta de Cotizaciòn
@@ -63,8 +63,115 @@
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="ddlRazonSocial" EventName="SelectedIndexChanged" />
     </Triggers>
-</asp:UpdatePanel>
+</asp:UpdatePanel>--%>
 
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    Alta de Cotizaciòn
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <!-- Estilos y scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        Sys.Application.add_load(function () {
+            $('.select2-autocompletar').select2({
+                placeholder: 'Seleccioná una opción...',
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
+
+    <style>
+        .titulo-seccion {
+            font-size: 1.25rem;
+            color: #0d6efd;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .bg-section {
+            background: linear-gradient(145deg, #ffffff, #e0e6ed);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.01);
+        }
+    </style>
+
+    <asp:UpdatePanel ID="MainUpdatePanel" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+
+            <!-- Historial del Cliente -->
+          <asp:UpdatePanel ID="UpdatePanelHistorial" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <div class="card shadow-sm mt-4 bg-section">
+            <div class="card-header bg-light">
+                <h6 class="mb-0 text-primary fw-semibold">
+                    <i class="fas fa-chart-line me-2 text-primary"></i>Historial del Cliente
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <asp:GridView ID="gvHistorialCliente" runat="server"
+                        CssClass="table table-bordered table-hover table-sm text-center gv-compact"
+                        AutoGenerateColumns="False">
+                        <Columns>
+                            <%--<asp:BoundField DataField="RazonSocial" HeaderText="Razón Social">
+                                <ItemStyle HorizontalAlign="Left" Width="180px" />
+                            </asp:BoundField>--%>
+                            <asp:BoundField DataField="TotalPedidos" HeaderText="Total Pedidos">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="FechaUltimoPedido" HeaderText="Último Pedido">
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PromedioMontoPedidos" HeaderText="Promedio Monto">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="TotalHistoricoComprado" HeaderText="Total Histórico">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:TemplateField HeaderText="Más Frecuente">
+                                <ItemTemplate>
+                                    <span title='<%# Eval("ArticuloMasFrecuente") %>'>
+                                        <%# Eval("ArticuloMasFrecuente") %>
+                                    </span>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Left" Width="140px" />
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="CantidadArticuloMasFrecuente" HeaderText="Cantidad">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="UltimoPrecioArticuloFrecuente" HeaderText="Último Precio">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PromedioDiasEntrePedidos" HeaderText="Días entre Ped.">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
+            </div>
+        </div>
+    </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="ddlRazonSocial" EventName="SelectedIndexChanged" />
+    </Triggers>
+</asp:UpdatePanel>
 
 
 
@@ -476,6 +583,19 @@
 
 
             <style>
+
+                .gv-compact td, .gv-compact th {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.gv-compact td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+
         body {
             background-color: #f0f4f8;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -609,6 +729,21 @@
             }
         }
 
+        /* Fondo celeste para el input del filtro en los dropdown Select2 */
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    background-color: #dff1ff !important;
+    border: 1px solid #0d6efd;
+    color: #212529;
+    padding: 6px 8px;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+}
+
+/* Fondo de la opción resaltada al navegar */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #cce5ff;
+    color: #000;
+}
 
 
 
