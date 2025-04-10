@@ -91,9 +91,15 @@ namespace PedidosWebForm
                     gvArticulos.DataBind();
                 }
             }
-
+            else
+            {
+                // 🔥 Esta parte asegura que la grilla se muestre luego de un postback
+                if (Session["ID_CLIENTE"] != null)
+                {
+                    CargarHistorialCliente(Session["ID_CLIENTE"].ToString());
+                }
+            }
         }
-
 
 
 
@@ -204,7 +210,14 @@ namespace PedidosWebForm
 
 
         }
+        protected void btnTestHistorial_Click(object sender, EventArgs e)
+        {
+            Vistas ObtenerResumenCliente = new Vistas();
+            DataTable dt = ObtenerResumenCliente.getestadisticasVentas("9507");
 
+            gvHistorialCliente.DataSource = dt;
+            gvHistorialCliente.DataBind();
+        }
 
         protected void ddlRazonSocial_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -215,7 +228,19 @@ namespace PedidosWebForm
 
             txtDireccion.Text = ds.Rows[0]["DS_CLI_DIRECCION"].ToString();
             txtCodCliente.Text = ds.Rows[0]["NU_CLI_CODIGO"].ToString();
+            CargarHistorialCliente(Session["ID_CLIENTE"].ToString());
         }
+        private void CargarHistorialCliente(string   cliente)
+            {
+
+            Vistas ObtenerResumenCliente = new Vistas(); 
+               DataTable dt = ObtenerResumenCliente.getestadisticasVentas(cliente); //
+
+            gvHistorialCliente.DataSource = dt;
+            gvHistorialCliente.DataBind();
+            }
+
+     
 
 
 

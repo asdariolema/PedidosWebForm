@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
+﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Alta de Cotizaciòn
@@ -28,6 +28,161 @@
 
     <asp:UpdatePanel ID="MainUpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
+
+
+
+
+            
+<asp:UpdatePanel ID="UpdatePanelHistorial" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <div class="card shadow-sm mt-4 bg-section">
+            <div class="card-header bg-light">
+                <h6 class="mb-0 text-primary fw-semibold">
+                    <i class="fas fa-chart-line me-2 text-primary"></i>Historial del Cliente
+                </h6>
+            </div>
+            <div class="card-body">
+                <asp:GridView ID="gvHistorialCliente" runat="server"
+                    CssClass="table table-bordered table-hover table-sm text-center"
+                    AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="RazonSocial" HeaderText="Razón Social" />
+                        <asp:BoundField DataField="TotalPedidos" HeaderText="Total Pedidos" />
+                        <asp:BoundField DataField="FechaUltimoPedido" HeaderText="Último Pedido" />
+                        <asp:BoundField DataField="PromedioMontoPedidos" HeaderText="Promedio Monto" />
+                        <asp:BoundField DataField="TotalHistoricoComprado" HeaderText="Total Histórico" />
+                        <asp:BoundField DataField="ArticuloMasFrecuente" HeaderText="Más Frecuente" />
+                        <asp:BoundField DataField="CantidadArticuloMasFrecuente" HeaderText="Cantidad" />
+                        <asp:BoundField DataField="UltimoPrecioArticuloFrecuente" HeaderText="Último Precio" />
+                        <asp:BoundField DataField="PromedioDiasEntrePedidos" HeaderText="Días entre Ped." />
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </div>
+    </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="ddlRazonSocial" EventName="SelectedIndexChanged" />
+    </Triggers>
+</asp:UpdatePanel>--%>
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    Alta de Cotizaciòn
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <!-- Estilos y scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        Sys.Application.add_load(function () {
+            $('.select2-autocompletar').select2({
+                placeholder: 'Seleccioná una opción...',
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
+
+    <style>
+        .titulo-seccion {
+            font-size: 1.25rem;
+            color: #0d6efd;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .bg-section {
+            background: linear-gradient(145deg, #ffffff, #e0e6ed);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.01);
+        }
+    </style>
+
+    <asp:UpdatePanel ID="MainUpdatePanel" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+
+            <!-- Historial del Cliente -->
+          <asp:UpdatePanel ID="UpdatePanelHistorial" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <div class="card shadow-sm mt-4 bg-section">
+            <div class="card-header bg-light">
+                <h6 class="mb-0 text-primary fw-semibold">
+                    <i class="fas fa-chart-line me-2 text-primary"></i>Historial del Cliente
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <asp:GridView ID="gvHistorialCliente" runat="server"
+                        CssClass="table table-bordered table-hover table-sm text-center gv-compact"
+                        AutoGenerateColumns="False">
+                        <Columns>
+                            <%--<asp:BoundField DataField="RazonSocial" HeaderText="Razón Social">
+                                <ItemStyle HorizontalAlign="Left" Width="180px" />
+                            </asp:BoundField>--%>
+                            <asp:BoundField DataField="TotalPedidos" HeaderText="Total Pedidos">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="FechaUltimoPedido" HeaderText="Último Pedido">
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PromedioMontoPedidos" HeaderText="Promedio Monto">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="TotalHistoricoComprado" HeaderText="Total Histórico">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:TemplateField HeaderText="Más Frecuente">
+                                <ItemTemplate>
+                                    <span title='<%# Eval("ArticuloMasFrecuente") %>'>
+                                        <%# Eval("ArticuloMasFrecuente") %>
+                                    </span>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Left" Width="140px" />
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="CantidadArticuloMasFrecuente" HeaderText="Cantidad">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="UltimoPrecioArticuloFrecuente" HeaderText="Último Precio">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PromedioDiasEntrePedidos" HeaderText="Días entre Ped.">
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:BoundField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
+            </div>
+        </div>
+    </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="ddlRazonSocial" EventName="SelectedIndexChanged" />
+    </Triggers>
+</asp:UpdatePanel>
+
+
+
+
+
+
+
+
+
+
+
 
             <div class="container p-4" style="width: 100%; max-width: inherit; padding: 20px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px;">
                 <!-- Primera fila con todos los campos y botón Buscar alineados en una línea -->
@@ -422,107 +577,25 @@
     </ContentTemplate>
 </asp:UpdatePanel>
 
-
+                
 
             </div>
 
-<%-- <style>
-    body {
-        background-color: #f0f4f8;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #343a40;
-    }
-
-
-    .titulo-seccion {
-    font-size: 1.1rem;
-    color: #0d6efd;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.table-articulos thead {
-    background-color: #0d6efd;
-    color: white;
-}
-
-.table-articulos tbody tr:hover {
-    background-color: #eef5ff;
-    transition: 0.3s ease;
-}
-
-
-
-
-    .card {
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        margin-bottom: 20px;
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .card:hover {
-        transform: scale(1.01);
-    }
-
-    .card-header {
-        background-color: #0d6efd;
-        color: white;
-        font-size: 1rem;
-        font-weight: 600;
-    }
-
-    .form-label {
-        font-weight: 600;
-        color: #0d6efd;
-    }
-
-    .form-control, .select2-container--default .select2-selection--single {
-        border-radius: 0.5rem;
-        border-color: #ced4da;
-    }
-
-    .form-control:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-    }
-
-    .btn-outline-primary {
-        border-radius: 30px;
-        font-weight: 600;
-    }
-
-    .btn-outline-primary:hover {
-        background-color: #0d6efd;
-        color: white;
-    }
-
-    .table thead {
-        background-color: #0d6efd;
-        color: white;
-    }
-
-    .badge-info {
-        background-color: #20c997;
-        font-size: 0.75rem;
-    }
-
-    .bg-section {
-        background: linear-gradient(145deg, #ffffff, #e0e6ed);
-        border-radius: 20px;
-        padding: 20px;
-        margin-bottom: 30px;
-    }
-
-    .titulo-seccion {
-        font-size: 1.25rem;
-        color: #0d6efd;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
-</style>--%>
 
             <style>
+
+                .gv-compact td, .gv-compact th {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.gv-compact td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+
         body {
             background-color: #f0f4f8;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -739,6 +812,23 @@
             <asp:AsyncPostBackTrigger ControlID="btnAceptar" EventName="Click" />
         </Triggers>
     </asp:UpdatePanel>
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
 
 </asp:Content>
 

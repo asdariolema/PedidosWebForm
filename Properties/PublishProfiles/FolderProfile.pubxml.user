@@ -5,21 +5,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\publicacion</_PublishTargetUrl>
-    <History>True|2025-04-08T03:16:07.7087640Z;True|2025-04-06T20:43:48.7115456-03:00;True|2025-04-06T20:37:02.8256767-03:00;True|2025-04-06T20:27:56.5403847-03:00;True|2025-04-06T01:49:40.3964762-03:00;True|2025-04-05T22:37:22.1573220-03:00;True|2025-04-05T18:24:36.2806485-03:00;True|2025-03-25T11:33:58.7212503-03:00;True|2025-03-23T21:41:18.2419278-03:00;True|2025-03-15T20:21:38.5487867-03:00;True|2025-03-04T14:55:28.0161149-03:00;True|2024-11-18T19:23:43.8707102-03:00;True|2024-11-18T18:44:01.1341276-03:00;True|2024-11-18T18:39:49.6606383-03:00;True|2024-11-17T22:29:33.6577527-03:00;True|2024-11-17T22:14:07.5683119-03:00;True|2024-11-17T19:26:55.6861618-03:00;True|2024-11-16T00:52:25.6098219-03:00;True|2024-11-16T00:11:31.4323170-03:00;True|2024-11-16T00:08:05.9692379-03:00;True|2024-11-15T22:42:22.2558170-03:00;True|2024-11-15T22:33:40.7056729-03:00;True|2024-11-15T22:31:40.0010379-03:00;True|2024-11-15T22:23:27.0728130-03:00;True|2024-11-15T22:20:26.3971353-03:00;True|2024-11-15T22:14:34.1722837-03:00;True|2024-11-15T22:11:46.7045529-03:00;</History>
+    <History>True|2025-04-10T21:17:38.2209929Z;True|2025-04-08T18:44:46.9920655-03:00;True|2025-04-08T00:16:07.7087640-03:00;True|2025-04-06T20:43:48.7115456-03:00;True|2025-04-06T20:37:02.8256767-03:00;True|2025-04-06T20:27:56.5403847-03:00;True|2025-04-06T01:49:40.3964762-03:00;True|2025-04-05T22:37:22.1573220-03:00;True|2025-04-05T18:24:36.2806485-03:00;True|2025-03-25T11:33:58.7212503-03:00;True|2025-03-23T21:41:18.2419278-03:00;True|2025-03-15T20:21:38.5487867-03:00;True|2025-03-04T14:55:28.0161149-03:00;True|2024-11-18T19:23:43.8707102-03:00;True|2024-11-18T18:44:01.1341276-03:00;True|2024-11-18T18:39:49.6606383-03:00;True|2024-11-17T22:29:33.6577527-03:00;True|2024-11-17T22:14:07.5683119-03:00;True|2024-11-17T19:26:55.6861618-03:00;True|2024-11-16T00:52:25.6098219-03:00;True|2024-11-16T00:11:31.4323170-03:00;True|2024-11-16T00:08:05.9692379-03:00;True|2024-11-15T22:42:22.2558170-03:00;True|2024-11-15T22:33:40.7056729-03:00;True|2024-11-15T22:31:40.0010379-03:00;True|2024-11-15T22:23:27.0728130-03:00;True|2024-11-15T22:20:26.3971353-03:00;True|2024-11-15T22:14:34.1722837-03:00;True|2024-11-15T22:11:46.7045529-03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="AltaCotizacion.aspx">
-      <publishTime>04/06/2025 20:38:59</publishTime>
+      <publishTime>04/10/2025 18:04:22</publishTime>
     </File>
     <File Include="AltaPedidos.aspx">
       <publishTime>03/04/2025 16:05:33</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>04/08/2025 00:16:07</publishTime>
+      <publishTime>04/10/2025 18:17:37</publishTime>
     </File>
     <File Include="bin/DAL.pdb">
-      <publishTime>04/08/2025 00:16:07</publishTime>
+      <publishTime>04/10/2025 18:17:37</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>03/05/2023 19:41:40</publishTime>
@@ -34,10 +34,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/25/2025 11:33:57</publishTime>
     </File>
     <File Include="bin/PedidosWebForm.dll">
-      <publishTime>04/08/2025 00:16:07</publishTime>
+      <publishTime>04/10/2025 18:17:37</publishTime>
     </File>
     <File Include="bin/PedidosWebForm.pdb">
-      <publishTime>04/08/2025 00:16:07</publishTime>
+      <publishTime>04/10/2025 18:17:37</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>02/15/2022 02:38:32</publishTime>
