@@ -32,7 +32,27 @@ namespace DAL
             }
         }
 
+        public DataTable getestadisticasVentasGrafico(string idcliente)
+        {
+            try
+            {
 
+
+                string aux = SQL.Call + "estadisticasVentasHGrafico  ";
+
+                aux += idcliente;
+
+                return SQL.EjecutaStored(aux).Tables[0];
+
+
+
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
 
     }

@@ -336,6 +336,12 @@
         </asp:UpdatePanel>
     </div>
 
+
+
+    <div class="mt-4">
+    <canvas id="graficoVentas" width="100%" height="50"></canvas>
+</div>
+
     <style>
         /* Estilos adicionales */
         .fw-semibold {
@@ -360,3 +366,49 @@
 
 
 </asp:Content>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+    Sys.Application.add_load(function () {
+        cargarGrafico("10203"); // reemplazá con ID real si lo tenés dinámico
+    });
+
+    function cargarGrafico(idcliente) {
+        $.ajax({
+            type: "POST",
+            url: "AltaPedidos.aspx/ObtenerDatosGrafico",
+            data: JSON.stringify({ idcliente: idcliente }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                const datos = response.d;
+                const fechas = datos.map(x => x.fecha);
+                const totales = datos.map(x => x.total);
+
+                new Chart(document.getElementById("graficoVentas"), {
+                    type: 'line',
+                    data: {
+                        labels: fechas,
+                        datasets: [{
+                            label: 'Total por Fecha',
+                            data: totales,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
+</script>

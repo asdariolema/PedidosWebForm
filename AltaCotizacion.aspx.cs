@@ -2,6 +2,7 @@
 using DAL;
 using DAL.BDL;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -20,6 +21,52 @@ namespace PedidosWebForm
 {
     public partial class AltaCotizacion : Page
     {
+
+
+
+        [System.Web.Services.WebMethod]
+        public static object ObtenerDatosGrafico(string idcliente)
+        {
+            var vistas = new Vistas();
+            DataTable dt = vistas.getestadisticasVentasGrafico(idcliente);
+
+            var lista = new List<object>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                // Validaciones seguras
+                string fecha = row["FECHA"] != DBNull.Value
+                    ? Convert.ToDateTime(row["FECHA"]).ToString("yyyy-MM-dd")
+                    : null;
+
+                decimal? total = row["TOTAL"] != DBNull.Value
+                    ? Convert.ToDecimal(row["TOTAL"])
+                    : (decimal?)null;
+
+                lista.Add(new
+                {
+                    fecha = fecha,
+                    total = total
+                });
+            }
+
+            return lista;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["ID_USUARIO"] == null)
@@ -222,6 +269,14 @@ namespace PedidosWebForm
             txtDireccion.Text = ds.Rows[0]["DS_CLI_DIRECCION"].ToString();
             txtCodCliente.Text = ds.Rows[0]["NU_CLI_CODIGO"].ToString();
             CargarHistorialCliente(Session["ID_CLIENTE"].ToString());
+
+            ScriptManager.RegisterStartupScript(
+           this,
+           this.GetType(),
+           "cargarGraficoCliente",
+           $"setTimeout(function(){{ cargarGrafico('{Session["ID_CLIENTE"]}'); }}, 200);",
+           true
+       );
         }
         private void CargarHistorialCliente(string   cliente)
             {

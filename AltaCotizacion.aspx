@@ -1,71 +1,4 @@
-﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Alta de Cotizaciòn
-</asp:Content>
-
-
-
-
-
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <!-- Referencias a jQuery y Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-    <script type="text/javascript">
-        Sys.Application.add_load(function () {
-            $('.select2-autocompletar').select2({
-                placeholder: 'Seleccioná una opción...',
-                allowClear: true,
-                width: '100%'
-            });
-        });
-    </script>
-
-    <asp:UpdatePanel ID="MainUpdatePanel" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-
-
-
-
-            
-<asp:UpdatePanel ID="UpdatePanelHistorial" runat="server" UpdateMode="Conditional">
-    <ContentTemplate>
-        <div class="card shadow-sm mt-4 bg-section">
-            <div class="card-header bg-light">
-                <h6 class="mb-0 text-primary fw-semibold">
-                    <i class="fas fa-chart-line me-2 text-primary"></i>Historial del Cliente
-                </h6>
-            </div>
-            <div class="card-body">
-                <asp:GridView ID="gvHistorialCliente" runat="server"
-                    CssClass="table table-bordered table-hover table-sm text-center"
-                    AutoGenerateColumns="false">
-                    <Columns>
-                        <asp:BoundField DataField="RazonSocial" HeaderText="Razón Social" />
-                        <asp:BoundField DataField="TotalPedidos" HeaderText="Total Pedidos" />
-                        <asp:BoundField DataField="FechaUltimoPedido" HeaderText="Último Pedido" />
-                        <asp:BoundField DataField="PromedioMontoPedidos" HeaderText="Promedio Monto" />
-                        <asp:BoundField DataField="TotalHistoricoComprado" HeaderText="Total Histórico" />
-                        <asp:BoundField DataField="ArticuloMasFrecuente" HeaderText="Más Frecuente" />
-                        <asp:BoundField DataField="CantidadArticuloMasFrecuente" HeaderText="Cantidad" />
-                        <asp:BoundField DataField="UltimoPrecioArticuloFrecuente" HeaderText="Último Precio" />
-                        <asp:BoundField DataField="PromedioDiasEntrePedidos" HeaderText="Días entre Ped." />
-                    </Columns>
-                </asp:GridView>
-            </div>
-        </div>
-    </ContentTemplate>
-    <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="ddlRazonSocial" EventName="SelectedIndexChanged" />
-    </Triggers>
-</asp:UpdatePanel>--%>
-
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AltaCotizacion.aspx.cs" Inherits="PedidosWebForm.AltaCotizacion" MasterPageFile="~/Site.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Alta de Cotizaciòn
@@ -77,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="text/javascript">
         Sys.Application.add_load(function () {
             $('.select2-autocompletar').select2({
@@ -165,9 +99,25 @@
                         </Columns>
                     </asp:GridView>
                 </div>
+
+
+
             </div>
         </div>
+
+
+        
+    
+  
+
+
+
     </ContentTemplate>
+
+              
+    
+ 
+
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="ddlRazonSocial" EventName="SelectedIndexChanged" />
     </Triggers>
@@ -175,8 +125,16 @@
 
 
 
-
-
+            <div class="card shadow-sm mb-4 bg-section">
+    <div class="card-header bg-light">
+        <h6 class="mb-0 text-primary fw-semibold">
+            <i class="fas fa-chart-line me-2 text-primary"></i> Gráfico de Compras
+        </h6>
+    </div>
+    <div class="card-body">
+        <canvas id="graficoVentas" style="width: 100%; height: 300px;"></canvas>
+    </div>
+</div>
 
 
 
@@ -835,22 +793,94 @@
 
 
 
+    <script type="text/javascript">
+        let chartInstance = null;
 
+        Sys.Application.add_load(function () {
+            $('.select2-autocompletar').select2({
+                placeholder: 'Seleccioná una opción...',
+                allowClear: true,
+                width: '100%'
+            });
 
+            // Desvinculamos y volvemos a vincular para evitar duplicados
+            $('#<%= ddlRazonSocial.ClientID %>').off('change').on('change', function () {
+            const idcliente = $(this).val();
+            if (idcliente) {
+                cargarGrafico(idcliente);
+            }
+        });
 
-   
+        // Si ya hay un cliente seleccionado, mostrar el gráfico
+        const seleccionado = $('#<%= ddlRazonSocial.ClientID %>').val();
+        if (seleccionado) {
+            cargarGrafico(seleccionado);
+        }
+    });
 
+        function cargarGrafico(idcliente) {
+            $.ajax({
+                type: "POST",
+                url: "AltaCotizacion.aspx/ObtenerDatosGrafico",
+                data: JSON.stringify({ idcliente: idcliente }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    const datos = response.d;
 
+                    if (!Array.isArray(datos) || datos.length === 0) {
+                        // Si no hay datos, destruimos el gráfico anterior si existe
+                        if (chartInstance) {
+                            chartInstance.destroy();
+                            chartInstance = null;
+                        }
+                        return;
+                    }
+
+                    const fechas = datos.map(x => x.fecha);
+                    const totales = datos.map(x => x.total);
+
+                    const canvas = document.getElementById("graficoVentas");
+                    if (!canvas) return;
+
+                    const ctx = canvas.getContext("2d");
+
+                    if (chartInstance) {
+                        chartInstance.destroy();
+                    }
+
+                    chartInstance = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: fechas,
+                            datasets: [{
+                                label: 'Total por Fecha',
+                                data: totales,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2,
+                                fill: false,
+                                tension: 0.3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 
 
 
 
 </asp:Content>
-
-
-
-
-
 
 
 
