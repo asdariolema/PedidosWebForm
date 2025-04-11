@@ -134,6 +134,8 @@ C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\obj\Debug\PedidosWebForm.csp
 C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\obj\Debug\PedidosW.C9B5F66A.Up2Date
 C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\obj\Debug\PedidosWebForm.dll
 C:\Users\Dario\source\repos\DommarcoWeb\DommarcoWeb\obj\Debug\PedidosWebForm.pdb
+C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.csproj.AssemblyReference.cache
+C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.csproj.CoreCompileInputs.cache
 C:\Users\asdar\Documents\DommarcoWeb\bin\PedidosWebForm.dll.config
 C:\Users\asdar\Documents\DommarcoWeb\bin\PedidosWebForm.dll
 C:\Users\asdar\Documents\DommarcoWeb\bin\PedidosWebForm.pdb
@@ -171,12 +173,10 @@ C:\Users\asdar\Documents\DommarcoWeb\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\asdar\Documents\DommarcoWeb\bin\DAL.dll
 C:\Users\asdar\Documents\DommarcoWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\asdar\Documents\DommarcoWeb\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\asdar\Documents\DommarcoWeb\bin\MYCFWK.dll
 C:\Users\asdar\Documents\DommarcoWeb\bin\DAL.pdb
+C:\Users\asdar\Documents\DommarcoWeb\bin\MYCFWK.pdb
 C:\Users\asdar\Documents\DommarcoWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.csproj.AssemblyReference.cache
-C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.csproj.CoreCompileInputs.cache
 C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.csproj.CopyComplete
 C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.dll
 C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.pdb
-C:\Users\asdar\Documents\DommarcoWeb\bin\MYCFWK.dll
-C:\Users\asdar\Documents\DommarcoWeb\bin\MYCFWK.pdb

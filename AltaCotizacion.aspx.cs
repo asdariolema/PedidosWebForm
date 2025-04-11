@@ -210,14 +210,7 @@ namespace PedidosWebForm
 
 
         }
-        protected void btnTestHistorial_Click(object sender, EventArgs e)
-        {
-            Vistas ObtenerResumenCliente = new Vistas();
-            DataTable dt = ObtenerResumenCliente.getestadisticasVentas("9507");
-
-            gvHistorialCliente.DataSource = dt;
-            gvHistorialCliente.DataBind();
-        }
+       
 
         protected void ddlRazonSocial_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -233,12 +226,12 @@ namespace PedidosWebForm
         private void CargarHistorialCliente(string   cliente)
             {
 
-            Vistas ObtenerResumenCliente = new Vistas(); 
-               DataTable dt = ObtenerResumenCliente.getestadisticasVentas(cliente); //
+           DAL.Vistas ObtenerResumenCliente = new DAL.Vistas();
+            DataTable dt = ObtenerResumenCliente.getestadisticasVentas(cliente); //
 
             gvHistorialCliente.DataSource = dt;
             gvHistorialCliente.DataBind();
-            }
+        }
 
      
 
