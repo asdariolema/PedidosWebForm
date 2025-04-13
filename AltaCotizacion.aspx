@@ -339,13 +339,14 @@
                                 <div class="row g-3 align-items-end">
                                     <!-- Cantidad -->
                                     <div class="col-md-2">
-                                        <label for="txtCantidad" class="form-label fw-semibold text-secondary">Cantidad</label>
+                  <label for="txtCantidad" class="form-label fw-semibold text-secondary">Cantidad</label>
 
-                                       <asp:TextBox ID="txtCantidad" runat="server"
+<asp:TextBox ID="txtCantidad" runat="server"
     CssClass="form-control form-control-sm shadow-sm"
     Style="border-color: #6c757d;"
     onkeyup="soloDecimal(this)"
     ValidationGroup="AgregarArticulo" />
+
 
 
                                         <asp:RequiredFieldValidator ID="rfvCantidad" runat="server"
@@ -426,7 +427,7 @@
 
                                     </div>
 <!-- Observaciones + Botón Agregar en la misma línea, con el botón alineado a la derecha -->
-<div class="col-12 d-flex flex-wrap gap-2">
+<%--<div class="col-12 d-flex flex-wrap gap-2">
    <div class="col-md-8">
     <label class="form-label">Observaciones</label>
     <div class="input-group">
@@ -438,9 +439,37 @@
             <i class="fas fa-microphone"></i>
         </button>
     </div>
+</div>--%>
+
+<div class="col-12 d-flex align-items-end gap-2">
+    <div class="flex-grow-1">
+        <label for="txtObservaciones" class="form-label">Observaciones</label>
+        <div class="input-group">
+
+            <button type="button" class="btn btn-outline-secondary"
+                onclick="reconocerYAsignar('txtObservaciones')">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <asp:TextBox ID="txtObservaciones" runat="server"
+                CssClass="form-control form-control-sm shadow-sm input-focus-anim"
+                ClientIDMode="Static" />
+            
+        </div>
+    </div>
+
+   <%-- <div style="min-width: 120px;">
+        <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
+            CssClass="btn btn-outline-primary shadow-sm px-4"
+            OnClientClick="return validarYHablar();" 
+            OnClick="btnAgregar_Click"
+            CausesValidation="true"
+            ValidationGroup="AgregarArticulo" />
+    </div>--%>
+
 </div>
 
-    <div style="min-width: 120px;" class="d-flex align-items-end">
+
+ <div style="min-width: 120px;" class="d-flex align-items-end">
 <!-- Botón con validación hablada -->
 <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
     CssClass="btn btn-outline-primary shadow-sm px-4"
@@ -1014,18 +1043,18 @@ function reconocimientoParaDropdown(dropdownId) {
         window.speechSynthesis.speak(mensaje);
     }
 
-    function validarYHablar() {
+   function validarYHablar() {
         let errores = [];
 
-        const unidad = document.getElementById("<%= ddlunidad.ClientID %>").value;
+        const unidad = document.getElementById("<%= txtCantidad.ClientID %>").value;
         const precio = document.getElementById("<%= txtPrecioUnitario.ClientID %>").value.trim();
 
         if (!unidad) {
-            errores.push("Debe seleccionar una unidad.");
+            errores.push("Error en Cantidad.");
         }
 
         if (!precio) {
-            errores.push("Debe ingresar el precio unitario.");
+            errores.push("Error en  precio unitario.");
         }
 
         if (errores.length > 0) {
@@ -1034,6 +1063,10 @@ function reconocimientoParaDropdown(dropdownId) {
         }
 
         return true; // permite postback si todo está bien
+
+
+
+
     }
 </script>
 
