@@ -473,7 +473,7 @@
 <!-- Botón con validación hablada -->
 <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
     CssClass="btn btn-outline-primary shadow-sm px-4"
-    OnClientClick="return validarYHablar();"
+    OnClientClick="return validarArticuloYHablar();"
     OnClick="btnAgregar_Click"
     CausesValidation="true"
     ValidationGroup="AgregarArticulo" />
@@ -634,7 +634,8 @@
 
                 <!-- Panel de sumas y botón Aceptar --><asp:UpdatePanel ID="UpdatePanelSumas" runat="server">
     <ContentTemplate>
-        <div class="mt-4 d-flex justify-content-end">
+      <div class="mt-4 d-flex justify-content-end flex-wrap w-100">
+
             <div class="resumen-importes-card">
                 <div class="card-body">
                     <h6 class="titulo-seccion mb-3">
@@ -653,13 +654,21 @@
                         </Columns>
                     </asp:GridView>
 
-                    <div class="text-end mt-3">
+                   <%-- <div class="text-end mt-3">
                         <asp:Button ID="btnAceptar" runat="server"
                             Text="Aceptar"
                             CssClass="btn btn-outline-primary btn-lg px-4 fw-semibold shadow-sm"
-                            OnClick="btnAceptar_Click"
+                             onclick="reconocerYAsignar('txtDireccionEntrega')"
+                           
                             OnClientClick="return validarConfirmarPedido();" />
-                    </div>
+                    </div>--%>
+
+                    <asp:Button ID="btnAceptar" runat="server"
+    Text="Aceptar"
+    CssClass="btn btn-outline-primary btn-lg px-4 fw-semibold shadow-sm"
+    OnClick="btnAceptar_Click"
+    OnClientClick="return validarConfirmacionYHablar();" />
+
                 </div>
             </div>
         </div>
@@ -671,203 +680,7 @@
             </div>
 
 
-            <style>
-
-                .gv-compact td, .gv-compact th {
-    padding: 0.35rem 0.5rem;
-    font-size: 0.85rem;
-    white-space: nowrap;
-}
-.gv-compact td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 120px;
-}
-
-
-        body {
-            background-color: #f0f4f8;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #343a40;
-        }
-
-        .titulo-seccion {
-            font-size: 1.25rem;
-            color: #0d6efd;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .resumen-importes-card {
-    width: 100%;
-    max-width: 480px;
-    background: linear-gradient(145deg, #ffffff, #e3eaf4);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    animation: fadeInUp 0.6s ease-in-out;
-    margin-left: auto; /* Alineado a la derecha */
-}
-
-@media (max-width: 767px) {
-    .resumen-importes-card {
-        max-width: 100%;
-        margin: 0 auto;
-    }
-}
-
-.tabla-sumas thead th {
-    background-color: #e9f2fb;
-    color: #0d6efd;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.tabla-sumas td {
-    font-size: 1rem;
-    padding: 0.6rem;
-    vertical-align: middle;
-}
-
-.tabla-sumas tr:hover {
-    background-color: #f4faff;
-    transition: 0.3s ease;
-}
-
-        .table-articulos thead {
-            background-color: #0d6efd;
-            color: white;
-        }
-    .resumen-sumas td {
-    font-size: 1rem;
-    padding: 0.5rem;
-    color: #495057;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.resumen-sumas tr:last-child td {
-    border-bottom: none;
-}
-
-        
-
-        .table-articulos tbody tr:hover {
-            background-color: #eef5ff;
-            transition: 0.3s ease;
-        }
-
-        .card {
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .card:hover {
-            transform: scale(1.01);
-        }
-
-        .card-header {
-            background-color: #0d6efd;
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .form-label {
-            font-weight: 600;
-            color: #0d6efd;
-        }
-
-        .form-control, .select2-container--default .select2-selection--single {
-            border-radius: 0.5rem;
-            border-color: #ced4da;
-        }
-
-        .form-control:focus {
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-        }
-
-        .btn-outline-primary {
-            border-radius: 30px;
-            font-weight: 600;
-        }
-
-        .btn-outline-primary:hover {
-            background-color: #0d6efd;
-            color: white;
-        }
-
-        .bg-section {
-            background: linear-gradient(145deg, #ffffff, #e0e6ed);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
-            animation: fadeInUp 0.6s ease-in-out;
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Fondo celeste para el input del filtro en los dropdown Select2 */
-.select2-container--default .select2-search--dropdown .select2-search__field {
-    background-color: #dff1ff !important;
-    border: 1px solid #0d6efd;
-    color: #212529;
-    padding: 6px 8px;
-    border-radius: 0.4rem;
-    font-size: 0.9rem;
-}
-
-/* Fondo de la opción resaltada al navegar */
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #cce5ff;
-    color: #000;
-}
-
-
-
-.table-articulos tr:hover {
-    background-color: #dceeff !important;
-    transition: 0.3s ease;
-}
-        .input-focus-anim:focus {
-            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-    .row-normal {
-    background-color: #f8f9fa;
-}
-
-
-.row-alt td {
-    background-color: #eaf0fb !important;
-}
-
-
-
-.table-articulos .row-alt {
-    background-color: #eaf0fb;
-}
-
-.table-articulos tr:hover {
-    background-color: #dceeff !important;
-    transition: 0.3s ease;
-}
-
-    </style>
-
-    
+             
 
 
 
@@ -1043,7 +856,7 @@ function reconocimientoParaDropdown(dropdownId) {
         window.speechSynthesis.speak(mensaje);
     }
 
-   function validarYHablar() {
+   <%--function validarYHablar() {
         let errores = [];
 
         const unidad = document.getElementById("<%= txtCantidad.ClientID %>").value;
@@ -1062,13 +875,122 @@ function reconocimientoParaDropdown(dropdownId) {
             return false; // evita postback si hay errores
         }
 
-        return true; // permite postback si todo está bien
+        return true; // permite postback si todo está bien--%>
+        function validarArticuloYHablar() {
+            let errores = [];
+
+            const unidad = document.getElementById("<%= txtCantidad.ClientID %>").value;
+           <%-- const precio = document.getElementById("<%= txtPrecioUnitario.ClientID %>").value.trim();--%>
+
+            if (!unidad) {
+                errores.push("Error en Cantidad.");
+            }
+
+            //if (!precio) {
+            //    errores.push("Error en precio unitario.");
+            //}
+
+            if (errores.length > 0) {
+                hablar(errores.join(" "));
+                return false;
+            }
+
+            return true;
+        }
+        function validarConfirmacionYHablar() {
+            let errores = [];
+
+            const codCliente = document.getElementById("<%= txtCodCliente.ClientID %>").value.trim();
+    if (!codCliente) {
+        errores.push("Código de cliente faltante.");
+    }
+
+            const grilla = document.getElementById("<%= gvArticulos.ClientID %>");
+            if (!grilla || grilla.rows.length <= 1) {
+                errores.push("Debe cargar al menos un artículo.");
+            }
+
+            if (errores.length > 0) {
+                hablar( errores.join(" "));
+                return false;
+            }
+
+            hablar("Cotización confirmada");
+            return true;
+        }
+
+
+    </script>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="mt-4">
+    <label for="selectVoz" class="form-label fw-bold text-primary">Seleccionar voz:</label>
+    <select id="selectVoz" class="form-select w-auto mb-2"></select>
+
+    <button class="btn btn-outline-primary" onclick="probarVozSeleccionada()">Probar Voz</button>
+</div>
+
+<script>
+    let vocesCargadas = [];
+
+    function cargarVoces() {
+        vocesCargadas = window.speechSynthesis.getVoices();
+        const select = document.getElementById("selectVoz");
+        select.innerHTML = ""; // Limpia
+
+        vocesCargadas.forEach((voz, index) => {
+            const opcion = document.createElement("option");
+            opcion.value = index;
+            opcion.text = `${voz.name} (${voz.lang})`;
+            select.appendChild(opcion);
+        });
+
+        console.log("📢 Voces disponibles:", vocesCargadas);
+    }
+
+    function probarVozSeleccionada() {
+        const select = document.getElementById("selectVoz");
+        const index = parseInt(select.value);
+        const voz = vocesCargadas[index];
+
+        const mensaje = new SpeechSynthesisUtterance("Esta es una prueba de voz.");
+        mensaje.voice = voz;
+        mensaje.lang = voz.lang;
+        window.speechSynthesis.speak(mensaje);
+    }
+
+    // Asegurarse de que se cargan las voces correctamente
+    if (typeof speechSynthesis !== "undefined") {
+        speechSynthesis.onvoiceschanged = cargarVoces;
+        setTimeout(cargarVoces, 200); // fallback
     }
 </script>
+
+
+
+
+
+
+
+
 
 
 </asp:Content>

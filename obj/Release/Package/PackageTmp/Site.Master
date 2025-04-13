@@ -71,7 +71,204 @@
         .logo-container img {
             max-width: 120px;
         }
+   
+
+                .gv-compact td, .gv-compact th {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.gv-compact td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #343a40;
+        }
+
+        .titulo-seccion {
+            font-size: 1.25rem;
+            color: #0d6efd;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .resumen-importes-card {
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(145deg, #ffffff, #e3eaf4);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    animation: fadeInUp 0.6s ease-in-out;
+    margin-left: auto; /* Alineado a la derecha */
+}
+
+@media (max-width: 767px) {
+    .resumen-importes-card {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+.tabla-sumas thead th {
+    background-color: #e9f2fb;
+    color: #0d6efd;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.tabla-sumas td {
+    font-size: 1rem;
+    padding: 0.6rem;
+    vertical-align: middle;
+}
+
+.tabla-sumas tr:hover {
+    background-color: #f4faff;
+    transition: 0.3s ease;
+}
+
+        .table-articulos thead {
+            background-color: #0d6efd;
+            color: white;
+        }
+    .resumen-sumas td {
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.resumen-sumas tr:last-child td {
+    border-bottom: none;
+}
+
+        
+
+        .table-articulos tbody tr:hover {
+            background-color: #eef5ff;
+            transition: 0.3s ease;
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        .card-header {
+            background-color: #0d6efd;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #0d6efd;
+        }
+
+        .form-control, .select2-container--default .select2-selection--single {
+            border-radius: 0.5rem;
+            border-color: #ced4da;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+
+        .btn-outline-primary {
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .bg-section {
+            background: linear-gradient(145deg, #ffffff, #e0e6ed);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Fondo celeste para el input del filtro en los dropdown Select2 */
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    background-color: #dff1ff !important;
+    border: 1px solid #0d6efd;
+    color: #212529;
+    padding: 6px 8px;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+}
+
+/* Fondo de la opción resaltada al navegar */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #cce5ff;
+    color: #000;
+}
+
+
+
+.table-articulos tr:hover {
+    background-color: #dceeff !important;
+    transition: 0.3s ease;
+}
+        .input-focus-anim:focus {
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+    .row-normal {
+    background-color: #f8f9fa;
+}
+
+
+.row-alt td {
+    background-color: #eaf0fb !important;
+}
+
+
+
+.table-articulos .row-alt {
+    background-color: #eaf0fb;
+}
+
+.table-articulos tr:hover {
+    background-color: #dceeff !important;
+    transition: 0.3s ease;
+}
+
     </style>
+
+
+
 </head>
 <body>
     <form runat="server">
