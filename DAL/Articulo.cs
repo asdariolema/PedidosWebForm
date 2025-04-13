@@ -15,7 +15,7 @@ namespace DAL
         private string _ART_DESCRIPCION;
         private string _ART_ID_CATEGORIA;
         private string _ART_ID_SUB_CATEGORIA;
-
+       
         public string ID_ARTICULO // DataType [NUMERIC ],Nullable [NO]
         {
             get { return string.IsNullOrEmpty(_ID_ARTICULO) ? SQL.numericNULL : _ID_ARTICULO.Replace(',', '.'); }
@@ -38,7 +38,10 @@ namespace DAL
         }
 
 
-              public string ART_ID_CATEGORIA // DataType [NUMERIC ],Nullable [NO]
+
+       
+
+        public string ART_ID_CATEGORIA // DataType [NUMERIC ],Nullable [NO]
         {
             get { return string.IsNullOrEmpty(_ART_ID_CATEGORIA) ? SQL.numericNULL : _ART_ID_CATEGORIA.Replace(',', '.'); }
             set { _ART_ID_CATEGORIA = value; }

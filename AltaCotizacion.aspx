@@ -401,6 +401,20 @@
                                             CssClass="form-control select2-autocompletar" />
                                     </div>
 
+
+<%--<!-- Observaciones + Botón en la misma línea -->
+<div class="col-md-10 col-sm-8">
+    <label for="txtObservaciones" class="form-label fw-semibold text-secondary">Observaciones</label>
+    <asp:TextBox ID="txtObservaciones" runat="server"
+        CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
+</div>--%>
+
+
+
+
+
+
+
                                     <!-- Precio Unitario -->
                                     <div class="col-md-2">
                                         <label for="txtPrecioUnitario" class="form-label fw-semibold text-secondary">Precio Unitario</label>
@@ -412,16 +426,31 @@
     Style="border-color: #6c757d;" />
 
                                     </div>
+<!-- Observaciones + Botón Agregar en la misma línea, con el botón alineado a la derecha -->
+<div class="col-12 d-flex flex-wrap gap-2">
+    <div class="flex-grow-1">
+        <label for="txtObservaciones" class="form-label fw-semibold text-secondary">Observaciones</label>
+        <asp:TextBox ID="txtObservaciones" runat="server"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
+    </div>
 
-                                    <!-- Botón Agregar -->
-                                    <div class="col-md-2">
-                                        <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
-                                            CssClass="btn btn-outline-primary w-100 shadow-sm"
-                                            OnClick="btnAgregar_Click"
-                                            CausesValidation="true"
-                                            ValidationGroup="AgregarArticulo" />
-                                    </div>
+    <div style="min-width: 120px;" class="d-flex align-items-end">
+        <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
+            CssClass="btn btn-outline-primary shadow-sm px-4"
+            OnClick="btnAgregar_Click"
+            CausesValidation="true"
+            ValidationGroup="AgregarArticulo" />
+    </div>
+</div>
 
+
+<%--<div class="col-md-2 col-sm-4 d-flex align-items-end">
+    <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
+        CssClass="btn btn-outline-primary w-100 shadow-sm"
+        OnClick="btnAgregar_Click"
+        CausesValidation="true"
+        ValidationGroup="AgregarArticulo" />
+</div>--%>
                                     <!-- Precio Total oculto -->
                                     <div class="col-md-2">
                                         <asp:TextBox ID="txtPrecioTotal" runat="server"
@@ -443,6 +472,50 @@
                
 
 
+
+  <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <div class="card shadow-sm mt-4 mb-5 bg-section">
+            <div class="card-header bg-light">
+                <h6 class="mb-0 text-primary fw-semibold">
+                    <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row gy-3 gx-4">
+                    <!-- Provincia (oculta) -->
+                    <div class="col-md-3 col-sm-6" runat="server" visible="false">
+                        <label for="TextPciaEntrega" class="form-label text-secondary fw-semibold small">Provincia</label>
+                        <asp:TextBox ID="TextPciaEntrega" runat="server"
+                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+                    </div>
+
+                    <!-- Localidad -->
+                    <div class="col-md-4 col-sm-12">
+                        <label for="TextIdLocalidadEntrega" class="form-label text-secondary fw-semibold small">Localidad</label>
+                        <asp:TextBox ID="TextIdLocalidadEntrega" runat="server"
+                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+                    </div>
+
+                    <!-- Dirección -->
+                    <div class="col-md-4 col-sm-12">
+                        <label for="txtDireccionEntrega" class="form-label text-secondary fw-semibold small">Dirección de Entrega</label>
+                        <asp:TextBox ID="txtDireccionEntrega" runat="server"
+                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+                            MaxLength="100" />
+                    </div>
+
+                    <!-- Contacto -->
+                    <div class="col-md-4 col-sm-12">
+                        <label for="TextContacto" class="form-label text-secondary fw-semibold small">Contacto</label>
+                        <asp:TextBox ID="TextContacto" runat="server"
+                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ContentTemplate>
+</asp:UpdatePanel>
 
 
 
@@ -481,6 +554,7 @@
                                     <asp:BoundField DataField="Unidad" HeaderText="Unidad" />
                                     <asp:BoundField DataField="IdTasa" HeaderText="IdTasa" Visible="false" />
                                     <asp:BoundField DataField="Tasa" HeaderText="Tasa" Visible="false" />
+                                       <asp:BoundField DataField="Observaciones" HeaderText="Observaciones" />
                                     <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" />
                                     <asp:BoundField DataField="PrecioTotal" HeaderText="Precio Total" />
                                     <asp:TemplateField>
@@ -736,38 +810,7 @@
 
     </style>
 
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-    <ContentTemplate>
-    <div class="card shadow-sm mt-4 bg-section">
-    <div class="card-header bg-light">
-        <h6 class="mb-0 text-primary fw-semibold">
-            <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
-        </h6>
-    </div>
-    <div class="card-body">
-        <div class="row g-3">
-            <div class="col-md-3 col-sm-6">
-                <label for="TextPciaEntrega" class="form-label">Provincia</label>
-                <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <label for="TextIdLocalidadEntrega" class="form-label">Localidad</label>
-                <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <label for="txtDireccionEntrega" class="form-label">Dirección de Entrega</label>
-                <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" MaxLength="100" />
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <label for="TextContacto" class="form-label">Contacto</label>
-                <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
-            </div>
-        </div>
-    </div>
-</div>
-
-    </ContentTemplate>
-</asp:UpdatePanel>
+    
 
 
 

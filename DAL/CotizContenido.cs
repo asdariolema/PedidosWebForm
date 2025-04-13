@@ -28,11 +28,10 @@ namespace DAL
         private string _ID_TASA;
         private string _TASA;
         private string _PRECIOUNITARIO;
+        private string _OBSERVACIONES;
 
         private string _PRECIOTOTAL;
 
-       
-            
 
 
 
@@ -49,6 +48,13 @@ namespace DAL
 
 
 
+
+        public string OBSERVACIONES // DataType [CHARACTER VARYING],Nullable [YES]
+        {
+            get { return string.IsNullOrEmpty(_OBSERVACIONES) ? SQL.nvarcharNULL_SQL : _OBSERVACIONES.Replace(',', '.'); }
+
+            set { _OBSERVACIONES = value; }
+        }
 
 
         public string IDCONTCOTIZ // DataType [NUMERIC ],Nullable [NO]
@@ -182,18 +188,19 @@ namespace DAL
                 aux += IDCOTIZ + ',';
                 aux += ConvertirComasAPuntos(CANT) + ',';
                 aux += Comillas(DESCRIPCION.Replace("'", "''")) + ',';
-                aux += Comillas(ID_ESPESOR) + ',';
-                aux += Comillas(ESPESOR) + ',';
-                aux += Comillas(ID_ANCHO) + ',';
-                aux += Comillas(ANCHO) + ',';
-                aux += Comillas(ID_LARGO) + ',';
-                aux += Comillas(LARGO) + ',';
-                aux += Comillas(ID_UNIDAD) + ',';
-                aux += Comillas(UNIDAD) + ',';
-                aux += Comillas(ID_TASA) + ',';
-                aux += Comillas(TASA) + ',';
-                aux += Comillas(PRECIOUNITARIO) + ',';
-                aux += Comillas(PRECIOTOTAL);
+                aux += Comillas(ID_ESPESOR.Replace("'", "''")) + ",";
+                aux += Comillas(ESPESOR.Replace("'", "''")) + ",";
+                aux += Comillas(ID_ANCHO.Replace("'", "''")) + ",";
+                aux += Comillas(ANCHO.Replace("'", "''")) + ",";
+                aux += Comillas(ID_LARGO.Replace("'", "''")) + ",";
+                aux += Comillas(LARGO.Replace("'", "''")) + ",";
+                aux += Comillas(ID_UNIDAD.Replace("'", "''")) + ",";
+                aux += Comillas(UNIDAD.Replace("'", "''")) + ",";
+                aux += Comillas(ID_TASA.Replace("'", "''")) + ",";
+                aux += Comillas(TASA.Replace("'", "''")) + ","; aux += Comillas(PRECIOUNITARIO) + ',';
+                aux += Comillas(PRECIOTOTAL) + ',';
+                aux += Comillas(OBSERVACIONES.Replace("'", "''"));
+
                 return SQL.EjecutaStored(aux).Tables[0];
 
 

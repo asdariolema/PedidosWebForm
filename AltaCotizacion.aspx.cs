@@ -125,6 +125,7 @@ namespace PedidosWebForm
                         dtArticulos.Columns.Add("Unidad");
                         dtArticulos.Columns.Add("IDTasa");
                         dtArticulos.Columns.Add("Tasa");
+                        dtArticulos.Columns.Add("Observaciones");
                         dtArticulos.Columns.Add("PrecioUnitario");
                         dtArticulos.Columns.Add("PrecioTotal");
                         ViewState["Articulos"] = dtArticulos;
@@ -350,7 +351,9 @@ namespace PedidosWebForm
                 dtArticulos.Columns.Add("Unidad");
                 dtArticulos.Columns.Add("IDTasa");
                 dtArticulos.Columns.Add("Tasa");
-                dtArticulos.Columns.Add("PrecioUnitario");
+                dtArticulos.Columns.Add("Observaciones");
+               
+            dtArticulos.Columns.Add("PrecioUnitario");
                 dtArticulos.Columns.Add("PrecioTotal");
             }
 
@@ -749,8 +752,10 @@ namespace PedidosWebForm
                     COTIZCONT.LARGO = HttpUtility.HtmlDecode(row.Cells[7].Text);
                     COTIZCONT.UNIDAD = HttpUtility.HtmlDecode(row.Cells[9].Text);
                     COTIZCONT.TASA = row.Cells[11].Text;
-                    COTIZCONT.PRECIOUNITARIO = row.Cells[12].Text;
-                    COTIZCONT.PRECIOTOTAL = row.Cells[13].Text;
+                    COTIZCONT.OBSERVACIONES= HttpUtility.HtmlDecode( row.Cells[12].Text);
+
+                    COTIZCONT.PRECIOUNITARIO = row.Cells[13].Text;
+                    COTIZCONT.PRECIOTOTAL = row.Cells[14].Text;
 
                     COTIZCONT.CotizCont_INS();
                 }
@@ -827,6 +832,7 @@ namespace PedidosWebForm
                 dtArticulos.Columns.Add("Unidad");
                 dtArticulos.Columns.Add("IDTasa");
                 dtArticulos.Columns.Add("Tasa");
+                dtArticulos.Columns.Add("Observaciones");
                 dtArticulos.Columns.Add("PrecioUnitario");
                 dtArticulos.Columns.Add("PrecioTotal");
 
@@ -860,7 +866,7 @@ namespace PedidosWebForm
             dr["Largo"] = ddlLargo.SelectedItem.Text;
             dr["IdUnidad"] = ddlunidad.SelectedValue;
             dr["Unidad"] = ddlunidad.SelectedItem.Text;
-
+            dr["Observaciones"] = txtObservaciones.Text ;
             dr["PrecioUnitario"] = txtPrecioUnitario.Text;
             dr["PrecioTotal"] = precioTotal.ToString("N2");
 
@@ -890,7 +896,7 @@ namespace PedidosWebForm
             ddlunidad.SelectedIndex = 0;
             txtPrecioUnitario.Text = string.Empty;
             txtPrecioTotal.Text = string.Empty;
-            //txtdetalle.Text = string.Empty;
+            txtObservaciones.Text = string.Empty;
 
 
 
