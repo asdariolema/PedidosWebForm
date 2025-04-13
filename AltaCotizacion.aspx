@@ -414,7 +414,6 @@
 
 
 
-
                                     <!-- Precio Unitario -->
                                     <div class="col-md-2">
                                         <label for="txtPrecioUnitario" class="form-label fw-semibold text-secondary">Precio Unitario</label>
@@ -428,11 +427,18 @@
                                     </div>
 <!-- Observaciones + Botón Agregar en la misma línea, con el botón alineado a la derecha -->
 <div class="col-12 d-flex flex-wrap gap-2">
-    <div class="flex-grow-1">
-        <label for="txtObservaciones" class="form-label fw-semibold text-secondary">Observaciones</label>
+   <div class="col-md-8">
+    <label class="form-label">Observaciones</label>
+    <div class="input-group">
         <asp:TextBox ID="txtObservaciones" runat="server"
-            CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('txtObservaciones')">
+            <i class="fas fa-microphone"></i>
+        </button>
     </div>
+</div>
 
     <div style="min-width: 120px;" class="d-flex align-items-end">
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
@@ -490,27 +496,47 @@
                             CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
                     </div>
 
-                    <!-- Localidad -->
                     <div class="col-md-4 col-sm-12">
-                        <label for="TextIdLocalidadEntrega" class="form-label text-secondary fw-semibold small">Localidad</label>
-                        <asp:TextBox ID="TextIdLocalidadEntrega" runat="server"
-                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-                    </div>
+    <label class="form-label">Localidad</label>
+    <div class="input-group">
+        <asp:TextBox ID="TextIdLocalidadEntrega" runat="server"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('TextIdLocalidadEntrega')">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+</div>
 
                     <!-- Dirección -->
-                    <div class="col-md-4 col-sm-12">
-                        <label for="txtDireccionEntrega" class="form-label text-secondary fw-semibold small">Dirección de Entrega</label>
-                        <asp:TextBox ID="txtDireccionEntrega" runat="server"
-                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
-                            MaxLength="100" />
-                    </div>
+                  <div class="col-md-4 col-sm-12">
+    <label class="form-label">Dirección de Entrega</label>
+    <div class="input-group">
+        <asp:TextBox ID="txtDireccionEntrega" runat="server"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+            MaxLength="100"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('txtDireccionEntrega')">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+</div>
 
                     <!-- Contacto -->
                     <div class="col-md-4 col-sm-12">
-                        <label for="TextContacto" class="form-label text-secondary fw-semibold small">Contacto</label>
-                        <asp:TextBox ID="TextContacto" runat="server"
-                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-                    </div>
+    <label class="form-label">Contacto</label>
+    <div class="input-group">
+        <asp:TextBox ID="TextContacto" runat="server"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('TextContacto')">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -792,7 +818,7 @@
     background-color: #f8f9fa;
 }
 
-/* Esto sí va a funcionar */
+
 .row-alt td {
     background-color: #eaf0fb !important;
 }
@@ -860,6 +886,65 @@
             cargarGrafico(seleccionado);
         }
     });
+
+function reconocerYAsignar(idControl, tipo = "text") {
+    if (!('webkitSpeechRecognition' in window)) {
+        alert("Tu navegador no soporta reconocimiento de voz.");
+        return;
+    }
+
+    const recog = new webkitSpeechRecognition();
+    recog.lang = 'es-AR';
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+    recog.start();
+
+    recog.onresult = function (event) {
+        let resultado = event.results[0][0].transcript.trim();
+        const control = document.getElementById(idControl);
+
+        if (tipo === "number") {
+            resultado = resultado.replace(",", ".").replace(/[^\d.]/g, "");
+        }
+
+        if (control) control.value = resultado;
+    };
+
+    recog.onerror = function (event) {
+        console.error("Error reconocimiento de voz:", event.error);
+        alert("Error en el reconocimiento de voz: " + event.error);
+    };
+}
+
+function reconocimientoParaDropdown(dropdownId) {
+    const recog = new webkitSpeechRecognition();
+    recog.lang = 'es-AR';
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+    recog.start();
+
+    recog.onresult = function (event) {
+        const texto = event.results[0][0].transcript.toLowerCase().trim();
+        const ddl = document.getElementById(dropdownId);
+        let encontrado = false;
+
+        for (let i = 0; i < ddl.options.length; i++) {
+            const opcion = ddl.options[i].text.toLowerCase().trim();
+            if (opcion.includes(texto)) {
+                ddl.selectedIndex = i;
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            alert("No se encontró una opción que coincida con: " + texto);
+        }
+    };
+}
+   
+
+
 
         function cargarGrafico(idcliente) {
             $.ajax({

@@ -401,6 +401,19 @@
                                             CssClass="form-control select2-autocompletar" />
                                     </div>
 
+
+<%--<!-- Observaciones + Botón en la misma línea -->
+<div class="col-md-10 col-sm-8">
+    <label for="txtObservaciones" class="form-label fw-semibold text-secondary">Observaciones</label>
+    <asp:TextBox ID="txtObservaciones" runat="server"
+        CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
+</div>--%>
+
+
+
+
+
+
                                     <!-- Precio Unitario -->
                                     <div class="col-md-2">
                                         <label for="txtPrecioUnitario" class="form-label fw-semibold text-secondary">Precio Unitario</label>
@@ -412,16 +425,38 @@
     Style="border-color: #6c757d;" />
 
                                     </div>
+<!-- Observaciones + Botón Agregar en la misma línea, con el botón alineado a la derecha -->
+<div class="col-12 d-flex flex-wrap gap-2">
+   <div class="col-md-8">
+    <label class="form-label">Observaciones</label>
+    <div class="input-group">
+        <asp:TextBox ID="txtObservaciones" runat="server"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('txtObservaciones')">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+</div>
 
-                                    <!-- Botón Agregar -->
-                                    <div class="col-md-2">
-                                        <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
-                                            CssClass="btn btn-outline-primary w-100 shadow-sm"
-                                            OnClick="btnAgregar_Click"
-                                            CausesValidation="true"
-                                            ValidationGroup="AgregarArticulo" />
-                                    </div>
+    <div style="min-width: 120px;" class="d-flex align-items-end">
+        <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
+            CssClass="btn btn-outline-primary shadow-sm px-4"
+            OnClick="btnAgregar_Click"
+            CausesValidation="true"
+            ValidationGroup="AgregarArticulo" />
+    </div>
+</div>
 
+
+<%--<div class="col-md-2 col-sm-4 d-flex align-items-end">
+    <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
+        CssClass="btn btn-outline-primary w-100 shadow-sm"
+        OnClick="btnAgregar_Click"
+        CausesValidation="true"
+        ValidationGroup="AgregarArticulo" />
+</div>--%>
                                     <!-- Precio Total oculto -->
                                     <div class="col-md-2">
                                         <asp:TextBox ID="txtPrecioTotal" runat="server"
@@ -443,6 +478,70 @@
                
 
 
+
+  <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <div class="card shadow-sm mt-4 mb-5 bg-section">
+            <div class="card-header bg-light">
+                <h6 class="mb-0 text-primary fw-semibold">
+                    <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row gy-3 gx-4">
+                    <!-- Provincia (oculta) -->
+                    <div class="col-md-3 col-sm-6" runat="server" visible="false">
+                        <label for="TextPciaEntrega" class="form-label text-secondary fw-semibold small">Provincia</label>
+                        <asp:TextBox ID="TextPciaEntrega" runat="server"
+                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+    <label class="form-label">Localidad</label>
+    <div class="input-group">
+        <asp:TextBox ID="TextIdLocalidadEntrega" runat="server"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('TextIdLocalidadEntrega')">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+</div>
+
+                    <!-- Dirección -->
+                  <div class="col-md-4 col-sm-12">
+    <label class="form-label">Dirección de Entrega</label>
+    <div class="input-group">
+        <asp:TextBox ID="txtDireccionEntrega" runat="server"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+            MaxLength="100"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('txtDireccionEntrega')">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+</div>
+
+                    <!-- Contacto -->
+                    <div class="col-md-4 col-sm-12">
+    <label class="form-label">Contacto</label>
+    <div class="input-group">
+        <asp:TextBox ID="TextContacto" runat="server"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('TextContacto')">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </ContentTemplate>
+</asp:UpdatePanel>
 
 
 
@@ -481,6 +580,7 @@
                                     <asp:BoundField DataField="Unidad" HeaderText="Unidad" />
                                     <asp:BoundField DataField="IdTasa" HeaderText="IdTasa" Visible="false" />
                                     <asp:BoundField DataField="Tasa" HeaderText="Tasa" Visible="false" />
+                                       <asp:BoundField DataField="Observaciones" HeaderText="Observaciones" />
                                     <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" />
                                     <asp:BoundField DataField="PrecioTotal" HeaderText="Precio Total" />
                                     <asp:TemplateField>
@@ -718,7 +818,7 @@
     background-color: #f8f9fa;
 }
 
-/* Esto sí va a funcionar */
+
 .row-alt td {
     background-color: #eaf0fb !important;
 }
@@ -736,38 +836,7 @@
 
     </style>
 
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-    <ContentTemplate>
-    <div class="card shadow-sm mt-4 bg-section">
-    <div class="card-header bg-light">
-        <h6 class="mb-0 text-primary fw-semibold">
-            <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
-        </h6>
-    </div>
-    <div class="card-body">
-        <div class="row g-3">
-            <div class="col-md-3 col-sm-6">
-                <label for="TextPciaEntrega" class="form-label">Provincia</label>
-                <asp:TextBox ID="TextPciaEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <label for="TextIdLocalidadEntrega" class="form-label">Localidad</label>
-                <asp:TextBox ID="TextIdLocalidadEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <label for="txtDireccionEntrega" class="form-label">Dirección de Entrega</label>
-                <asp:TextBox ID="txtDireccionEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" MaxLength="100" />
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <label for="TextContacto" class="form-label">Contacto</label>
-                <asp:TextBox ID="TextContacto" runat="server" CssClass="form-control form-control-sm shadow-sm input-focus-anim" />
-            </div>
-        </div>
-    </div>
-</div>
-
-    </ContentTemplate>
-</asp:UpdatePanel>
+    
 
 
 
@@ -817,6 +886,65 @@
             cargarGrafico(seleccionado);
         }
     });
+
+function reconocerYAsignar(idControl, tipo = "text") {
+    if (!('webkitSpeechRecognition' in window)) {
+        alert("Tu navegador no soporta reconocimiento de voz.");
+        return;
+    }
+
+    const recog = new webkitSpeechRecognition();
+    recog.lang = 'es-AR';
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+    recog.start();
+
+    recog.onresult = function (event) {
+        let resultado = event.results[0][0].transcript.trim();
+        const control = document.getElementById(idControl);
+
+        if (tipo === "number") {
+            resultado = resultado.replace(",", ".").replace(/[^\d.]/g, "");
+        }
+
+        if (control) control.value = resultado;
+    };
+
+    recog.onerror = function (event) {
+        console.error("Error reconocimiento de voz:", event.error);
+        alert("Error en el reconocimiento de voz: " + event.error);
+    };
+}
+
+function reconocimientoParaDropdown(dropdownId) {
+    const recog = new webkitSpeechRecognition();
+    recog.lang = 'es-AR';
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+    recog.start();
+
+    recog.onresult = function (event) {
+        const texto = event.results[0][0].transcript.toLowerCase().trim();
+        const ddl = document.getElementById(dropdownId);
+        let encontrado = false;
+
+        for (let i = 0; i < ddl.options.length; i++) {
+            const opcion = ddl.options[i].text.toLowerCase().trim();
+            if (opcion.includes(texto)) {
+                ddl.selectedIndex = i;
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            alert("No se encontró una opción que coincida con: " + texto);
+        }
+    };
+}
+   
+
+
 
         function cargarGrafico(idcliente) {
             $.ajax({
