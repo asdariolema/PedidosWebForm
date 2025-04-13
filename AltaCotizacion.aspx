@@ -441,11 +441,13 @@
 </div>
 
     <div style="min-width: 120px;" class="d-flex align-items-end">
-        <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
-            CssClass="btn btn-outline-primary shadow-sm px-4"
-            OnClick="btnAgregar_Click"
-            CausesValidation="true"
-            ValidationGroup="AgregarArticulo" />
+<!-- Botón con validación hablada -->
+<asp:Button ID="btnAgregar" runat="server" Text="Agregar"
+    CssClass="btn btn-outline-primary shadow-sm px-4"
+    OnClientClick="return validarYHablar();"
+    OnClick="btnAgregar_Click"
+    CausesValidation="true"
+    ValidationGroup="AgregarArticulo" />
     </div>
 </div>
 
@@ -1005,7 +1007,35 @@ function reconocimientoParaDropdown(dropdownId) {
         }
     </script>
 
+    <script type="text/javascript">
+    function hablar(texto) {
+        const mensaje = new SpeechSynthesisUtterance(texto);
+        mensaje.lang = "es-AR";
+        window.speechSynthesis.speak(mensaje);
+    }
 
+    function validarYHablar() {
+        let errores = [];
+
+        const unidad = document.getElementById("<%= ddlunidad.ClientID %>").value;
+        const precio = document.getElementById("<%= txtPrecioUnitario.ClientID %>").value.trim();
+
+        if (!unidad) {
+            errores.push("Debe seleccionar una unidad.");
+        }
+
+        if (!precio) {
+            errores.push("Debe ingresar el precio unitario.");
+        }
+
+        if (errores.length > 0) {
+            hablar(errores.join(" "));
+            return false; // evita postback si hay errores
+        }
+
+        return true; // permite postback si todo está bien
+    }
+</script>
 
 
 </asp:Content>
