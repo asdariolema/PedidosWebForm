@@ -15,34 +15,50 @@
     <link href="~/Content/styles.css" rel="stylesheet" />
 
     <style>
-        #sidebar {
-            background-color: #f8f9fa;
-            border-right: 2px solid #dee2e6;
-            height: 100vh;
-            width: 220px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow-y: auto;
-            transition: margin-left 0.3s ease-in-out;
-            z-index: 1000;
-        }
+      #sidebar {
+    width: 220px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    transition: margin-left 0.3s ease-in-out;
+    z-index: 1000;
+}
+
 
         #main-content {
-            margin-left: 240px;
-            padding-top: 20px;
-            transition: margin-left 0.3s ease-in-out;
-        }
+    margin-left: 220px; /* mismo valor que el ancho del sidebar */
+    padding-top: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
 
-        @media (max-width: 768px) {
-            #sidebar {
-                margin-left: -220px;
-            }
 
-            #main-content {
-                margin-left: 20px !important;
-            }
-        }
+        /* Modo oculto del sidebar (en PC y celular) */
+#sidebar.oculto {
+    margin-left: -220px;
+}
+
+/* En PC, cuando el sidebar está oculto, el contenido se expande */
+@media (max-width: 768px) {
+    #sidebar {
+        position: fixed;
+        margin-left: -220px;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: margin-left 0.3s ease-in-out;
+    }
+
+    #sidebar.mostrar {
+        margin-left: 0 !important;
+    }
+
+    #main-content.expandido {
+        margin-left: 0 !important;
+    }
+}
+
+
 
         .navbar-brand {
             font-size: 1.5rem;
@@ -109,12 +125,20 @@
     margin-left: auto; /* Alineado a la derecha */
 }
 
-@media (max-width: 767px) {
-    .resumen-importes-card {
-        max-width: 100%;
-        margin: 0 auto;
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -220px;
+    }
+
+    #sidebar.activo {
+        margin-left: 0 !important;
+    }
+
+    #main-content {
+        margin-left: 0 !important;
     }
 }
+
 
 .tabla-sumas thead th {
     background-color: #e9f2fb;
@@ -198,6 +222,9 @@
             background-color: #0d6efd;
             color: white;
         }
+        #main-content.expandido {
+    margin-left: 0 !important;
+}
 
         .bg-section {
             background: linear-gradient(145deg, #ffffff, #e0e6ed);
@@ -254,6 +281,21 @@
     background-color: #eaf0fb !important;
 }
 
+/* Asegura que el botón esté SIEMPRE visible encima del menú */
+#toggleMenuBtn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1050; /* más que el sidebar */
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
 
 
 .table-articulos .row-alt {
@@ -271,14 +313,24 @@
 
 </head>
 <body>
+ <button id="toggleMenuBtn" class="btn btn-outline-primary" onclick="toggleSidebar()" type="button">
+    <i class="fas fa-bars"></i>
+</button>
+
+    
     <form runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
 
-        <nav id="sidebar" class="d-flex flex-column shadow-sm">
-            <div class="container-fluid flex-column align-items-center py-3">
-                <a class="navbar-brand mb-4" runat="server" href="menu.aspx"><i class="fas fa-home me-2"></i>Inicio</a>
+        <!-- BOTÓN flotante para mostrar/ocultar -->
+ 
 
-                <ul class="navbar-nav flex-column mb-auto w-100 px-3">
+
+        <div class="d-flex" style="min-height: 100vh;">
+            <!-- Menú lateral -->
+            <nav id="sidebar" class="bg-light shadow-sm p-3" style="width: 250px;">
+                <a class="navbar-brand mb-4" runat="server" href="menu.aspx"><i class="fas fa-home me-2"></i></a>
+
+                <ul class="navbar-nav flex-column mb-auto w-100 px-2">
                     <li class="nav-item">
                         <a class="nav-link fw-semibold" href="#"><i class="fas fa-box me-2"></i>Pedidos</a>
                         <ul class="nav flex-column ms-3">
@@ -303,29 +355,42 @@
                     </li>
                 </ul>
 
-                <div class="logo-container">
+                <div class="logo-container mt-4 text-center">
                     <a href="menu.aspx">
-                        <img src="<%= ResolveUrl("~/Images/logo.jpg") %>" alt="Dommarco Logo" />
+                        <img src="<%= ResolveUrl("~/Images/logo.jpg") %>" alt="Dommarco Logo" class="img-fluid" />
                     </a>
                 </div>
+
+                
+
+
+            </nav>
+
+            <!-- Contenido principal -->
+            <div id="main-content" class="flex-grow-1 p-4">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                <hr />
             </div>
-        </nav>
 
-        <button class="btn btn-outline-primary d-md-none mt-3 ms-3" type="button" onclick="toggleSidebar()">
-            <i class="fas fa-bars"></i>
-        </button>
 
-        <div class="container body-content" id="main-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
-            <hr />
+
+
         </div>
+
+
+
     </form>
+
+    <!-- BOTÓN para mostrar/ocultar menú -->
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   
 
     <script>
         $(document).ready(function () {
@@ -339,14 +404,24 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const main = document.getElementById('main-content');
-            if (sidebar.style.marginLeft === '-220px') {
-                sidebar.style.marginLeft = '0';
-                main.style.marginLeft = '240px';
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile) {
+                // En móvil: solo agregar clase "mostrar"
+                sidebar.classList.toggle('mostrar');
             } else {
-                sidebar.style.marginLeft = '-220px';
-                main.style.marginLeft = '20px';
+                // En PC: ocultar y expandir
+                const isHidden = sidebar.classList.toggle('oculto');
+                if (isHidden) {
+                    main.classList.add('expandido');
+                } else {
+                    main.classList.remove('expandido');
+                }
             }
         }
+
+
+
     </script>
 </body>
 </html>

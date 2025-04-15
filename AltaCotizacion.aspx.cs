@@ -109,6 +109,7 @@ namespace PedidosWebForm
                     CargarUnidMedLargo();
                     CargarUnidMedAncho();
                     CargarRazonSocial();
+                    CargarTBL_TIPO_COMPROBANTE();
                     // Inicializar la tabla de artículos si es la primera vez que se carga la página
                     if (ViewState["Articulos"] == null)
                     {
@@ -429,6 +430,28 @@ namespace PedidosWebForm
             ddlEstado.DataValueField = "ID";
             ddlEstado.DataBind();
         }
+
+
+
+        private void CargarTBL_TIPO_COMPROBANTE()
+        {
+            DAL.TBL_TIPO_COMPROBANTE ESTADO = new DAL.TBL_TIPO_COMPROBANTE();
+            ESTADO.CD_TIP_STATUS = "1";
+            ESTADO.DS_TIP_CODIGO = "COT";
+            DataTable dt = ESTADO.GETTipos();
+
+            ddlTipoCotizacion.DataSource = dt;
+            ddlTipoCotizacion.DataTextField = "DS_TIP_DESCRIPCION";
+            ddlTipoCotizacion.DataValueField = "ID_TIPO_COMPROBANTE";
+            ddlTipoCotizacion.DataBind();
+        }
+
+
+
+
+
+
+
 
         private void CargarUnidMed()
         {

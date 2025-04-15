@@ -188,8 +188,18 @@
 
 
 
+
+                                        
+
+
+
                                         <!-- Botón Buscar alineado a la derecha -->
-                                        <div class="ms-auto" style="width: 100px;">
+                                        <div class="ms-auto" style="width: 200px;">
+                                           
+                                            <label for="ddlTipoCotizacion" class="form-label text-secondary small mb-1">Tipo</label>
+                                            <asp:DropDownList ID="ddlTipoCotizacion" runat="server" CssClass="form-control form-control-sm shadow-sm" />
+                                        
+
                                             <label class="form-label d-block invisible">Buscar</label>
                                             <asp:Button ID="btnBuscarCliente" runat="server"
                                                 Text="Buscar"
