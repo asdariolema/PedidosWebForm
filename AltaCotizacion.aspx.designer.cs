@@ -87,6 +87,15 @@ namespace PedidosWebForm
         protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
 
         /// <summary>
+        /// Control updTipoCotizacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updTipoCotizacion;
+
+        /// <summary>
         /// Control ddlTipoCotizacion.
         /// </summary>
         /// <remarks>

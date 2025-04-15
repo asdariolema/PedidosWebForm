@@ -61,7 +61,18 @@ namespace PedidosWebForm
 
 
 
-
+        protected void ddlOpciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Supongamos que la columna "P. Caba" es la columna 3 (índice 3, contando desde 0)
+            // Ajustá el índice según el orden real
+            bool mostrar = ddlTipoCotizacion.SelectedValue == "A";
+            gvSumas.Columns[4].Visible = mostrar;
+            gvSumas.Columns[3].Visible = mostrar;
+            gvSumas.Columns[2].Visible = mostrar;
+            // Si estás usando DataSource manual, podés volver a enlazar si es necesario
+            // gvSumas.DataSource = ObtenerDatos(); 
+            // gvSumas.DataBind();
+        }
 
 
 
@@ -442,7 +453,7 @@ namespace PedidosWebForm
 
             ddlTipoCotizacion.DataSource = dt;
             ddlTipoCotizacion.DataTextField = "DS_TIP_DESCRIPCION";
-            ddlTipoCotizacion.DataValueField = "ID_TIPO_COMPROBANTE";
+            ddlTipoCotizacion.DataValueField = "letra";
             ddlTipoCotizacion.DataBind();
         }
 
@@ -1042,8 +1053,13 @@ namespace PedidosWebForm
             DataTable dtSumas = new DataTable();
             dtSumas.Columns.Add("CantidadTotal");
             dtSumas.Columns.Add("Subtotal");
+            dtSumas.Columns.Add("pbsas");
+            dtSumas.Columns.Add("pcaba");
+            dtSumas.Columns.Add("pmisiones");
             dtSumas.Columns.Add("Impuestos");
             dtSumas.Columns.Add("Total");
+
+
 
             DataRow drSumas = dtSumas.NewRow();
             drSumas["CantidadTotal"] = totalCantidad.ToString("N2");
