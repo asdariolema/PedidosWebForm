@@ -582,20 +582,8 @@
                                             CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
                                     </div>
 
-                                    <div class="col-md-4 col-sm-12">
-                                        <label class="form-label">Localidad</label>
-                                        <div class="input-group">
-                                            <asp:TextBox ID="TextIdLocalidadEntrega" runat="server"
-                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
-                                                ClientIDMode="Static" />
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                onclick="reconocerYAsignar('TextIdLocalidadEntrega')">
-                                                <i class="fas fa-microphone"></i>
-                                            </button>
-                                        </div>
-                                    </div>
 
-                                    <!-- Dirección -->
+                                      <!-- Dirección -->
                                     <div class="col-md-4 col-sm-12">
                                         <label class="form-label">Dirección de Entrega</label>
                                         <div class="input-group">
@@ -609,6 +597,20 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="form-label">Localidad</label>
+                                        <div class="input-group">
+                                            <asp:TextBox ID="TextIdLocalidadEntrega" runat="server"
+                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+                                                ClientIDMode="Static" />
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="reconocerYAsignar('TextIdLocalidadEntrega')">
+                                                <i class="fas fa-microphone"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                  
 
                                     <!-- Contacto -->
                                     <div class="col-md-4 col-sm-12">
@@ -702,12 +704,13 @@
                                         CssClass="table table-bordered table-hover table-sm text-end tabla-sumas"
                                         AutoGenerateColumns="False" GridLines="None">
                                         <Columns>
-                                            <asp:BoundField HeaderText="CANTIDADES" DataField="CantidadTotal" ItemStyle-HorizontalAlign="Right" />
-                                            <asp:BoundField HeaderText="SUBTOTAL" DataField="Subtotal" ItemStyle-HorizontalAlign="Right" />
+                                            <asp:BoundField HeaderText="Cantidades" DataField="CantidadTotal" ItemStyle-HorizontalAlign="Right" />
+                                            <asp:BoundField HeaderText="SubTotal" DataField="Subtotal" ItemStyle-HorizontalAlign="Right" />
                                             <asp:BoundField HeaderText="P.BsAs" DataField="pbsas" ItemStyle-HorizontalAlign="Right" />
                                             <asp:BoundField HeaderText="P.Caba" DataField="pcaba" ItemStyle-HorizontalAlign="Right" />
                                             <asp:BoundField HeaderText="P.Misiones" DataField="pmisiones" ItemStyle-HorizontalAlign="Right" />
 
+                                              <asp:BoundField HeaderText="IVA" DataField="IVA" ItemStyle-HorizontalAlign="Right" />
 
 
 

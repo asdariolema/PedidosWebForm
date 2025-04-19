@@ -11,9 +11,13 @@ namespace DAL
     public class TBL_TIPO_COMPROBANTE
 
     {
+        private string _CUIT;
+      
+        private string _Neto;
 
+        private string _Letra;
 
-            private string _ID_TIPO_COMPROBANTE;
+        private string _ID_TIPO_COMPROBANTE;
             private string _DS_TIP_CODIGO;
 
             private string _DS_TIP_DESCRIPCION;
@@ -21,7 +25,29 @@ namespace DAL
             private string _NU_TIP_CODIGO_FE;
             private string _CD_TIP_STATUS;
 
-            private string _Letra;
+
+
+        public string Neto // DataType [NUMERIC ],Nullable [NO]
+        {
+            get { return string.IsNullOrEmpty(_Neto) ? SQL.numericNULL : _Neto.Replace(',', '.'); }
+            set { _Neto = value; }
+        }
+
+        public string CUIT // DataType [NUMERIC ],Nullable [NO]
+        {
+            get { return string.IsNullOrEmpty(_CUIT) ? SQL.numericNULL : _CUIT.Replace(',', '.'); }
+            set { _CUIT = value; }
+        }
+
+       
+    
+
+
+
+
+
+
+
 
 
         public string ID_TIPO_COMPROBANTE // DataType [NUMERIC ],Nullable [NO]
@@ -113,10 +139,42 @@ namespace DAL
     }
 
 
-   
 
 
-    private string Comillas(string valor)
+
+        public DataTable GETIMpuestosYtotal()
+        {
+            try
+            {
+
+
+
+
+                string aux = SQL.Call + "CALCULAIMPUESTOS ";
+                aux += (CUIT) + ',';
+                aux += (Letra) + ',';
+             
+                aux += (Neto);
+
+
+                return SQL.EjecutaStored(aux).Tables[0];
+
+
+
+
+                //string aux = SQL.Call + "PEDIDOSCOTIZACIONES_QRY ";
+                //aux += string.IsNullOrEmpty(pidCliente) ? SQL.numericNULL : pidCliente; aux += ',';
+                //aux += Comillas(string.IsNullOrEmpty(pnombreCliente) ? SQL.numericNULL : pnombreCliente);
+                //return SQL.EjecutaStored(aux).Tables[0];
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
+        private string Comillas(string valor)
     {
         return "'" + valor + "'";
     }

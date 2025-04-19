@@ -65,13 +65,35 @@ namespace PedidosWebForm
         {
             // Supongamos que la columna "P. Caba" es la columna 3 (índice 3, contando desde 0)
             // Ajustá el índice según el orden real
-            bool mostrar = ddlTipoCotizacion.SelectedValue == "A";
-            gvSumas.Columns[4].Visible = mostrar;
-            gvSumas.Columns[3].Visible = mostrar;
-            gvSumas.Columns[2].Visible = mostrar;
-            // Si estás usando DataSource manual, podés volver a enlazar si es necesario
-            // gvSumas.DataSource = ObtenerDatos(); 
-            // gvSumas.DataBind();
+
+            TBL_TIPO_COMPROBANTE datostipo = new TBL_TIPO_COMPROBANTE();
+
+            datostipo.ID_TIPO_COMPROBANTE = ddlTipoCotizacion.SelectedValue;
+            DataTable ds= datostipo.GETTipos();
+
+            Session["letra"] = ds.Rows[0]["letra"].ToString();
+            
+
+
+
+
+            if (ds.Rows[0]["letra"].ToString() == "A" || ds.Rows[0]["letra"].ToString() == "B")
+            {
+            gvSumas.Columns[4].Visible = true;
+            gvSumas.Columns[3].Visible = true;
+            gvSumas.Columns[2].Visible = true;
+
+             
+            }
+            else
+
+            {
+                gvSumas.Columns[4].Visible = false;
+                gvSumas.Columns[3].Visible = false;
+                gvSumas.Columns[2].Visible = false;
+
+               
+            }
         }
 
 
@@ -453,8 +475,10 @@ namespace PedidosWebForm
 
             ddlTipoCotizacion.DataSource = dt;
             ddlTipoCotizacion.DataTextField = "DS_TIP_DESCRIPCION";
-            ddlTipoCotizacion.DataValueField = "letra";
+            ddlTipoCotizacion.DataValueField = "ID_TIPO_COMPROBANTE";
             ddlTipoCotizacion.DataBind();
+
+
         }
 
 
@@ -971,12 +995,29 @@ namespace PedidosWebForm
             //impuestos = subtotal * 0.21m; // Supongamos un impuesto del 21%
             total = subtotal + impuestos;
 
+
+
+
+
             // Crear DataTable para la grilla de sumas
             DataTable dtSumas = new DataTable();
             dtSumas.Columns.Add("CantidadTotal");
             dtSumas.Columns.Add("Subtotal");
             dtSumas.Columns.Add("Impuestos");
             dtSumas.Columns.Add("Total");
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             DataRow drSumas = dtSumas.NewRow();
             drSumas["CantidadTotal"] = totalCantidad.ToString("N2");
@@ -1057,15 +1098,28 @@ namespace PedidosWebForm
             dtSumas.Columns.Add("pcaba");
             dtSumas.Columns.Add("pmisiones");
             dtSumas.Columns.Add("Impuestos");
+            dtSumas.Columns.Add("IVA");
             dtSumas.Columns.Add("Total");
 
 
 
-            DataRow drSumas = dtSumas.NewRow();
+            TBL_TIPO_COMPROBANTE ds = new TBL_TIPO_COMPROBANTE();
+
+            ds.Letra = Session["letra"].ToString();
+            ds.CUIT = "30718003594";
+            ds.Neto = total.ToString();
+           DataTable DT =  ds.GETIMpuestosYtotal();
+             
+
+             DataRow drSumas = dtSumas.NewRow();
             drSumas["CantidadTotal"] = totalCantidad.ToString("N2");
             drSumas["Subtotal"] = subtotal.ToString("N2");
             drSumas["Impuestos"] = "0"; /*impuestos.ToString("N2");*/
-            drSumas["Total"] = total.ToString("N2");
+            drSumas["pbsas"] = DT.Rows[0]["PBSAS"].ToString();
+            drSumas["pcaba"] = DT.Rows[0]["PCABA"].ToString();
+            drSumas["pmisiones"] = DT.Rows[0]["PMISIONES"].ToString();
+            drSumas["IVA"] = DT.Rows[0]["IVA"].ToString();
+            drSumas["Total"] = DT.Rows[0]["Total"].ToString();
 
             dtSumas.Rows.Add(drSumas);
 

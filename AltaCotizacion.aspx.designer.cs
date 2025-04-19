@@ -312,15 +312,6 @@ namespace PedidosWebForm
         protected global::System.Web.UI.WebControls.TextBox TextPciaEntrega;
 
         /// <summary>
-        /// Control TextIdLocalidadEntrega.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextIdLocalidadEntrega;
-
-        /// <summary>
         /// Control txtDireccionEntrega.
         /// </summary>
         /// <remarks>
@@ -328,6 +319,15 @@ namespace PedidosWebForm
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDireccionEntrega;
+
+        /// <summary>
+        /// Control TextIdLocalidadEntrega.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextIdLocalidadEntrega;
 
         /// <summary>
         /// Control TextContacto.
