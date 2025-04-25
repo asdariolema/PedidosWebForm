@@ -143,6 +143,7 @@ namespace PedidosWebForm
                     CargarUnidMedAncho();
                     CargarRazonSocial();
                     CargarTBL_TIPO_COMPROBANTE();
+                    CargarTBL_FORMAPAGO();
                     // Inicializar la tabla de artículos si es la primera vez que se carga la página
                     if (ViewState["Articulos"] == null)
                     {
@@ -483,7 +484,21 @@ namespace PedidosWebForm
 
 
 
+        private void CargarTBL_FORMAPAGO()
+        {
+            DAL.FormaDePago FORMA = new DAL.FormaDePago();
+            
 
+
+            DataTable dt = FORMA.GET();
+
+            ddlFormaPagos.DataSource = dt;
+            ddlFormaPagos.DataTextField = "DS_FOR_DESCRIPCION";
+            ddlFormaPagos.DataValueField = "ID_FORMA_PAGO";
+            ddlFormaPagos.DataBind();
+        
+
+        }
 
 
 

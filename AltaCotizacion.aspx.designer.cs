@@ -87,6 +87,15 @@ namespace PedidosWebForm
         protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
 
         /// <summary>
+        /// Control ddlFormaPagos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFormaPagos;
+
+        /// <summary>
         /// Control updTipoCotizacion.
         /// </summary>
         /// <remarks>

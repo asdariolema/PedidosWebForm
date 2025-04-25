@@ -190,6 +190,10 @@
                                         </div>
 
 
+                                          <div style="width: 140px;">
+                                            <label for="ddlFormaPago" class="form-label text-secondary small mb-1">Forma de Pago</label>
+                                            <asp:DropDownList ID="ddlFormaPagos" runat="server" CssClass="form-control form-control-sm shadow-sm" />
+                                        </div>
 
 
 
