@@ -196,6 +196,10 @@
                                         </div>
 
 
+                                            <div style="width: 140px;">
+                                            <label for="ddlPlazoEntrega" class="form-label text-secondary small mb-1">Plazo Entrega</label>
+                                            <asp:DropDownList ID="ddlPlazoEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm" />
+                                        </div>
 
 
 
@@ -324,6 +328,72 @@
 
 
 
+                
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="card shadow-sm mt-4 mb-5 bg-section">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0 text-primary fw-semibold">
+                                    <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row gy-3 gx-4">
+                                    <!-- Provincia (oculta) -->
+                                    <div class="col-md-3 col-sm-6" runat="server" visible="false">
+                                        <label for="TextPciaEntrega" class="form-label text-secondary fw-semibold small">Provincia</label>
+                                        <asp:TextBox ID="TextPciaEntrega" runat="server"
+                                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
+                                    </div>
+
+
+                                      <!-- Dirección -->
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="form-label">Dirección de Entrega</label>
+                                        <div class="input-group">
+                                            <asp:TextBox ID="txtDireccionEntrega" runat="server"
+                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+                                                MaxLength="100"
+                                                ClientIDMode="Static" />
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="reconocerYAsignar('txtDireccionEntrega')">
+                                                <i class="fas fa-microphone"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="form-label">Localidad</label>
+                                        <div class="input-group">
+                                            <asp:TextBox ID="TextIdLocalidadEntrega" runat="server"
+                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+                                                ClientIDMode="Static" />
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="reconocerYAsignar('TextIdLocalidadEntrega')">
+                                                <i class="fas fa-microphone"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                  
+
+                                    <!-- Contacto -->
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="form-label">Contacto</label>
+                                        <div class="input-group">
+                                            <asp:TextBox ID="TextContacto" runat="server"
+                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
+                                                ClientIDMode="Static" />
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="reconocerYAsignar('TextContacto')">
+                                                <i class="fas fa-microphone"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
 
 
@@ -568,72 +638,6 @@
 
 
 
-
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <div class="card shadow-sm mt-4 mb-5 bg-section">
-                            <div class="card-header bg-light">
-                                <h6 class="mb-0 text-primary fw-semibold">
-                                    <i class="fas fa-map-marker-alt me-2 text-primary"></i>Datos de Entrega
-                                </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row gy-3 gx-4">
-                                    <!-- Provincia (oculta) -->
-                                    <div class="col-md-3 col-sm-6" runat="server" visible="false">
-                                        <label for="TextPciaEntrega" class="form-label text-secondary fw-semibold small">Provincia</label>
-                                        <asp:TextBox ID="TextPciaEntrega" runat="server"
-                                            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary" />
-                                    </div>
-
-
-                                      <!-- Dirección -->
-                                    <div class="col-md-4 col-sm-12">
-                                        <label class="form-label">Dirección de Entrega</label>
-                                        <div class="input-group">
-                                            <asp:TextBox ID="txtDireccionEntrega" runat="server"
-                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
-                                                MaxLength="100"
-                                                ClientIDMode="Static" />
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                onclick="reconocerYAsignar('txtDireccionEntrega')">
-                                                <i class="fas fa-microphone"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-12">
-                                        <label class="form-label">Localidad</label>
-                                        <div class="input-group">
-                                            <asp:TextBox ID="TextIdLocalidadEntrega" runat="server"
-                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
-                                                ClientIDMode="Static" />
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                onclick="reconocerYAsignar('TextIdLocalidadEntrega')">
-                                                <i class="fas fa-microphone"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                  
-
-                                    <!-- Contacto -->
-                                    <div class="col-md-4 col-sm-12">
-                                        <label class="form-label">Contacto</label>
-                                        <div class="input-group">
-                                            <asp:TextBox ID="TextContacto" runat="server"
-                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary"
-                                                ClientIDMode="Static" />
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                onclick="reconocerYAsignar('TextContacto')">
-                                                <i class="fas fa-microphone"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
 
 
 

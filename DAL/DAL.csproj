@@ -46,6 +46,7 @@
     <Compile Include="BDL\Pedidos.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="CMUSER.cs" />
+    <Compile Include="CondicionesEntrega.cs" />
     <Compile Include="Cotizacion.cs" />
     <Compile Include="CotizacionConsulta.cs" />
     <Compile Include="CotizContenido.cs" />

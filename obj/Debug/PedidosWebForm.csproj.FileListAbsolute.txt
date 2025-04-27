@@ -180,3 +180,5 @@ C:\Users\asdar\Documents\DommarcoWeb\bin\Microsoft.CodeDom.Providers.DotNetCompi
 C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.csproj.CopyComplete
 C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.dll
 C:\Users\asdar\Documents\DommarcoWeb\obj\Debug\PedidosWebForm.pdb
+C:\Users\asdar\Documents\DommarcoWeb\bin\Newtonsoft.Json.dll
+C:\Users\asdar\Documents\DommarcoWeb\bin\Newtonsoft.Json.xml

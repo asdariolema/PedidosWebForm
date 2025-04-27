@@ -136,3 +136,5 @@ C:\Users\asdar\Documents\DommarcoWeb\obj\Release\PedidosWebForm.dll
 C:\Users\asdar\Documents\DommarcoWeb\obj\Release\PedidosWebForm.pdb
 C:\Users\asdar\Documents\DommarcoWeb\bin\MYCFWK.dll
 C:\Users\asdar\Documents\DommarcoWeb\bin\MYCFWK.pdb
+C:\Users\asdar\Documents\DommarcoWeb\bin\Newtonsoft.Json.dll
+C:\Users\asdar\Documents\DommarcoWeb\bin\Newtonsoft.Json.xml
