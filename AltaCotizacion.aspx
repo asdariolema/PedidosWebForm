@@ -238,7 +238,15 @@
                                         
                                         
                                         
-                                        
+                                        <div style="width: 140px;">
+    <label for="txtFechaPedidoPactado" class="form-label text-secondary small mb-1">Fecha Pactado</label>
+    <asp:TextBox ID="txtFechaPedidoPactado" runat="server"
+        CssClass="form-control form-control-sm shadow-sm text-end"
+        placeholder="dd/mm/aaaa"
+        Style="border-color: #6c757d;"
+        ClientIDMode="Static" />
+</div>
+
                                         
                                         
                                      <%--   <asp:DropDownList
@@ -1118,8 +1126,13 @@
         }
     </script>
 
-
-
+     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#txtFechaPedidoPactado", {
+        dateFormat: "d/m/Y",
+        allowInput: true
+    });
+</script>
 
 
 
