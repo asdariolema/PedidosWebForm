@@ -105,15 +105,6 @@ namespace PedidosWebForm
         protected global::System.Web.UI.WebControls.DropDownList ddlPlazoEntrega;
 
         /// <summary>
-        /// Control updTipoCotizacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updTipoCotizacion;
-
-        /// <summary>
         /// Control ddlTipoCotizacion.
         /// </summary>
         /// <remarks>
@@ -121,15 +112,6 @@ namespace PedidosWebForm
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoCotizacion;
-
-        /// <summary>
-        /// Control btnBuscarCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarCliente;
 
         /// <summary>
         /// Control UpdatePanelRazonSocial.
@@ -202,6 +184,15 @@ namespace PedidosWebForm
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextContacto;
+
+        /// <summary>
+        /// Control txtObservacionesEntrega.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtObservacionesEntrega;
 
         /// <summary>
         /// Control UpdatePanelClientes.

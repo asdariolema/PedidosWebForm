@@ -157,6 +157,34 @@
                                 <div class="card-header bg-light">
                                     <div class="d-flex flex-wrap align-items-end gap-2">
 
+                                      <%--  <asp:UpdatePanel ID="updTipoCotizacion" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <div class="ms-auto" style="width: 200px;">
+                                                    <label for="ddlTipoCotizacion" class="form-label text-secondary small mb-1">Tipo</label>
+
+                                                  
+
+                                                    <label class="form-label d-block invisible">Buscar</label>
+                                                    <asp:Button ID="btnBuscarCliente" runat="server"
+                                                        Text="Buscar"
+                                                        CssClass="btn btn-outline-primary btn-sm w-100 shadow-sm"
+                                                        OnClientClick="$('#clientesModal').modal('show'); return false;" />
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="ddlTipoCotizacion" EventName="SelectedIndexChanged" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>--%>
+
+
+
+
+
+
+
+
+
+
                                         <!-- Tipo Documento -->
                                         <div style="width: 160px;">
                                             <label for="txtTipoDocumento" class="form-label text-secondary small mb-1">Tipo Doc</label>
@@ -201,7 +229,25 @@
                                             <asp:DropDownList ID="ddlPlazoEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm" />
                                         </div>
 
-
+                                       
+                                             <div style="width: 140px;">
+                                            <label for="ddlTipoCotizacion" class="form-label text-secondary small mb-1">Tipo Cotización</label>
+                                            <asp:DropDownList ID="ddlTipoCotizacion" runat="server" CssClass="form-control form-control-sm shadow-sm" AutoPostBack="true"
+                                                        OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged" />
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                     <%--   <asp:DropDownList
+                                                        ID="ddlTipoCotizacion"
+                                                        runat="server"
+                                                        CssClass="form-control form-control-sm shadow-sm"
+                                                        AutoPostBack="true"
+                                                        OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged">
+                                                    </asp:DropDownList>--%>
 
 
                                         <!-- Botón Buscar alineado a la derecha -->
@@ -228,30 +274,7 @@
                                                 OnClientClick="$('#clientesModal').modal('show'); return false;" />
                                         </div>--%>
                                         
-                                        <asp:UpdatePanel ID="updTipoCotizacion" runat="server" UpdateMode="Conditional">
-                                            <ContentTemplate>
-                                                <div class="ms-auto" style="width: 200px;">
-                                                    <label for="ddlTipoCotizacion" class="form-label text-secondary small mb-1">Tipo</label>
-
-                                                    <asp:DropDownList
-                                                        ID="ddlTipoCotizacion"
-                                                        runat="server"
-                                                        CssClass="form-control form-control-sm shadow-sm"
-                                                        AutoPostBack="true"
-                                                        OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged">
-                                                    </asp:DropDownList>
-
-                                                    <label class="form-label d-block invisible">Buscar</label>
-                                                    <asp:Button ID="btnBuscarCliente" runat="server"
-                                                        Text="Buscar"
-                                                        CssClass="btn btn-outline-primary btn-sm w-100 shadow-sm"
-                                                        OnClientClick="$('#clientesModal').modal('show'); return false;" />
-                                                </div>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="ddlTipoCotizacion" EventName="SelectedIndexChanged" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
+                                        
 
 
 
@@ -389,6 +412,30 @@
                                             </button>
                                         </div>
                                     </div>
+
+
+                                    <!-- Observaciones -->
+<div class="col-md-12 col-sm-12">
+    <label class="form-label">Observaciones</label>
+    <div class="input-group">
+        <asp:TextBox ID="txtObservacionesEntrega" runat="server"
+            TextMode="MultiLine"
+            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary auto-grow"
+            MaxLength="500"
+            Rows="1"
+            ClientIDMode="Static" />
+        <button type="button" class="btn btn-outline-secondary"
+            onclick="reconocerYAsignar('txtObservacionesEntrega')">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -776,7 +823,20 @@
 
 
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const textareas = document.querySelectorAll('.auto-grow');
+            textareas.forEach(function (textarea) {
+                textarea.addEventListener('input', function () {
+                    this.style.height = 'auto'; // Primero resetea la altura
+                    this.style.height = (this.scrollHeight) + 'px'; // Luego ajusta a lo que escribió
+                });
 
+                // Ajusta la altura inicial si ya había texto
+                textarea.dispatchEvent(new Event('input'));
+            });
+        });
+    </script>
 
 
 

@@ -8,78 +8,31 @@ using System.Security.Cryptography;
 
 namespace DAL
 {
-    public class FormCondicionesEntregaaDePago
+    public class CondicionesEntrega
     {
 
 
-        private string _ID_FORMA_PAGO;
+        private string _ID;
 
-        private string _DS_FOR_DESCRIPCION;
+        private string _PLAZO;
 
-        private string _NU_FOR_DIAS;
+       
 
-        private string _CD_FOR_STATUS;
-
-
-        private string _ID_TIPO_FORMA_PAGO;
-
-        private string _CD_FOR_DA_CAMBIO;
-
-        public string CD_FOR_STATUS // DataType [NUMERIC ],Nullable [NO]
+        public string ID // DataType [NUMERIC ],Nullable [NO]
         {
-            get { return string.IsNullOrEmpty(_CD_FOR_STATUS) ? SQL.numericNULL : _CD_FOR_STATUS.Replace(',', '.'); }
-            set { _CD_FOR_STATUS = value; }
+            get { return string.IsNullOrEmpty(_ID) ? SQL.numericNULL : _ID.Replace(',', '.'); }
+            set { _ID = value; }
         }
 
 
 
 
 
-        public string DS_FOR_DESCRIPCION // DataType [CHARACTER VARYING],Nullable [YES]
+        public string PLAZO // DataType [CHARACTER VARYING],Nullable [YES]
         {
-            get { return string.IsNullOrEmpty(_DS_FOR_DESCRIPCION) ? SQL.numericNULL : _DS_FOR_DESCRIPCION.Replace(',', '.'); }
-            set { _DS_FOR_DESCRIPCION = value; }
+            get { return string.IsNullOrEmpty(_PLAZO) ? SQL.numericNULL : _PLAZO.Replace(',', '.'); }
+            set { _PLAZO = value; }
         }
-
-
-
-        public string NU_FOR_DIAS // DataType [CHARACTER VARYING],Nullable [YES]
-        {
-
-            get { return string.IsNullOrEmpty(_NU_FOR_DIAS) ? SQL.numericNULL : _NU_FOR_DIAS.Replace(',', '.'); }
-
-            set { _NU_FOR_DIAS = value; }
-        }
-
-
-
-
-
-
-        public string ID_FORMA_PAGO // DataType [NUMERIC ],Nullable [NO]
-        {
-            get { return string.IsNullOrEmpty(_ID_FORMA_PAGO) ? SQL.numericNULL : _ID_FORMA_PAGO.Replace(',', '.'); }
-            set { _ID_FORMA_PAGO = value; }
-        }
-
-
-
-
-
-        public string ID_TIPO_FORMA_PAGO // DataType [CHARACTER VARYING],Nullable [YES]
-        {
-            get { return string.IsNullOrEmpty(_ID_TIPO_FORMA_PAGO) ? SQL.numericNULL : _ID_TIPO_FORMA_PAGO.Replace(',', '.'); }
-            set { ID_TIPO_FORMA_PAGO = value; }
-        }
-
-
-
-        public string CD_FOR_DA_CAMBIO // DataType [CHARACTER VARYING],Nullable [YES]
-        {
-            get { return string.IsNullOrEmpty(_CD_FOR_DA_CAMBIO) ? SQL.numericNULL : _CD_FOR_DA_CAMBIO.Replace(',', '.'); }
-            set { _CD_FOR_DA_CAMBIO = value; }
-        }
-
 
 
 
@@ -92,13 +45,10 @@ namespace DAL
 
 
 
-                string aux = SQL.Call + "formapago_QRY ";
-                aux += (ID_FORMA_PAGO) + ',';
-                aux += (DS_FOR_DESCRIPCION) + ',';
-                aux += (NU_FOR_DIAS) + ',';
-                aux += (CD_FOR_STATUS) + ',';
-                aux += (ID_TIPO_FORMA_PAGO) + ',';
-                aux += (CD_FOR_DA_CAMBIO);
+                string aux = SQL.Call + "PLAZOENTREGA_QRY ";
+                aux += (ID) + ',';
+              
+                aux += (PLAZO);
 
 
 

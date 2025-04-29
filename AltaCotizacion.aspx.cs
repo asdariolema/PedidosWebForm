@@ -144,6 +144,7 @@ namespace PedidosWebForm
                     CargarRazonSocial();
                     CargarTBL_TIPO_COMPROBANTE();
                     CargarTBL_FORMAPAGO();
+                    CargarTBL_PLAZO_ENTREGA();
                     // Inicializar la tabla de artículos si es la primera vez que se carga la página
                     if (ViewState["Articulos"] == null)
                     {
@@ -500,7 +501,21 @@ namespace PedidosWebForm
 
         }
 
+        private void CargarTBL_PLAZO_ENTREGA()
+        {
+            DAL. CondicionesEntrega condicion = new DAL.CondicionesEntrega();
 
+
+
+            DataTable dt = condicion.GET();
+
+            ddlPlazoEntrega.DataSource = dt;
+            ddlPlazoEntrega.DataTextField = "plazo";
+            ddlPlazoEntrega.DataValueField = "ID";
+            ddlPlazoEntrega.DataBind();
+
+
+        }
 
 
         private void CargarUnidMed()
