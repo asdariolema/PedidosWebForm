@@ -82,18 +82,20 @@ namespace PedidosWebForm
             gvSumas.Columns[4].Visible = true;
             gvSumas.Columns[3].Visible = true;
             gvSumas.Columns[2].Visible = true;
+                gvSumas.Columns[5].Visible = true;
 
-             
             }
             else
 
             {
+                gvSumas.Columns[5].Visible = false;
                 gvSumas.Columns[4].Visible = false;
                 gvSumas.Columns[3].Visible = false;
                 gvSumas.Columns[2].Visible = false;
 
                
             }
+            ddlTipoCotizacion.Enabled = false;
         }
 
 
@@ -479,7 +481,9 @@ namespace PedidosWebForm
             ddlTipoCotizacion.DataTextField = "DS_TIP_DESCRIPCION";
             ddlTipoCotizacion.DataValueField = "ID_TIPO_COMPROBANTE";
             ddlTipoCotizacion.DataBind();
+            ddlTipoCotizacion.Items.Insert(0, new ListItem("", "0"));
 
+            ddlTipoCotizacion.SelectedValue = "0";
 
         }
 
@@ -497,7 +501,9 @@ namespace PedidosWebForm
             ddlFormaPagos.DataTextField = "DS_FOR_DESCRIPCION";
             ddlFormaPagos.DataValueField = "ID_FORMA_PAGO";
             ddlFormaPagos.DataBind();
-        
+            ddlFormaPagos.Items.Insert(0, new ListItem("", "0"));
+
+            ddlFormaPagos.SelectedValue = "0";
 
         }
 
@@ -513,7 +519,9 @@ namespace PedidosWebForm
             ddlPlazoEntrega.DataTextField = "plazo";
             ddlPlazoEntrega.DataValueField = "ID";
             ddlPlazoEntrega.DataBind();
+            ddlPlazoEntrega.Items.Insert(0, new ListItem("", "0"));
 
+            ddlPlazoEntrega.SelectedValue = "0";
 
         }
 

@@ -157,7 +157,7 @@
                                 <div class="card-header bg-light">
                                     <div class="d-flex flex-wrap align-items-end gap-2">
 
-                                      <%--  <asp:UpdatePanel ID="updTipoCotizacion" runat="server" UpdateMode="Conditional">
+                                        <%--  <asp:UpdatePanel ID="updTipoCotizacion" runat="server" UpdateMode="Conditional">
                                             <ContentTemplate>
                                                 <div class="ms-auto" style="width: 200px;">
                                                     <label for="ddlTipoCotizacion" class="form-label text-secondary small mb-1">Tipo</label>
@@ -218,38 +218,42 @@
                                         </div>
 
 
-                                          <div style="width: 140px;">
+                                        <div style="width: 140px;">
                                             <label for="ddlFormaPago" class="form-label text-secondary small mb-1">Forma de Pago</label>
                                             <asp:DropDownList ID="ddlFormaPagos" runat="server" CssClass="form-control form-control-sm shadow-sm" />
                                         </div>
 
 
-                                            <div style="width: 140px;">
+                                        <div style="width: 140px;">
                                             <label for="ddlPlazoEntrega" class="form-label text-secondary small mb-1">Plazo Entrega</label>
                                             <asp:DropDownList ID="ddlPlazoEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm" />
                                         </div>
 
-                                       
-                                             <div style="width: 140px;">
-                                            <label for="ddlTipoCotizacion" class="form-label text-secondary small mb-1">Tipo Cotización</label>
-                                            <asp:DropDownList ID="ddlTipoCotizacion" runat="server" CssClass="form-control form-control-sm shadow-sm" AutoPostBack="true"
-                                                        OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged" />
-                                        </div>
-                                        
-                                        
-                                        
-                                        <div style="width: 140px;">
-    <label for="txtFechaPedidoPactado" class="form-label text-secondary small mb-1">Fecha Pactado</label>
-    <asp:TextBox ID="txtFechaPedidoPactado" runat="server"
-        CssClass="form-control form-control-sm shadow-sm text-end"
-        placeholder="dd/mm/aaaa"
-        Style="border-color: #6c757d;"
-        ClientIDMode="Static" />
-</div>
 
-                                        
-                                        
-                                     <%--   <asp:DropDownList
+
+                                        <asp:UpdatePanel ID="UpdatePanelTipoCotizacion" runat="server">
+                                            <ContentTemplate>
+                                                <div style="width: 140px;">
+                                                    <label for="ddlTipoCotizacion" class="form-label text-secondary small mb-1">Tipo Cotización</label>
+                                                    <asp:DropDownList ID="ddlTipoCotizacion" runat="server" CssClass="form-control form-control-sm shadow-sm" AutoPostBack="true"
+                                                        OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged" />
+                                                </div>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+
+
+                                        <div style="width: 140px;">
+                                            <label for="txtFechaPedidoPactado" class="form-label text-secondary small mb-1">Fecha Pactado</label>
+                                            <asp:TextBox ID="txtFechaPedidoPactado" runat="server"
+                                                CssClass="form-control form-control-sm shadow-sm text-end"
+                                                placeholder="dd/mm/aaaa"
+                                                Style="border-color: #6c757d;"
+                                                ClientIDMode="Static" />
+                                        </div>
+
+
+
+                                        <%--   <asp:DropDownList
                                                         ID="ddlTipoCotizacion"
                                                         runat="server"
                                                         CssClass="form-control form-control-sm shadow-sm"
@@ -281,17 +285,6 @@
                                                 CssClass="btn btn-outline-primary btn-sm w-100 shadow-sm"
                                                 OnClientClick="$('#clientesModal').modal('show'); return false;" />
                                         </div>--%>
-                                        
-                                        
-
-
-
-
-
-
-
-
-
                                     </div>
                                 </div>
 
@@ -359,7 +352,7 @@
 
 
 
-                
+
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="card shadow-sm mt-4 mb-5 bg-section">
@@ -378,7 +371,7 @@
                                     </div>
 
 
-                                      <!-- Dirección -->
+                                    <!-- Dirección -->
                                     <div class="col-md-4 col-sm-12">
                                         <label class="form-label">Dirección de Entrega</label>
                                         <div class="input-group">
@@ -405,7 +398,7 @@
                                         </div>
                                     </div>
 
-                                  
+
 
                                     <!-- Contacto -->
                                     <div class="col-md-4 col-sm-12">
@@ -423,21 +416,21 @@
 
 
                                     <!-- Observaciones -->
-<div class="col-md-12 col-sm-12">
-    <label class="form-label">Observaciones</label>
-    <div class="input-group">
-        <asp:TextBox ID="txtObservacionesEntrega" runat="server"
-            TextMode="MultiLine"
-            CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary auto-grow"
-            MaxLength="500"
-            Rows="1"
-            ClientIDMode="Static" />
-        <button type="button" class="btn btn-outline-secondary"
-            onclick="reconocerYAsignar('txtObservacionesEntrega')">
-            <i class="fas fa-microphone"></i>
-        </button>
-    </div>
-</div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <label class="form-label">Observaciones</label>
+                                        <div class="input-group">
+                                            <asp:TextBox ID="txtObservacionesEntrega" runat="server"
+                                                TextMode="MultiLine"
+                                                CssClass="form-control form-control-sm shadow-sm input-focus-anim text-primary auto-grow"
+                                                MaxLength="500"
+                                                Rows="1"
+                                                ClientIDMode="Static" />
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="reconocerYAsignar('txtObservacionesEntrega')">
+                                                <i class="fas fa-microphone"></i>
+                                            </button>
+                                        </div>
+                                    </div>
 
 
 
@@ -472,7 +465,7 @@
 
 
 
-
+              <%--  <a href="Menu.aspx">Menu.aspx</a>--%>
 
 
 
@@ -755,7 +748,8 @@
                 <!-- Panel de sumas y botón Aceptar -->
                 <asp:UpdatePanel ID="UpdatePanelSumas" runat="server">
                     <ContentTemplate>
-                        <div class="mt-4 d-flex justify-content-end flex-wrap w-100">
+                       <%-- <div class="mt-4 d-flex justify-content-end flex-wrap w-100">--%>
+<div class="panel-pie-centro">
 
                             <div class="resumen-importes-card">
                                 <div class="card-body">
@@ -773,7 +767,7 @@
                                             <asp:BoundField HeaderText="P.Caba" DataField="pcaba" ItemStyle-HorizontalAlign="Right" />
                                             <asp:BoundField HeaderText="P.Misiones" DataField="pmisiones" ItemStyle-HorizontalAlign="Right" />
 
-                                              <asp:BoundField HeaderText="IVA" DataField="IVA" ItemStyle-HorizontalAlign="Right" />
+                                            <asp:BoundField HeaderText="IVA" DataField="IVA" ItemStyle-HorizontalAlign="Right" />
 
 
 
@@ -792,13 +786,23 @@
                             OnClientClick="return validarConfirmarPedido();" />
                     </div>--%>
 
-                                    <asp:Button ID="btnAceptar" runat="server"
+<%--                                    <asp:Button ID="btnAceptar" runat="server"
                                         Text="Aceptar"
                                         CssClass="btn btn-outline-primary btn-lg px-4 fw-semibold shadow-sm"
                                         OnClick="btnAceptar_Click"
-                                        OnClientClick="return validarConfirmacionYHablar();" />
+                                        OnClientClick="return validarConfirmacionYHablar();" />--%>
 
-                                </div>
+
+                                    <div class="text-end mt-3">
+                        <asp:Button ID="btnAceptar" runat="server"
+                            Text="Grabar y Salir"
+                            CssClass="btn btn-outline-primary btn-lg px-4 fw-semibold shadow-sm"
+                            OnClick="btnAceptar_Click"
+                            OnClientClick="return validarConfirmacionYHablar();" />
+                   
+ </div>
+
+                                       </div>
                             </div>
                         </div>
                     </ContentTemplate>
@@ -998,39 +1002,31 @@
             window.speechSynthesis.speak(mensaje);
         }
 
-   <%--function validarYHablar() {
-        let errores = [];
 
-        const unidad = document.getElementById("<%= txtCantidad.ClientID %>").value;
-        const precio = document.getElementById("<%= txtPrecioUnitario.ClientID %>").value.trim();
-
-        if (!unidad) {
-            errores.push("Error en Cantidad.");
-        }
-
-        if (!precio) {
-            errores.push("Error en  precio unitario.");
-        }
-
-        if (errores.length > 0) {
-            hablar(errores.join(" "));
-            return false; // evita postback si hay errores
-        }
-
-        return true; // permite postback si todo está bien--%>
         function validarArticuloYHablar() {
             let errores = [];
 
+            const tipocotizacion = document.getElementById("<%= ddlTipoCotizacion.ClientID %>").value;
+            const formapago = document.getElementById("<%= ddlFormaPagos.ClientID %>").value;
             const unidad = document.getElementById("<%= txtCantidad.ClientID %>").value;
-           <%-- const precio = document.getElementById("<%= txtPrecioUnitario.ClientID %>").value.trim();--%>
+            const formaentrega = document.getElementById("<%= ddlPlazoEntrega.ClientID %>").value;
+
 
             if (!unidad) {
                 errores.push("Error en Cantidad.");
             }
 
-            //if (!precio) {
-            //    errores.push("Error en precio unitario.");
-            //}
+            if (tipocotizacion === "0") {
+                errores.push("Error en tipo de cotizacion.");
+            }
+
+            if (formapago === "0") {
+                errores.push("Error en forma de pago.");
+            }
+            if (formaentrega === "0") {
+                errores.push("Error en plazo  de entrega.");
+            }
+
 
             if (errores.length > 0) {
                 hablar(errores.join(" "));
@@ -1039,6 +1035,11 @@
 
             return true;
         }
+
+
+
+
+
         function validarConfirmacionYHablar() {
             let errores = [];
 
@@ -1083,14 +1084,14 @@
 
 
 
-    <div class="mt-4">
+    <%--   <div class="mt-4">
         <label for="selectVoz" class="form-label fw-bold text-primary">Seleccionar voz:</label>
         <select id="selectVoz" class="form-select w-auto mb-2"></select>
 
         <button class="btn btn-outline-primary" onclick="probarVozSeleccionada()">Probar Voz</button>
-    </div>
+    </div>--%>
 
-    <script>
+    <%-- <script>
         let vocesCargadas = [];
 
         function cargarVoces() {
@@ -1124,16 +1125,57 @@
             speechSynthesis.onvoiceschanged = cargarVoces;
             setTimeout(cargarVoces, 200); // fallback
         }
+    </script>--%>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#txtFechaPedidoPactado", {
+            dateFormat: "d/m/Y",
+            allowInput: true
+        });
     </script>
 
-     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-    flatpickr("#txtFechaPedidoPactado", {
-        dateFormat: "d/m/Y",
-        allowInput: true
-    });
-</script>
 
+   <style>
+    .panel-pie-centro {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .resumen-importes-card {
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        padding: 20px;
+        max-width: 900px;
+        width: 100%;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .titulo-seccion {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .tabla-sumas th, .tabla-sumas td {
+        font-size: 0.9rem;
+        vertical-align: middle;
+    }
+</style>
 
 
 
