@@ -1,2 +1,5 @@
 ﻿DAL/obj
 obj/Debug
+.vs
+bin
+obj
