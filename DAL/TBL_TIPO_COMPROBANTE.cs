@@ -151,8 +151,8 @@ namespace DAL
 
 
                 string aux = SQL.Call + "CALCULAIMPUESTOS ";
-                aux += (CUIT) + ',';
-                aux += (Letra) + ',';
+                aux += Comillas(CUIT) + ',';
+                aux += Comillas(Letra) + ',';
              
                 aux += (Neto);
 
