@@ -803,10 +803,10 @@ namespace PedidosWebForm
                 Cotizacion.idCotizacion = "1";
                 Cotizacion.estado = ddlEstado.SelectedValue;
 
-                Cotizacion.direccionEntrega = txtDireccionEntrega.Text;
-                Cotizacion.localidadentrega = TextIdLocalidadEntrega.Text;
-                Cotizacion.provincia = TextPciaEntrega.Text;
-                Cotizacion.contactoObra = TextContacto.Text;
+                Cotizacion.direccionEntrega = (txtDireccionEntrega.Text);
+                Cotizacion.localidadentrega = (TextIdLocalidadEntrega.Text);
+                Cotizacion.provincia = (TextPciaEntrega.Text);
+                Cotizacion.contactoObra = (TextContacto.Text);
 
 
                 // Acceder al valor de la columna "Total" en el DataTable de la grilla de sumas

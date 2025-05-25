@@ -1177,8 +1177,40 @@
     }
 </style>
 
+       <script>
+   
 
+   Sys.Application.add_load(function () {
+    const ids = [
+        '<%= TextPciaEntrega.ClientID %>',
+        '<%= txtDireccionEntrega.ClientID %>',
+        '<%= txtObservacionesEntrega.ClientID %>',
+        '<%= TextContacto.ClientID %>'
+    ];
 
+    ids.forEach(function (id) {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        // Evita que se escriban comillas simples y dobles
+        input.addEventListener('keypress', function (e) {
+            if (e.key === "'" || e.key === '"') {
+                e.preventDefault();
+            }
+        });
+
+        // Evita que se peguen comillas simples o dobles
+        input.addEventListener('paste', function (e) {
+            const pasted = (e.clipboardData || window.clipboardData).getData('text');
+            if (pasted.includes("'") || pasted.includes('"')) {
+                e.preventDefault();
+                alert("No se permiten comillas simples ni dobles.");
+            }
+        });
+    });
+});
+
+       </script>
 
 
 

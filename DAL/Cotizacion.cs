@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace DAL
 {
     public class Cotizacion
-    
-  {
+
+    {
         private string _idCotiz;
         private string _idCliente;
         private string _nombreCliente;
@@ -453,7 +453,7 @@ namespace DAL
                 aux += Comillas(provincia);
 
 
-              
+
 
 
                 return SQL.EjecutaStored(aux).Tables[0];
@@ -522,15 +522,15 @@ namespace DAL
         }
 
 
-        public DataTable pasarapedido( string idcotizacion)
+        public DataTable pasarapedido(string idcotizacion)
         {
             try
             {
 
 
                 string aux = SQL.Call + "pasarcotizacionapedido " + idcotizacion;
-                  
-               
+
+
 
 
                 return SQL.EjecutaStored(aux).Tables[0];
