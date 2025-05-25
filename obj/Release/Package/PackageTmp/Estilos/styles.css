@@ -1,0 +1,40 @@
+﻿/* styles.css */
+
+.navbar {
+    background-color: #007bff; /* Color de fondo de la barra de navegación */
+    border-color: #0056b3; /* Color del borde de la barra de navegación */
+}
+
+.navbar-brand {
+    color: #fff !important; /* Color del texto de la marca */
+}
+
+.navbar-nav > li > a {
+    color: #fff !important; /* Color del texto de los enlaces de la navegación */
+}
+
+.navbar-nav > .dropdown > a:hover,
+.navbar-nav > .dropdown > a:focus {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón por el menú desplegable */
+    color: #fff !important; /* Color del texto al pasar el ratón por el menú desplegable */
+}
+
+.navbar-nav > .dropdown-menu {
+    background-color: #007bff; /* Color de fondo del menú desplegable */
+}
+
+    .navbar-nav > .dropdown-menu > li > a {
+        color: #fff !important; /* Color del texto de los enlaces del menú desplegable */
+    }
+
+        .navbar-nav > .dropdown-menu > li > a:hover,
+        .navbar-nav > .dropdown-menu > li > a:focus {
+            background-color: #0056b3; /* Color de fondo al pasar el ratón por los enlaces del menú desplegable */
+            color: #fff !important; /* Color del texto al pasar el ratón por los enlaces del menú desplegable */
+        }
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón por los enlaces de la navegación */
+    color: #fff !important; /* Color del texto al pasar el ratón por los enlaces de la navegación */
+}
