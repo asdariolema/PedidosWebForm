@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 using static System.Net.Mime.MediaTypeNames;
 
@@ -798,7 +799,21 @@ namespace PedidosWebForm
                 DAL.Cotizacion Cotizacion = new DAL.Cotizacion();
                 Cotizacion.nombreCliente = ddlRazonSocial.SelectedItem.ToString();
 
-                Cotizacion.fechaAlta = txtFechaPedido.Text;
+                // Cotizacion.fechaAlta = "20/05/2025"; // txtFechaPedido.Text;
+
+                DateTime fechaal;  // Declaración visible en todo el método
+
+
+
+                if (DateTime.TryParseExact(txtFechaPedido.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaal))
+                {
+                    Cotizacion.fechaAlta = fechaal.ToString("dd/MM/yyyy");
+                }
+
+
+
+
+
                 Cotizacion.idCliente = Session["ID_CLIENTE"].ToString();
                 Cotizacion.idCotizacion = "1";
                 Cotizacion.estado = ddlEstado.SelectedValue;
@@ -807,25 +822,35 @@ namespace PedidosWebForm
                 Cotizacion.localidadentrega = (TextIdLocalidadEntrega.Text);
                 Cotizacion.provincia = (TextPciaEntrega.Text);
                 Cotizacion.contactoObra = (TextContacto.Text);
-                Cotizacion.idTipoCotizacion=ddlTipoCotizacion.SelectedValue;
-                Cotizacion.IdPlazoEntrega= ddlPlazoEntrega.SelectedValue;
-                Cotizacion.IdFormaPago= ddlFormaPagos.SelectedValue;
-                Cotizacion.FechaPactada = txtFechaPedidoPactado.Text;
-                            
+                Cotizacion.idTipoCotizacion = ddlTipoCotizacion.SelectedValue;
+                Cotizacion.IdPlazoEntrega = ddlPlazoEntrega.SelectedValue;
+                Cotizacion.IdFormaPago = ddlFormaPagos.SelectedValue;
 
-            
+
+                DateTime fechapacac;  // Declaración visible en todo el método
+
+                if (DateTime.TryParseExact(txtFechaPedidoPactado.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechapacac))
+                {
+                    Cotizacion.FechaPactada = fechapacac.ToString("dd/MM/yyyy");
+                }
+
+
+
+
+
+
                 DataTable dtSumas = ViewState["Sumas"] as DataTable;
                 if (dtSumas != null && dtSumas.Rows.Count > 0)
                 {
-                    Cotizacion.SubTotal= (dtSumas.Rows[0]["SubTotal"]).ToString();
-                    Cotizacion.piibb =(dtSumas.Rows[0]["pbsas"]).ToString();
-                    Cotizacion.Pcaba= (dtSumas.Rows[0]["pcaba"]).ToString();
-                    Cotizacion.PMisiones = (dtSumas.Rows[0]["pmisiones"]).ToString ();
-                    Cotizacion.Iva21 = (dtSumas.Rows[0]["IVA"]).ToString ();
+                    Cotizacion.SubTotal = (dtSumas.Rows[0]["SubTotal"]).ToString();
+                    Cotizacion.piibb = (dtSumas.Rows[0]["pbsas"]).ToString();
+                    Cotizacion.Pcaba = (dtSumas.Rows[0]["pcaba"]).ToString();
+                    Cotizacion.PMisiones = (dtSumas.Rows[0]["pmisiones"]).ToString();
+                    Cotizacion.Iva21 = (dtSumas.Rows[0]["IVA"]).ToString();
 
                     decimal totalCotizacion = Convert.ToDecimal(dtSumas.Rows[0]["Total"]);
 
-                  Cotizacion.importetotal = totalCotizacion.ToString("0.00", new System.Globalization.CultureInfo("es-AR"));
+                    Cotizacion.importetotal = totalCotizacion.ToString("0.00", new System.Globalization.CultureInfo("es-AR"));
 
                 }
 
@@ -854,7 +879,7 @@ namespace PedidosWebForm
                     COTIZCONT.LARGO = HttpUtility.HtmlDecode(row.Cells[7].Text);
                     COTIZCONT.UNIDAD = HttpUtility.HtmlDecode(row.Cells[9].Text);
                     COTIZCONT.TASA = row.Cells[11].Text;
-                    COTIZCONT.OBSERVACIONES= HttpUtility.HtmlDecode( row.Cells[12].Text);
+                    COTIZCONT.OBSERVACIONES = HttpUtility.HtmlDecode(row.Cells[12].Text);
 
                     COTIZCONT.PRECIOUNITARIO = row.Cells[13].Text;
                     COTIZCONT.PRECIOTOTAL = row.Cells[14].Text;
@@ -885,6 +910,7 @@ namespace PedidosWebForm
             }
 
         }
+
 
 
 
