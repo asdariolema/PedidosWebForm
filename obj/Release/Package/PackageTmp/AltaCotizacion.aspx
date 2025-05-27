@@ -204,7 +204,7 @@
                                         </div>
 
                                         <!-- Fecha Pedido -->
-                                        <div style="width: 140px;">
+                                        <div style="width: 100px;">
                                             <label for="txtFechaPedido" class="form-label text-secondary small mb-1">Fecha</label>
                                             <asp:TextBox ID="txtFechaPedido" runat="server"
                                                 CssClass="form-control form-control-sm shadow-sm text-end"
@@ -228,6 +228,21 @@
                                             <label for="ddlPlazoEntrega" class="form-label text-secondary small mb-1">Plazo Entrega</label>
                                             <asp:DropDownList ID="ddlPlazoEntrega" runat="server" CssClass="form-control form-control-sm shadow-sm" />
                                         </div>
+
+
+
+
+                                          <div style="width: 90px;">
+                                            <label for="txtOC" class="form-label text-secondary small mb-1">Nro.OC</label>
+                                            <asp:TextBox ID="txtoc" runat="server"
+                                                CssClass="form-control form-control-sm shadow-sm text-primary"
+                                                MaxLength="20" />
+
+                                        </div>
+
+
+
+
 
 
 
@@ -1177,8 +1192,40 @@
     }
 </style>
 
+       <script>
+   
 
+   Sys.Application.add_load(function () {
+    const ids = [
+        '<%= TextPciaEntrega.ClientID %>',
+        '<%= txtDireccionEntrega.ClientID %>',
+        '<%= txtObservacionesEntrega.ClientID %>',
+        '<%= TextContacto.ClientID %>'
+    ];
 
+    ids.forEach(function (id) {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        // Evita que se escriban comillas simples y dobles
+        input.addEventListener('keypress', function (e) {
+            if (e.key === "'" || e.key === '"') {
+                e.preventDefault();
+            }
+        });
+
+        // Evita que se peguen comillas simples o dobles
+        input.addEventListener('paste', function (e) {
+            const pasted = (e.clipboardData || window.clipboardData).getData('text');
+            if (pasted.includes("'") || pasted.includes('"')) {
+                e.preventDefault();
+                alert("No se permiten comillas simples ni dobles.");
+            }
+        });
+    });
+});
+
+       </script>
 
 
 
