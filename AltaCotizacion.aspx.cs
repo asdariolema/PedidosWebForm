@@ -807,21 +807,27 @@ namespace PedidosWebForm
                 Cotizacion.localidadentrega = (TextIdLocalidadEntrega.Text);
                 Cotizacion.provincia = (TextPciaEntrega.Text);
                 Cotizacion.contactoObra = (TextContacto.Text);
+                Cotizacion.idTipoCotizacion=ddlTipoCotizacion.SelectedValue;
+                Cotizacion.IdPlazoEntrega= ddlPlazoEntrega.SelectedValue;
+                Cotizacion.IdFormaPago= ddlFormaPagos.SelectedValue;
+                Cotizacion.FechaPactada = txtFechaPedidoPactado.Text;
+                            
 
-
-                // Acceder al valor de la columna "Total" en el DataTable de la grilla de sumas
+            
                 DataTable dtSumas = ViewState["Sumas"] as DataTable;
                 if (dtSumas != null && dtSumas.Rows.Count > 0)
                 {
+                    Cotizacion.SubTotal= (dtSumas.Rows[0]["SubTotal"]).ToString();
+                    Cotizacion.piibb =(dtSumas.Rows[0]["pbsas"]).ToString();
+                    Cotizacion.Pcaba= (dtSumas.Rows[0]["pcaba"]).ToString();
+                    Cotizacion.PMisiones = (dtSumas.Rows[0]["pmisiones"]).ToString ();
+                    Cotizacion.Iva21 = (dtSumas.Rows[0]["IVA"]).ToString ();
+
                     decimal totalCotizacion = Convert.ToDecimal(dtSumas.Rows[0]["Total"]);
 
-
-
-                    Cotizacion.importetotal = totalCotizacion.ToString("0.00", new System.Globalization.CultureInfo("es-AR"));
+                  Cotizacion.importetotal = totalCotizacion.ToString("0.00", new System.Globalization.CultureInfo("es-AR"));
 
                 }
-
-
 
                 DataTable ds = Cotizacion.InsertCotiz();
 

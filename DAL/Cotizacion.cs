@@ -46,6 +46,84 @@ namespace DAL
         private string _pbuscafechaalta;
         private string _localidadentrega;
         private string _provincia;
+        //---------------------------
+        private string _idTipoCotizacion;
+        private string _IdPlazoEntrega;
+        private string _IdFormaPago;
+        private string _FechaPactada;
+        private string _Pcaba;
+        private string _PMisiones;
+        private string _Iva21;
+        private string _Iva105;
+        private string _SubTotal;
+        //-----------
+        public string SubTotal // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return string.IsNullOrEmpty(_SubTotal) ? SQL.numericNULL : _SubTotal.Replace(',', '.'); }
+            set { _SubTotal = value; }
+        }
+
+
+        public string Iva105 // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return string.IsNullOrEmpty(_Iva105) ? SQL.numericNULL : _Iva105.Replace(',', '.'); }
+            set { _Iva105 = value; }
+        }
+
+        public string Pcaba // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return string.IsNullOrEmpty(_Pcaba) ? SQL.numericNULL : _Pcaba.Replace(',', '.'); }
+            set { _Pcaba = value; }
+        }
+
+        public string PMisiones // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return string.IsNullOrEmpty(_PMisiones) ? SQL.numericNULL : _PMisiones.Replace(',', '.'); }
+            set { _PMisiones = value; }
+        }
+
+        public string Iva21 // DataType [NUMERIC ],Nullable [YES]
+        {
+            get { return string.IsNullOrEmpty(_Iva21) ? SQL.numericNULL : _Iva21.Replace(',', '.'); }
+            set { _Iva21 = value; }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        public string FechaPactada // DataType [DATE    ],Nullable [YES]
+        {
+
+            get { return string.IsNullOrEmpty(_FechaPactada) ? SQL.dateNULLsql : DateTime.Parse(_FechaPactada).Date.ToString("dd-MM-yyyy"); }
+            set { _FechaPactada = value; }
+        }
+
+
+        public string idTipoCotizacion // DataType [NUMERIC ],Nullable [NO]
+        {
+            get { return string.IsNullOrEmpty(_idTipoCotizacion) ? SQL.numericNULL : _idTipoCotizacion.Replace(',', '.'); }
+            set { _idTipoCotizacion = value; }
+        }
+        public string IdPlazoEntrega // DataType [NUMERIC ],Nullable [NO]
+        {
+            get { return string.IsNullOrEmpty(_IdPlazoEntrega) ? SQL.numericNULL : _IdPlazoEntrega.Replace(',', '.'); }
+            set { _IdPlazoEntrega = value; }
+        }
+
+        public string IdFormaPago // DataType [NUMERIC ],Nullable [NO]
+        {
+            get { return string.IsNullOrEmpty(_IdFormaPago) ? SQL.numericNULL : _IdFormaPago.Replace(',', '.'); }
+            set { _IdFormaPago = value; }
+        }
+
+
 
 
 
@@ -450,7 +528,18 @@ namespace DAL
                 aux += Comillas(condicionEntrega) + ',';
                 aux += Comillas(@fechaAlta) + ',';
                 aux += Comillas(localidadentrega) + ',';
-                aux += Comillas(provincia);
+                aux += Comillas(provincia) + ',';
+                aux += Comillas(idTipoCotizacion) + ',';
+                aux += Comillas(IdPlazoEntrega) + ',';
+                aux += Comillas(IdFormaPago) + ',';
+                aux += Comillas(FechaPactada) + ',';
+                aux += (SubTotal) + ',';
+                aux += (Pcaba) + ',';
+                aux += (PMisiones) + ',';
+                aux += (Iva21) + ',';
+                aux += (Iva105);
+
+
 
 
 
